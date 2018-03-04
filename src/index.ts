@@ -35,7 +35,7 @@ export class EmailJS {
       method: 'POST',
       mode: 'cors',
       headers: {
-        'content-type': 'application/json;charset=UTF-8'
+        'content-type': 'application/json'
       },
       body: JSON.stringify(params)
     });
