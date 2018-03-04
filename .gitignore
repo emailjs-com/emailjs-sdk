@@ -2,8 +2,6 @@
 # http://git-scm.com/docs/gitignore
 
 node_modules/
-dest/
-dist/
 coverage/
 typings/
 .idea/
