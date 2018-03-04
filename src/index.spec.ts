@@ -16,4 +16,8 @@ describe('emailJS', () => {
         return expect(error).to.be.not.undefined;
       });
   });
+
+  it ('should be same object', () => {
+    expect(emailjs).to.be.equal((<any>window).emailjs);
+  })
 });
