@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Test</title>
+    <title>EmailJS SDK - Test</title>
 
     <script src="emailjs-com.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -12,9 +12,35 @@
         }, function(error) {
           console.log(error);
         });
+
+        function submitForm(event) {
+          event.preventDefault();
+          emailjs.sendForm('test', 'test', '.test-form').then(function(response) {
+            console.log(response);
+          }, function(error) {
+            console.log(error);
+          });
+        }
     </script>
+
+    <style>
+        .emailjs-sending {
+            background-color: #5f62ff;
+        }
+        .emailjs-success {
+            background-color: #28ff00;
+        }
+        .emailjs-error {
+            background-color: #ff3325;
+        }
+    </style>
 </head>
 <body>
     Test EmailJS SDK
+
+    <form class="test-form" onsubmit="submitForm(event);">
+        <input name="foo" title="foo">
+        <input type="submit" value="test it">
+    </form>
 </body>
 </html>
