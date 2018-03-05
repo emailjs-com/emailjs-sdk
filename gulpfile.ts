@@ -26,6 +26,7 @@ function createDTS(done: Function): void {
     .pipe(tsProject())
     .dts
     .pipe(plugins.concat(OUTPUT_FILE_DTS))
+    .pipe(plugins.replace(/import.*?[\n]/g, '')) // it's concatenated, no need the import syntax
     .pipe(gulp.dest(DIST_DIR))
     .on('end', done);
 }
