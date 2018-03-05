@@ -5,6 +5,8 @@
       "skipBabel": true
     }
   },
+  "collectCoverage": true,
+  "coverageDirectory": "coverage",
   "transform": {
     "^.+\\.ts?$": "ts-jest"
   },
