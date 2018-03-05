@@ -8,10 +8,14 @@
   "homepage": "http://emailjs.com",
   "main": "dist/emailjs-com.js",
   "types": "dist/emailjs-com.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emailjs-com/emailjs-sdk.git"
+  },
   "scripts": {
     "build": "gulp --gulpfile gulpfile.ts --cwd ./ build",
     "release": "gulp --gulpfile gulpfile.ts --cwd ./ build --release",
-    "test": "node ./node_modules/karma/bin/karma start ./karma.conf.js",
+    "test": "node ./node_modules/jest/bin/jest --notify --config ./jest.conf.json",
     "lint": "gulp --gulpfile gulpfile.ts --cwd ./ test.lint"
   },
   "dependencies": {
@@ -19,13 +23,11 @@
     "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
-    "@types/chai": "4.1.2",
     "@types/gulp": "4.0.5",
-    "@types/mocha": "2.2.48",
+    "@types/jest": "22.1.4",
     "@types/node": "9.4.6",
     "browserify": "15.2.0",
     "browserify-istanbul": "3.0.1",
-    "chai": "4.1.2",
     "del": "3.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-concat": "2.6.1",
@@ -36,12 +38,8 @@
     "gulp-typescript": "4.0.1",
     "gulp-uglify": "3.0.0",
     "gulp-util": "3.0.8",
-    "karma": "2.0.0",
-    "karma-chai": "0.1.0",
-    "karma-chrome-launcher": "2.2.0",
-    "karma-mocha": "1.3.0",
-    "karma-typescript": "3.0.12",
-    "mocha": "5.0.1",
+    "jest": "22.4.2",
+    "ts-jest": "22.4.1",
     "ts-node": "5.0.1",
     "tsify": "3.0.4",
     "tslint": "5.9.1",

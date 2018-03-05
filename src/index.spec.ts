@@ -1,23 +1,34 @@
-import {expect} from 'chai';
 import {emailjs} from './index';
 
-describe('emailJS', () => {
-  it ('should set userID', () => {
-    let userID: string = 'emailJS-testID';
-    emailjs.init(userID);
-    expect((<any>emailjs)._userID).to.equal(userID);
-  });
+test ('should set userID', () => {
+  let userID: string = 'emailJS-testID';
+  emailjs.init(userID);
+  expect((<any>emailjs)._userID).toBe(userID);
+});
 
-  it ('should fail', () => {
-    emailjs.send('test', 'test')
-      .then((resolve) => {
-        return expect(resolve).to.be.undefined;
-      }, (error) => {
-        return expect(error).to.be.not.undefined;
-      });
-  });
+test ('send method should call error', () => {
+  expect.assertions(1);
 
-  it ('should be same object', () => {
-    expect(emailjs).to.be.equal((<any>window).emailjs);
-  })
+  return emailjs.send('test', 'test')
+    .then((resolve) => {
+      expect(resolve).toBeUndefined();
+    }, (error) => {
+      expect(error).toBeDefined();
+    });
+});
+
+test ('sendForm method should call error', () => {
+  let form: HTMLFormElement = <HTMLFormElement>document.createElement('FORM');
+  expect.assertions(1);
+
+  return emailjs.sendForm('test', 'test', form)
+    .then((resolve) => {
+      expect(resolve).toBeUndefined();
+    }, (error) => {
+      expect(error).toBeDefined();
+    });
+});
+
+test ('should be same object', () => {
+  expect(emailjs).toBe((<any>window).emailjs);
 });
