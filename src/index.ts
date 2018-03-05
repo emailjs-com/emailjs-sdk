@@ -1,5 +1,6 @@
 import 'promise-polyfill';
 import {EmailJSResponseStatus} from './models/EmailJSResponseStatus';
+import {UI} from './services/UI';
 
 export class EmailJS {
 
@@ -86,13 +87,25 @@ export class EmailJS {
       form = <HTMLFormElement>document.querySelector(form);
     }
 
+    if (form.nodeName !== 'FORM') {
+      throw 'Expected the HTML form element or the style selector of form';
+    }
+
+    UI.progressState(form);
     let formData: FormData = new FormData(form);
     formData.append('lib_version', '<<VERSION>>');
     formData.append('service_id', serviceID);
     formData.append('template_id', templateID);
     formData.append('user_id', userID || this._userID);
 
-    return this.sendPost('https://api.emailjs.com/api/v1.0/email/send', formData);
+    return this.sendPost('https://api.emailjs.com/api/v1.0/email/send-form', formData)
+      .then((response) => {
+        UI.successState(<HTMLFormElement>form);
+        return response;
+      }, (error) => {
+        UI.errorState(<HTMLFormElement>form);
+        return error;
+      });
   }
 }
 
