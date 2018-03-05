@@ -87,7 +87,7 @@ export class EmailJS {
       form = <HTMLFormElement>document.querySelector(form);
     }
 
-    if (form.nodeName !== 'FORM') {
+    if (!form || form.nodeName !== 'FORM') {
       throw 'Expected the HTML form element or the style selector of form';
     }
 
