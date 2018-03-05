@@ -9,10 +9,6 @@ export class EmailJS {
     return new Promise((resolve, reject) => {
       let xhr: XMLHttpRequest = new XMLHttpRequest();
 
-      for (let key in headers) {
-        xhr.setRequestHeader(key, headers[key]);
-      }
-
       xhr.addEventListener('load', (event) => {
         let responseStatus: EmailJSResponseStatus = new EmailJSResponseStatus(<XMLHttpRequest>event.target);
         if (responseStatus.status === 200 || responseStatus.text === 'OK') {
@@ -27,6 +23,11 @@ export class EmailJS {
       });
 
       xhr.open('POST', url, true);
+
+      for (let key in headers) {
+          xhr.setRequestHeader(key, headers[key]);
+      }
+
       xhr.send(data);
     });
   }
