@@ -52,11 +52,11 @@ export class EmailJS {
   }
 
   /**
-   * Send a template to specific server ID
-   * @param {string} serviceID - the emailJS service ID
-   * @param {string} templateID - the emailJS template ID
-   * @param {Object} templatePrams - the template params, what will be set to the emailJS template
-   * @param {string} userID - the emailJS user ID
+   * Send a template to the specific EmailJS service
+   * @param {string} serviceID - the EmailJS service ID
+   * @param {string} templateID - the EmailJS template ID
+   * @param {Object} templatePrams - the template params, what will be set to the EmailJS template
+   * @param {string} userID - the EmailJS user ID
    * @returns {Promise<EmailJSResponseStatus>}
    */
   public send(serviceID: string, templateID: string, templatePrams?: Object, userID?: string): Promise<EmailJSResponseStatus> {
@@ -74,7 +74,7 @@ export class EmailJS {
   }
 
   /**
-   * Send a specific form
+   * Send a form the specific EmailJS service
    * @param {string} serviceID - the emailJS service ID
    * @param {string} templateID - the emailJS template ID
    * @param {string | HTMLFormElement} form - the form element or selector
