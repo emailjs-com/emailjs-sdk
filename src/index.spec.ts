@@ -17,6 +17,11 @@ test ('send method should call error', () => {
     });
 });
 
+test ('sendForm method form element validation', () => {
+  expect(() => emailjs.sendForm('test', 'test', '.form-not-exist'))
+    .toThrow('Expected the HTML form element or the style selector of form');
+});
+
 test ('sendForm method should call error', () => {
   let form: HTMLFormElement = <HTMLFormElement>document.createElement('FORM');
   expect.assertions(1);
