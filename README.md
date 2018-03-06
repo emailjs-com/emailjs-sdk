@@ -1,5 +1,5 @@
 # EmailJS-COM
-SDK for [EmailJS.com](http://www.emailjs.com?src=npmjs) users.
+SDK for [EmailJS.com](https://www.emailjs.com) users.
 \
 Use you EmailJS account for sending emails.
 
