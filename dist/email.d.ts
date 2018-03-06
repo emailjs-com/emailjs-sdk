@@ -4,7 +4,7 @@ export declare class EmailJS {
     private appendGoogleCaptcha(templatePrams?);
     /**
      * Initiation
-     * @param {string} userID - set the emailJS user ID
+     * @param {string} userID - set the EmailJS user ID
      */
     init(userID: string): void;
     /**
@@ -18,10 +18,10 @@ export declare class EmailJS {
     send(serviceID: string, templateID: string, templatePrams?: Object, userID?: string): Promise<EmailJSResponseStatus>;
     /**
      * Send a form the specific EmailJS service
-     * @param {string} serviceID - the emailJS service ID
-     * @param {string} templateID - the emailJS template ID
+     * @param {string} serviceID - the EmailJS service ID
+     * @param {string} templateID - the EmailJS template ID
      * @param {string | HTMLFormElement} form - the form element or selector
-     * @param {string} userID - the emailJS user ID
+     * @param {string} userID - the EmailJS user ID
      * @returns {Promise<EmailJSResponseStatus>}
      */
     sendForm(serviceID: string, templateID: string, form: string | HTMLFormElement, userID?: string): Promise<EmailJSResponseStatus>;
