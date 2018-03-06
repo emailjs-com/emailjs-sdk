@@ -46,7 +46,7 @@ export class EmailJS {
 
   /**
    * Initiation
-   * @param {string} userID - set the emailJS user ID
+   * @param {string} userID - set the EmailJS user ID
    */
   public init(userID: string): void {
     this._userID = userID;
@@ -76,10 +76,10 @@ export class EmailJS {
 
   /**
    * Send a form the specific EmailJS service
-   * @param {string} serviceID - the emailJS service ID
-   * @param {string} templateID - the emailJS template ID
+   * @param {string} serviceID - the EmailJS service ID
+   * @param {string} templateID - the EmailJS template ID
    * @param {string | HTMLFormElement} form - the form element or selector
-   * @param {string} userID - the emailJS user ID
+   * @param {string} userID - the EmailJS user ID
    * @returns {Promise<EmailJSResponseStatus>}
    */
   public sendForm(serviceID: string, templateID: string, form: string | HTMLFormElement, userID?: string): Promise<EmailJSResponseStatus> {
