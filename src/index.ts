@@ -1,6 +1,6 @@
 import 'promise-polyfill';
 import {EmailJSResponseStatus} from './models/EmailJSResponseStatus';
-import {UI} from './services/UI';
+import {UI} from './services/ui/UI';
 
 export class EmailJS {
 
@@ -104,7 +104,7 @@ export class EmailJS {
         return response;
       }, (error) => {
         UI.errorState(<HTMLFormElement>form);
-        return error;
+        return Promise.reject(error);
       });
   }
 }
