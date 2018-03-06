@@ -6,8 +6,8 @@
   "author": "Amir Hirschhorm <amir@emailjs.com> (http://emailjs.com)",
   "license": "MIT",
   "homepage": "http://emailjs.com",
-  "main": "dist/emailjs-com.js",
-  "types": "dist/emailjs-com.d.ts",
+  "main": "dist/email.min.js",
+  "types": "dist/email.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/emailjs-com/emailjs-sdk.git"
