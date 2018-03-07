@@ -4,18 +4,13 @@
     <meta charset="UTF-8">
     <title>EmailJS SDK - Test</title>
 
-    <script src="../dist/emailjs-com.js" type="text/javascript"></script>
+    <script src="../dist/email.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        emailjs.init('testID');
-        emailjs.send('test', 'test').then(function(response) {
-          console.log(response);
-        }, function(error) {
-          console.log(error);
-        });
-
         function submitForm(event) {
           event.preventDefault();
-          emailjs.sendForm('test', 'test', '.test-form').then(function(response) {
+          emailjs.sendForm(document.getElementById('service_id').value,
+            document.getElementById('template_id').value,'.test-form',
+            document.getElementById('user_id').value).then(function(response) {
             console.log(response);
           }, function(error) {
             console.log(error);
@@ -33,13 +28,36 @@
         .emailjs-error {
             background-color: #ff3325;
         }
+        div {
+            padding: 5px;
+        }
+
+        label {
+            display: inline-block;
+            width: 90px;
+        }
     </style>
 </head>
 <body>
     Test EmailJS SDK
 
     <form class="test-form" onsubmit="submitForm(event);">
-        <input name="foo" title="foo">
+        <div>
+            <label>User ID</label>
+            <input type="text" id="user_id" name="user_id" title="User ID">
+        </div>
+        <div>
+            <label>Service ID</label>
+            <input type="text" id="service_id" name="service_id" title="Service ID">
+        </div>
+        <div>
+            <label>Template ID</label>
+            <input type="text" id="template_id" name="template_id" title="Template ID">
+        </div>
+        <div>
+            <label>Username</label>
+            <input type="text" name="username" title="Username">
+        </div>
         <input type="submit" value="test it">
     </form>
 </body>
