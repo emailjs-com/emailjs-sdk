@@ -1,4 +1,4 @@
-import 'promise-polyfill';
+import * as Promise from 'promise-polyfill';
 import {EmailJSResponseStatus} from './models/EmailJSResponseStatus';
 import {UI} from './services/ui/UI';
 
