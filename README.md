@@ -39,7 +39,7 @@ Documentation is available at [https://www.emailjs.com/docs](https://www.emailjs
 __send email:__
 
 ``` js
-var templatePrams = {
+var templateParams = {
     name: 'James',
     notes: 'Check this out!'
 };
