@@ -20,8 +20,7 @@
     "lint": "gulp --gulpfile gulpfile.ts --cwd ./ test.lint"
   },
   "dependencies": {
-    "promise-polyfill": "7.1.0",
-    "whatwg-fetch": "2.0.3"
+    "promise-polyfill": "7.1.0"
   },
   "devDependencies": {
     "@types/gulp": "4.0.5",
