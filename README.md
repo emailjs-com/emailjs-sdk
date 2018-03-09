@@ -65,7 +65,7 @@ emailjs.sendForm('<YOUR SERVICE ID>','<YOUR TEMPLATE ID>', '#myForm')
 
 __Angular X:__
 ``` js
-import {emailjs} from 'emailjs-com';
+import * as emailjs from 'emailjs-com';
 
 emailjs.sendForm('<YOUR SERVICE ID>','<YOUR TEMPLATE ID>', '#myForm', '<YOUR USER ID>')
 	.then((response) => {
