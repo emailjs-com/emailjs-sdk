@@ -1,7 +1,7 @@
 {
   "name": "emailjs-com",
   "description": "Send emails using predefined templates and your private email account",
-  "main": "dist/email.min.js",
+  "main": "dist/email.js",
   "authors": [
     "Sergey Khomushin <xr0master@gmail.com> (https://www.emailjs.com)",
     "Amir Hirschhorm <amir@emailjs.com> (https://www.emailjs.com)"

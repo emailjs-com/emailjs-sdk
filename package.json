@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "homepage": "https://www.emailjs.com",
-  "main": "dist/email.min.js",
+  "main": "dist/email.js",
   "types": "dist/email.d.ts",
   "repository": {
     "type": "git",
@@ -34,6 +34,7 @@
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-concat": "2.6.1",
     "gulp-load-plugins": "1.5.0",
+    "gulp-rename": "1.2.2",
     "gulp-replace": "0.6.1",
     "gulp-sourcemaps": "2.6.4",
     "gulp-tslint": "8.1.3",

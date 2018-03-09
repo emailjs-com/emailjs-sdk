@@ -45,8 +45,10 @@ function createBundle(done: Function): void {
     .pipe(buffer())
     .pipe(plugins.replace('<<VERSION>>', require('./package.json').version))
     .pipe(isRelease ? nope() : plugins.sourcemaps.init({loadMaps: true}))
-    .pipe(isRelease ? plugins.uglify() : nope())
     .pipe(plugins.sourcemaps.write())
+    .pipe(gulp.dest(DIST_DIR))
+    .pipe(isRelease ? plugins.uglify() : nope())
+    .pipe(plugins.rename({ extname: '.min.js' }))
     .pipe(gulp.dest(DIST_DIR))
     .on('end', done);
 }
