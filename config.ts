@@ -4,3 +4,4 @@ export const TEST_DIST: string = `${DIST_DIR}/test`;
 export const OUTPUT_FILE: string = 'email.min.js';
 export const OUTPUT_FILE_DTS: string = 'email.d.ts';
 export const INPUT_FILE: string = 'index.ts';
+export const APP_NAME: string = 'emailjs';

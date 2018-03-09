@@ -7,7 +7,7 @@ import * as tsify from 'tsify';
 import * as source from 'vinyl-source-stream';
 import * as buffer from 'vinyl-buffer';
 
-import {DIST_DIR, APP_DIR, TEST_DIST, OUTPUT_FILE, INPUT_FILE, OUTPUT_FILE_DTS} from './config';
+import {DIST_DIR, APP_DIR, TEST_DIST, OUTPUT_FILE, INPUT_FILE, OUTPUT_FILE_DTS, APP_NAME} from './config';
 import {join} from 'path';
 import {PassThrough} from 'stream';
 
@@ -35,6 +35,7 @@ function createDTS(done: Function): void {
 function createBundle(done: Function): void {
   browserify({
     basedir: '.',
+    standalone: APP_NAME,
     debug: !isRelease,
     entries: [join(APP_DIR, INPUT_FILE)],
     cache: {},
