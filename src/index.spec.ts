@@ -1,10 +1,4 @@
-import {emailjs} from './index';
-
-test ('should set userID', () => {
-  let userID: string = 'emailJS-testID';
-  emailjs.init(userID);
-  expect((<any>emailjs)._userID).toBe(userID);
-});
+import * as emailjs from './index';
 
 test ('send method should call error', () => {
   expect.assertions(1);
@@ -14,6 +8,23 @@ test ('send method should call error', () => {
       expect(resolve).toBeUndefined();
     }, (error) => {
       expect(error).toBeDefined();
+    });
+});
+
+test ('init and send method should be success', () => {
+  expect.assertions(1);
+
+  emailjs.init('user_LC2JWGNosRSeMY6HmQFUn');
+
+  return emailjs.send('test_service', 'my_test_template', {
+    reply_to: 'support@emailjs.com',
+    to_name: 'Tester',
+    from_name: 'JEST',
+    message_html: '<span style="color:#ff5500">Looks like this test is passed</span>'
+  }).then((resolve) => {
+      expect(resolve).toEqual({'status': 200, 'text': 'OK'});
+    }, (error) => {
+      expect(error).toBeUndefined();
     });
 });
 
@@ -65,8 +76,4 @@ test ('sendForm method should be success', () => {
     }, (error) => {
       expect(error).toBeUndefined();
     });
-});
-
-test ('should be same object', () => {
-  expect(emailjs).toBe((<any>window).emailjs);
 });
