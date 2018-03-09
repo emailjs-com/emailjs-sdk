@@ -1,10 +1,12 @@
 {
   "name": "emailjs-com",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Send emails using predefined templates and your private email account",
   "private": false,
   "author": "Amir Hirschhorm <amir@emailjs.com> (https://www.emailjs.com)",
-  "contributors": ["Sergey Khomushin <xr0master@gmail.com> (https://www.emailjs.com)"],
+  "contributors": [
+    "Sergey Khomushin <xr0master@gmail.com> (https://www.emailjs.com)"
+  ],
   "license": "MIT",
   "homepage": "https://www.emailjs.com",
   "main": "dist/email.min.js",
