@@ -1,8 +1,11 @@
+import * as Promise from 'promise-polyfill';
+import { EmailJSResponseStatus } from './models/EmailJSResponseStatus';
 /**
  * Initiation
  * @param {string} userID - set the EmailJS user ID
+ * @param {string} origin - set the EmailJS origin
  */
-export declare function init(userID: string): void;
+export declare function init(userID: string, origin?: string): void;
 /**
  * Send a template to the specific EmailJS service
  * @param {string} serviceID - the EmailJS service ID
@@ -21,19 +24,3 @@ export declare function send(serviceID: string, templateID: string, templatePram
  * @returns {Promise<EmailJSResponseStatus>}
  */
 export declare function sendForm(serviceID: string, templateID: string, form: string | HTMLFormElement, userID?: string): Promise<EmailJSResponseStatus>;
-
-export declare class EmailJSResponseStatus {
-    status: number;
-    text: string;
-    constructor(httpResponse: XMLHttpRequest);
-}
-
-export declare class UI {
-    private static readonly PROGRESS;
-    private static readonly DONE;
-    private static readonly ERROR;
-    static clearAll(form: HTMLFormElement): void;
-    static progressState(form: HTMLFormElement): void;
-    static successState(form: HTMLFormElement): void;
-    static errorState(form: HTMLFormElement): void;
-}
