@@ -3,6 +3,7 @@ import {EmailJSResponseStatus} from './models/EmailJSResponseStatus';
 import {UI} from './services/ui/UI';
 
 let _userID: string = null;
+let _origin: string = 'https://api.emailjs.com';
 
 function sendPost(url: string, data: string | FormData, headers: Object = {}): Promise<EmailJSResponseStatus> {
   return new Promise((resolve, reject) => {
@@ -45,9 +46,11 @@ function appendGoogleCaptcha(templatePrams?: Object): Object {
 /**
  * Initiation
  * @param {string} userID - set the EmailJS user ID
+ * @param {string} origin - set the EmailJS origin
  */
-export function init(userID: string): void {
+export function init(userID: string, origin?: string): void {
   _userID = userID;
+  _origin = origin || 'https://api.emailjs.com';
 }
 
 /**
@@ -67,7 +70,7 @@ export function send(serviceID: string, templateID: string, templatePrams?: Obje
     template_params: appendGoogleCaptcha(templatePrams)
   };
 
-  return sendPost('https://api.emailjs.com/api/v1.0/email/send', JSON.stringify(params), {
+  return sendPost(_origin + '/api/v1.0/email/send', JSON.stringify(params), {
     'Content-type': 'application/json'
   });
 }
@@ -96,7 +99,7 @@ export function sendForm(serviceID: string, templateID: string, form: string | H
   formData.append('template_id', templateID);
   formData.append('user_id', userID || _userID);
 
-  return sendPost('https://api.emailjs.com/api/v1.0/email/send-form', formData)
+  return sendPost(_origin + '/api/v1.0/email/send-form', formData)
     .then((response) => {
       UI.successState(<HTMLFormElement>form);
       return response;
