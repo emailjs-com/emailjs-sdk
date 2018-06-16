@@ -16,7 +16,7 @@ test ('init and send method should be success', () => {
 
   emailjs.init('user_LC2JWGNosRSeMY6HmQFUn');
 
-  return emailjs.send('test_service', 'my_test_template', {
+  return emailjs.send('default_service', 'my_test_template', {
     reply_to: 'support@emailjs.com',
     to_name: 'Tester',
     from_name: 'JEST',
@@ -31,7 +31,7 @@ test ('init and send method should be success', () => {
 test ('send method should be success', () => {
   expect.assertions(1);
 
-  return emailjs.send('test_service', 'my_test_template', {
+  return emailjs.send('default_service', 'my_test_template', {
     reply_to: 'support@emailjs.com',
     to_name: 'Tester',
     from_name: 'JEST',
@@ -70,7 +70,7 @@ test ('sendForm method should be success', () => {
 
   expect.assertions(1);
 
-  return emailjs.sendForm('test_service', 'my_form_template', form, 'user_LC2JWGNosRSeMY6HmQFUn')
+  return emailjs.sendForm('default_service', 'my_test_template', form, 'user_LC2JWGNosRSeMY6HmQFUn')
     .then((resolve) => {
       expect(resolve).toEqual({'status': 200, 'text': 'OK'});
     }, (error) => {
