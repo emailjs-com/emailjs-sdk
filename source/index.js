@@ -56,7 +56,7 @@ exports.init = init;
  */
 function send(serviceID, templateID, templatePrams, userID) {
     var params = {
-        lib_version: '2.2.3',
+        lib_version: '2.2.4',
         user_id: userID || _userID,
         service_id: serviceID,
         template_id: templateID,
@@ -84,7 +84,7 @@ function sendForm(serviceID, templateID, form, userID) {
     }
     UI_1.UI.progressState(form);
     var formData = new FormData(form);
-    formData.append('lib_version', '2.2.3');
+    formData.append('lib_version', '2.2.4');
     formData.append('service_id', serviceID);
     formData.append('template_id', templateID);
     formData.append('user_id', userID || _userID);
