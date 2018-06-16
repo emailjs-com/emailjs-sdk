@@ -1,7 +1,7 @@
 import * as del from 'del';
 import * as gulp from 'gulp';
 import * as loadPlugins from 'gulp-load-plugins';
-import * as util from 'gulp-util';
+import * as log from 'fancy-log';
 import * as browserify from 'browserify';
 import * as tsify from 'tsify';
 import * as source from 'vinyl-source-stream';
@@ -24,6 +24,7 @@ function createSource(done: Function): void {
   let tsProject: any = plugins.typescript.createProject('tsconfig.json');
   gulp.src([join(APP_DIR, '**/*.ts'), '!' + join(APP_DIR, '**/*.spec.ts')])
     .pipe(tsProject())
+    .pipe(plugins.replace('<<VERSION>>', require('./package.json').version))
     .pipe(gulp.dest(SOURCE_DIR))
     .on('end', done);
 }
@@ -55,7 +56,7 @@ function clean(): any {
   'use strict';
 
   return del([DIST_DIR + '**/*', SOURCE_DIR + '**/*', '!' + TEST_DIST]).then((paths: Array<any>) => {
-    util.log('Deleted \x1b[33m', paths && paths.join(', ') || '-', '\x1b[0m');
+    log('Deleted \x1b[33m', paths && paths.join(', ') || '-', '\x1b[0m');
   });
 }
 
