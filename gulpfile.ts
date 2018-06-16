@@ -54,7 +54,7 @@ function createBundle(done: Function): void {
 function clean(): any {
   'use strict';
 
-  return del([DIST_DIR + '**/*', '!' + TEST_DIST]).then((paths: Array<any>) => {
+  return del([DIST_DIR + '**/*', SOURCE_DIR + '**/*', '!' + TEST_DIST]).then((paths: Array<any>) => {
     util.log('Deleted \x1b[33m', paths && paths.join(', ') || '-', '\x1b[0m');
   });
 }
