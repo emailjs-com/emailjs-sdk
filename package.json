@@ -1,6 +1,6 @@
 {
   "name": "emailjs-com",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Send emails using predefined templates and your private email account",
   "private": false,
   "author": "Amir Hirschhorm <amir@emailjs.com> (https://www.emailjs.com)",
@@ -21,6 +21,9 @@
     "test": "node ./node_modules/jest/bin/jest --notify --config ./jest.conf.json",
     "lint": "gulp --gulpfile gulpfile.ts --cwd ./ test.lint"
   },
+  "dependencies": {
+    "promise-polyfill": "8.0.0"
+  },
   "devDependencies": {
     "@types/gulp": "4.0.5",
     "@types/jest": "23.1.0",
@@ -38,7 +41,6 @@
     "gulp-uglify": "3.0.0",
     "gulp-util": "3.0.8",
     "jest": "23.1.0",
-    "promise-polyfill": "8.0.0",
     "ts-jest": "22.4.6",
     "ts-node": "6.1.1",
     "tsify": "4.0.0",
