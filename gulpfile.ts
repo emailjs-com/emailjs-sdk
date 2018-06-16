@@ -7,7 +7,7 @@ import * as tsify from 'tsify';
 import * as source from 'vinyl-source-stream';
 import * as buffer from 'vinyl-buffer';
 
-import {DIST_DIR, APP_DIR, TEST_DIST, OUTPUT_FILE, INPUT_FILE, OUTPUT_FILE_DTS, APP_NAME} from './config';
+import {DIST_DIR, APP_DIR, TEST_DIST, OUTPUT_FILE, INPUT_FILE, SOURCE_DIR, APP_NAME} from './config';
 import {join} from 'path';
 import {PassThrough} from 'stream';
 
@@ -20,14 +20,11 @@ function nope(): PassThrough {
 }
 
 // create the d.ts bundle
-function createDTS(done: Function): void {
+function createSource(done: Function): void {
   let tsProject: any = plugins.typescript.createProject('tsconfig.json');
   gulp.src([join(APP_DIR, '**/*.ts'), '!' + join(APP_DIR, '**/*.spec.ts')])
     .pipe(tsProject())
-    .dts
-    .pipe(plugins.concat(OUTPUT_FILE_DTS))
-    .pipe(plugins.replace(/import.*?[\n]/g, '')) // it's concatenated, no need the import syntax
-    .pipe(gulp.dest(DIST_DIR))
+    .pipe(gulp.dest(SOURCE_DIR))
     .on('end', done);
 }
 
@@ -76,9 +73,9 @@ function lint(): any {
 }
 
 gulp.task('build.sdk', createBundle);
-gulp.task('build.d.ts', createDTS);
+gulp.task('build.source', createSource);
 gulp.task('clean', clean);
 gulp.task('test.lint', lint);
 
 gulp.task('build',
-  gulp.series('clean', gulp.parallel('build.sdk', 'build.d.ts'), done => done()));
+  gulp.series('clean', gulp.parallel('build.sdk', 'build.source'), done => done()));
