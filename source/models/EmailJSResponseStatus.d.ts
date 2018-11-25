@@ -3,3 +3,4 @@ export declare class EmailJSResponseStatus {
     text: string;
     constructor(httpResponse: XMLHttpRequest);
 }
+//# sourceMappingURL=EmailJSResponseStatus.d.ts.map

@@ -185,8 +185,31 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 },{}],2:[function(require,module,exports){
-(function (setImmediate){
-'use strict';
+(function (global,setImmediate){
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(factory());
+}(this, (function () { 'use strict';
+
+/**
+ * @this {Promise}
+ */
+function finallyConstructor(callback) {
+  var constructor = this.constructor;
+  return this.then(
+    function(value) {
+      return constructor.resolve(callback()).then(function() {
+        return value;
+      });
+    },
+    function(reason) {
+      return constructor.resolve(callback()).then(function() {
+        return constructor.reject(reason);
+      });
+    }
+  );
+}
 
 // Store setTimeout reference so promise-polyfill will be unaffected by
 // other code modifying setTimeout (like sinon.useFakeTimers())
@@ -201,13 +224,21 @@ function bind(fn, thisArg) {
   };
 }
 
+/**
+ * @constructor
+ * @param {Function} fn
+ */
 function Promise(fn) {
   if (!(this instanceof Promise))
     throw new TypeError('Promises must be constructed via new');
   if (typeof fn !== 'function') throw new TypeError('not a function');
+  /** @type {!number} */
   this._state = 0;
+  /** @type {!boolean} */
   this._handled = false;
+  /** @type {Promise|undefined} */
   this._value = undefined;
+  /** @type {!Array<!Function>} */
   this._deferreds = [];
 
   doResolve(fn, this);
@@ -288,6 +319,9 @@ function finale(self) {
   self._deferreds = null;
 }
 
+/**
+ * @constructor
+ */
 function Handler(onFulfilled, onRejected, promise) {
   this.onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : null;
   this.onRejected = typeof onRejected === 'function' ? onRejected : null;
@@ -327,27 +361,14 @@ Promise.prototype['catch'] = function(onRejected) {
 };
 
 Promise.prototype.then = function(onFulfilled, onRejected) {
+  // @ts-ignore
   var prom = new this.constructor(noop);
 
   handle(this, new Handler(onFulfilled, onRejected, prom));
   return prom;
 };
 
-Promise.prototype['finally'] = function(callback) {
-  var constructor = this.constructor;
-  return this.then(
-    function(value) {
-      return constructor.resolve(callback()).then(function() {
-        return value;
-      });
-    },
-    function(reason) {
-      return constructor.resolve(callback()).then(function() {
-        return constructor.reject(reason);
-      });
-    }
-  );
-};
+Promise.prototype['finally'] = finallyConstructor;
 
 Promise.all = function(arr) {
   return new Promise(function(resolve, reject) {
@@ -427,9 +448,32 @@ Promise._unhandledRejectionFn = function _unhandledRejectionFn(err) {
   }
 };
 
-module.exports = Promise;
+/** @suppress {undefinedVars} */
+var globalNS = (function() {
+  // the only reliable means to get the global object is
+  // `Function('return this')()`
+  // However, this causes CSP violations in Chrome apps.
+  if (typeof self !== 'undefined') {
+    return self;
+  }
+  if (typeof window !== 'undefined') {
+    return window;
+  }
+  if (typeof global !== 'undefined') {
+    return global;
+  }
+  throw new Error('unable to locate global object');
+})();
 
-}).call(this,require("timers").setImmediate)
+if (!('Promise' in globalNS)) {
+  globalNS['Promise'] = Promise;
+} else if (!globalNS.Promise.prototype['finally']) {
+  globalNS.Promise.prototype['finally'] = finallyConstructor;
+}
+
+})));
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("timers").setImmediate)
 },{"timers":3}],3:[function(require,module,exports){
 (function (setImmediate,clearImmediate){
 var nextTick = require('process/browser.js').nextTick;
@@ -512,7 +556,6 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 },{"process/browser.js":1,"timers":3}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Promise = require("promise-polyfill");
 var EmailJSResponseStatus_1 = require("./models/EmailJSResponseStatus");
 var UI_1 = require("./services/ui/UI");
 var _userID = null;
@@ -568,7 +611,7 @@ exports.init = init;
  */
 function send(serviceID, templateID, templatePrams, userID) {
     var params = {
-        lib_version: '2.2.4',
+        lib_version: '2.3.0',
         user_id: userID || _userID,
         service_id: serviceID,
         template_id: templateID,
@@ -596,7 +639,7 @@ function sendForm(serviceID, templateID, form, userID) {
     }
     UI_1.UI.progressState(form);
     var formData = new FormData(form);
-    formData.append('lib_version', '2.2.4');
+    formData.append('lib_version', '2.3.0');
     formData.append('service_id', serviceID);
     formData.append('template_id', templateID);
     formData.append('user_id', userID || _userID);
@@ -611,7 +654,7 @@ function sendForm(serviceID, templateID, form, userID) {
 }
 exports.sendForm = sendForm;
 
-},{"./models/EmailJSResponseStatus":5,"./services/ui/UI":6,"promise-polyfill":2}],5:[function(require,module,exports){
+},{"./models/EmailJSResponseStatus":5,"./services/ui/UI":6}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var EmailJSResponseStatus = /** @class */ (function () {
@@ -653,5 +696,5 @@ var UI = /** @class */ (function () {
 }());
 exports.UI = UI;
 
-},{}]},{},[4])(4)
+},{}]},{},[4,2])(4)
 });
