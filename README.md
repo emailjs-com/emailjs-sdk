@@ -36,7 +36,7 @@ Documentation is available at [https://www.emailjs.com/docs](https://www.emailjs
 
 ## Examples
 
-__send email:__
+__send email__
 
 ``` js
 var templateParams = {
@@ -52,7 +52,7 @@ emailjs.send('<YOUR SERVICE ID>','<YOUR TEMPLATE ID>', templateParams)
 	});
 ```
 
-__send form:__
+__send form__
 
 ``` js
 emailjs.sendForm('<YOUR SERVICE ID>','<YOUR TEMPLATE ID>', '#myForm')
@@ -63,7 +63,7 @@ emailjs.sendForm('<YOUR SERVICE ID>','<YOUR TEMPLATE ID>', '#myForm')
 	});
 ```
 
-__Angular X:__
+__Angular X / VueJS / ReactJS__
 ``` js
 import * as emailjs from 'emailjs-com';
 
