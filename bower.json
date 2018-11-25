@@ -3,14 +3,19 @@
   "description": "Send emails using predefined templates and your private email account",
   "main": "dist/email.js",
   "authors": [
-    "Sergey Khomushin <xr0master@gmail.com> (https://www.emailjs.com)",
-    "Amir Hirschhorm <amir@emailjs.com> (https://www.emailjs.com)"
+    "Sergey Khomushin <sergey@emailjs.com> (https://www.emailjs.com)"
   ],
   "license": "MIT",
   "keywords": [
+    "js email",
+    "es6 email",
+    "ts email",
+    "javascript email",
+    "typescript email",
     "emailjs",
-    "email-templates",
-    "send-email",
+    "email templates",
+    "send email",
+    "send email from js",
     "emailjs-com"
   ],
   "homepage": "https://www.emailjs.com",

@@ -1,14 +1,15 @@
 {
   "globals": {
     "ts-jest": {
-      "enableTsDiagnostics": true,
-      "skipBabel": true
+      "diagnostics": {
+        "warnOnly": true
+      }
     }
   },
   "collectCoverage": true,
   "coverageDirectory": "coverage",
   "transform": {
-    "^.+\\.ts?$": "ts-jest"
+    "^.+\\.tsx?$": "ts-jest"
   },
   "testRegex": "(/__tests__/.*|(\\.|/)(spec))\\.(ts?)$",
   "moduleFileExtensions": [
@@ -17,5 +18,7 @@
   ],
   "modulePaths": [
     "src"
-  ]
+  ],
+  "preset": "ts-jest",
+  "testMatch": null
 }
