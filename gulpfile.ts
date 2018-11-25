@@ -38,7 +38,9 @@ function createBundle(done: Function): void {
     entries: [join(APP_DIR, INPUT_FILE)],
     cache: {},
     packageCache: {}
-  }).plugin(tsify).bundle()
+  }).plugin(tsify)
+    .add('node_modules/promise-polyfill/dist/polyfill.js')
+    .bundle()
     .pipe(source(OUTPUT_FILE))
     .pipe(buffer())
     .pipe(plugins.replace('<<VERSION>>', require('./package.json').version))
