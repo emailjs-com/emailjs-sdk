@@ -7,4 +7,3 @@ export declare class UI {
     static successState(form: HTMLFormElement): void;
     static errorState(form: HTMLFormElement): void;
 }
-//# sourceMappingURL=UI.d.ts.map

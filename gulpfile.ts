@@ -1,4 +1,4 @@
-import * as del from 'del';
+import del from 'del';
 import * as gulp from 'gulp';
 import * as loadPlugins from 'gulp-load-plugins';
 import * as log from 'fancy-log';
@@ -62,23 +62,9 @@ function clean(): any {
   });
 }
 
-// run tslint against all typescript
-function lint(): any {
-  'use strict';
-
-  return gulp.src(join(APP_DIR, '**/*.ts'))
-    .pipe(plugins.tslint())
-    .pipe(plugins.tslint.report(plugins.tslintStylish, {
-      emitError: false,
-      sort: true,
-      bell: true
-    }));
-}
-
 gulp.task('build.sdk', createBundle);
 gulp.task('build.source', createSource);
 gulp.task('clean', clean);
-gulp.task('test.lint', lint);
 
 gulp.task('build',
   gulp.series('clean', gulp.parallel('build.sdk', 'build.source'), done => done()));

@@ -23,4 +23,3 @@ export declare function send(serviceID: string, templateID: string, templatePram
  * @returns {Promise<EmailJSResponseStatus>}
  */
 export declare function sendForm(serviceID: string, templateID: string, form: string | HTMLFormElement, userID?: string): Promise<EmailJSResponseStatus>;
-//# sourceMappingURL=index.d.ts.map
