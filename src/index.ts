@@ -107,3 +107,9 @@ export function sendForm(serviceID: string, templateID: string, form: string | H
       return Promise.reject(error);
     });
 }
+
+export default {
+  init,
+  send,
+  sendForm
+};
