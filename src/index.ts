@@ -108,6 +108,8 @@ export function sendForm(serviceID: string, templateID: string, form: string | H
     });
 }
 
+export {EmailJSResponseStatus};
+
 export default {
   init,
   send,
