@@ -23,6 +23,7 @@ export declare function send(serviceID: string, templateID: string, templatePram
  * @returns {Promise<EmailJSResponseStatus>}
  */
 export declare function sendForm(serviceID: string, templateID: string, form: string | HTMLFormElement, userID?: string): Promise<EmailJSResponseStatus>;
+export { EmailJSResponseStatus };
 declare const _default: {
     init: typeof init;
     send: typeof send;

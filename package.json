@@ -1,6 +1,6 @@
 {
   "name": "emailjs-com",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Send emails using predefined templates and your private email account",
   "private": false,
   "author": "Amir Hirschhorm <amir@emailjs.com> (https://www.emailjs.com)",
