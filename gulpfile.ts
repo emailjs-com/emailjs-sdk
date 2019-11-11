@@ -1,4 +1,4 @@
-import del from 'del';
+import * as del from 'del';
 import * as gulp from 'gulp';
 import * as loadPlugins from 'gulp-load-plugins';
 import * as log from 'fancy-log';
