@@ -7,6 +7,7 @@ let _origin: string = 'https://api.emailjs.com';
 function sendPost(url: string, data: string | FormData, headers: Object = {}): Promise<EmailJSResponseStatus> {
   return new Promise((resolve, reject) => {
     let xhr: XMLHttpRequest = new XMLHttpRequest();
+    xhr.withCredentials = false;
 
     xhr.addEventListener('load', (event) => {
       let responseStatus: EmailJSResponseStatus = new EmailJSResponseStatus(<XMLHttpRequest>event.target);
