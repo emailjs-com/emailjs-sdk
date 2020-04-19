@@ -1,4 +1,4 @@
-import * as emailjs from './index';
+import emailjs from './index';
 
 test ('send method should call error', () => {
   expect.assertions(1);
