@@ -29,11 +29,13 @@ function sendPost(url, data, headers) {
     });
 }
 function appendGoogleCaptcha(templatePrams) {
-    var element = document.getElementById('g-recaptcha-response');
-    if (element && element.value) {
-        templatePrams['g-recaptcha-response'] = element.value;
-    }
-    element = null;
+	if(typeof(document) !== 'undefined') {
+	    var element = document.getElementById('g-recaptcha-response');
+	    if (element && element.value) {
+	        templatePrams['g-recaptcha-response'] = element.value;
+	    }
+	    element = null;
+	}
     return templatePrams;
 }
 /**
