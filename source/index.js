@@ -59,15 +59,12 @@ function send(serviceID, templateID, templatePrams, userID) {
         lib_version: '2.4.1',
         user_id: userID || _userID,
         service_id: serviceID,
-        template_id: templateID
+        template_id: templateID,
+        template_params: templatePrams
     };
-
-    if(typeof(document) !== 'undefined') {
-        params.template_params = appendGoogleCaptcha(templatePrams);
-    }else{
-        params.template_params = templatePrams;
+    if (typeof (document) !== 'undefined') {
+        params["template_params"] = appendGoogleCaptcha(templatePrams);
     }
-    
     return sendPost(_origin + '/api/v1.0/email/send', JSON.stringify(params), {
         'Content-type': 'application/json'
     });
