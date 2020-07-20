@@ -32,7 +32,8 @@ function sendPost(url: string, data: string | FormData, headers: Object = {}): P
 }
 
 function appendGoogleCaptcha(templatePrams?: Object): Object {
-  let element: HTMLInputElement = <HTMLInputElement>document.getElementById('g-recaptcha-response');
+  let element: HTMLInputElement =
+    document && document.getElementById('g-recaptcha-response') as HTMLInputElement;
 
   if (element && element.value) {
     templatePrams['g-recaptcha-response'] = element.value;
