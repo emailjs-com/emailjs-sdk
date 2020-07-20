@@ -22,7 +22,7 @@ $ bower install emailjs-com --save
 Or manually: 
 
 ``` html
-<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js'></script>
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js'></script>
 <script type='text/javascript'>
    (function(){
       emailjs.init('<YOUR USER ID>');
