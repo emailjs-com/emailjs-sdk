@@ -42,6 +42,14 @@ function appendGoogleCaptcha(templatePrams?: Object): Object {
   return templatePrams;
 }
 
+function fixIdSelector(selector: string): string {
+  if (selector[0] !== '#') {
+    return '#' + selector;
+  }
+
+  return selector;
+}
+
 /**
  * Initiation
  * @param {string} userID - set the EmailJS user ID
@@ -82,9 +90,14 @@ export function send(serviceID: string, templateID: string, templatePrams?: Obje
  * @param {string} userID - the EmailJS user ID
  * @returns {Promise<EmailJSResponseStatus>}
  */
-export function sendForm(serviceID: string, templateID: string, form: string | HTMLFormElement, userID?: string): Promise<EmailJSResponseStatus> {
+export function sendForm(
+  serviceID: string,
+  templateID: string,
+  form: string | HTMLFormElement,
+  userID?: string
+): Promise<EmailJSResponseStatus> {
   if (typeof form === 'string') {
-    form = <HTMLFormElement>document.querySelector(form);
+    form = document.querySelector<HTMLFormElement>(fixIdSelector(form));
   }
 
   if (!form || form.nodeName !== 'FORM') {
