@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.EmailJSResponseStatus = exports.sendForm = exports.send = exports.init = void 0;
 var EmailJSResponseStatus_1 = require("./models/EmailJSResponseStatus");
-exports.EmailJSResponseStatus = EmailJSResponseStatus_1.EmailJSResponseStatus;
+Object.defineProperty(exports, "EmailJSResponseStatus", { enumerable: true, get: function () { return EmailJSResponseStatus_1.EmailJSResponseStatus; } });
 var UI_1 = require("./services/ui/UI");
 var _userID = null;
 var _origin = 'https://api.emailjs.com';
@@ -36,6 +37,12 @@ function appendGoogleCaptcha(templatePrams) {
     element = null;
     return templatePrams;
 }
+function fixIdSelector(selector) {
+    if (selector[0] !== '#') {
+        return '#' + selector;
+    }
+    return selector;
+}
 /**
  * Initiation
  * @param {string} userID - set the EmailJS user ID
@@ -56,7 +63,7 @@ exports.init = init;
  */
 function send(serviceID, templateID, templatePrams, userID) {
     var params = {
-        lib_version: '2.4.1',
+        lib_version: '2.6.1',
         user_id: userID || _userID,
         service_id: serviceID,
         template_id: templateID,
@@ -77,14 +84,14 @@ exports.send = send;
  */
 function sendForm(serviceID, templateID, form, userID) {
     if (typeof form === 'string') {
-        form = document.querySelector(form);
+        form = document.querySelector(fixIdSelector(form));
     }
     if (!form || form.nodeName !== 'FORM') {
         throw 'Expected the HTML form element or the style selector of form';
     }
     UI_1.UI.progressState(form);
     var formData = new FormData(form);
-    formData.append('lib_version', '2.4.1');
+    formData.append('lib_version', '2.6.1');
     formData.append('service_id', serviceID);
     formData.append('template_id', templateID);
     formData.append('user_id', userID || _userID);
