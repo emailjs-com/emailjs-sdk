@@ -185,7 +185,7 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 },{}],2:[function(require,module,exports){
-(function (global,setImmediate){
+(function (global,setImmediate){(function (){
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
@@ -212,6 +212,54 @@ function finallyConstructor(callback) {
       });
     }
   );
+}
+
+function allSettled(arr) {
+  var P = this;
+  return new P(function(resolve, reject) {
+    if (!(arr && typeof arr.length !== 'undefined')) {
+      return reject(
+        new TypeError(
+          typeof arr +
+            ' ' +
+            arr +
+            ' is not iterable(cannot read property Symbol(Symbol.iterator))'
+        )
+      );
+    }
+    var args = Array.prototype.slice.call(arr);
+    if (args.length === 0) return resolve([]);
+    var remaining = args.length;
+
+    function res(i, val) {
+      if (val && (typeof val === 'object' || typeof val === 'function')) {
+        var then = val.then;
+        if (typeof then === 'function') {
+          then.call(
+            val,
+            function(val) {
+              res(i, val);
+            },
+            function(e) {
+              args[i] = { status: 'rejected', reason: e };
+              if (--remaining === 0) {
+                resolve(args);
+              }
+            }
+          );
+          return;
+        }
+      }
+      args[i] = { status: 'fulfilled', value: val };
+      if (--remaining === 0) {
+        resolve(args);
+      }
+    }
+
+    for (var i = 0; i < args.length; i++) {
+      res(i, args[i]);
+    }
+  });
 }
 
 // Store setTimeout reference so promise-polyfill will be unaffected by
@@ -417,6 +465,8 @@ Promise.all = function(arr) {
   });
 };
 
+Promise.allSettled = allSettled;
+
 Promise.resolve = function(value) {
   if (value && typeof value === 'object' && value.constructor === Promise) {
     return value;
@@ -480,17 +530,23 @@ var globalNS = (function() {
   throw new Error('unable to locate global object');
 })();
 
-if (!('Promise' in globalNS)) {
+// Expose the polyfill if Promise is undefined or set to a
+// non-function value. The latter can be due to a named HTMLElement
+// being exposed by browsers for legacy reasons.
+// https://github.com/taylorhakes/promise-polyfill/issues/114
+if (typeof globalNS['Promise'] !== 'function') {
   globalNS['Promise'] = Promise;
 } else if (!globalNS.Promise.prototype['finally']) {
   globalNS.Promise.prototype['finally'] = finallyConstructor;
+} else if (!globalNS.Promise.allSettled) {
+  globalNS.Promise.allSettled = allSettled;
 }
 
 })));
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("timers").setImmediate)
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("timers").setImmediate)
 },{"timers":3}],3:[function(require,module,exports){
-(function (setImmediate,clearImmediate){
+(function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
 var slice = Array.prototype.slice;
@@ -567,7 +623,7 @@ exports.setImmediate = typeof setImmediate === "function" ? setImmediate : funct
 exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
   delete immediateIds[id];
 };
-}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
+}).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
 },{"process/browser.js":1,"timers":3}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -609,7 +665,7 @@ function appendGoogleCaptcha(templatePrams) {
     return templatePrams;
 }
 function fixIdSelector(selector) {
-    if (selector[0] !== '#') {
+    if (selector[0] !== '#' && selector[0] !== '.') {
         return '#' + selector;
     }
     return selector;
@@ -634,7 +690,7 @@ exports.init = init;
  */
 function send(serviceID, templateID, templatePrams, userID) {
     var params = {
-        lib_version: '2.6.3',
+        lib_version: '2.6.4',
         user_id: userID || _userID,
         service_id: serviceID,
         template_id: templateID,
@@ -662,7 +718,7 @@ function sendForm(serviceID, templateID, form, userID) {
     }
     UI_1.UI.progressState(form);
     var formData = new FormData(form);
-    formData.append('lib_version', '2.6.3');
+    formData.append('lib_version', '2.6.4');
     formData.append('service_id', serviceID);
     formData.append('template_id', templateID);
     formData.append('user_id', userID || _userID);
