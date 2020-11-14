@@ -44,7 +44,7 @@ function appendGoogleCaptcha(templatePrams?: Object): Object {
 }
 
 function fixIdSelector(selector: string): string {
-  if (selector[0] !== '#') {
+  if (selector[0] !== '#' && selector[0] !== '.') {
     return '#' + selector;
   }
 
