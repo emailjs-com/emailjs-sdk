@@ -22,7 +22,6 @@
     "build": "gulp --gulpfile gulpfile.ts --cwd ./ build",
     "release": "gulp --gulpfile gulpfile.ts --cwd ./ build --release",
     "test": "jest --coverage",
-    "tslint": "tslint -c ./tslint.json -p ./tsconfig.json -t stylish",
     "lint": "tsc --noEmit && eslint src"
   },
   "keywords": [
@@ -42,9 +41,12 @@
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
     "eslint": "^7.28.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.23.4",
     "jest": "^27.0.4",
     "prettier": "^2.3.1",
     "ts-loader": "^9.2.3",
+    "tsconfig-paths-webpack-plugin": "^3.5.1",
     "typescript": "^4.3.2",
     "webpack": "^5.38.1"
   },
