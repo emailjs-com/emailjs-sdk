@@ -3,7 +3,6 @@
 
 node_modules/
 coverage/
-typings/
 .idea/
 *.swp
 .DS_Store

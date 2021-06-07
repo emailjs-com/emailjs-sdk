@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
-    "lib": ["esnext", "dom"],
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
     "typeRoots": ["node_modules/@types"],
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "declaration": true,
-    "noImplicitAny": false,
+    "strict": true,
+    "noImplicitAny": true,
     "noLib": false,
     "preserveConstEnums": true,
     "suppressImplicitAnyIndexErrors": true,
@@ -17,18 +19,8 @@
     "noUnusedParameters": true,
     "removeComments": false,
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "es",
     "baseUrl": "."
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ],
-  "compileOnSave": false,
-  "atom": {
-    "rewriteTsconfig": false
-  }
+  "include": ["src"]
 }
