@@ -20,7 +20,10 @@
     "removeComments": false,
     "sourceMap": true,
     "outDir": "es",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@*": ["src/*"]
+    }
   },
   "include": ["src"]
 }
