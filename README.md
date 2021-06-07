@@ -14,11 +14,6 @@ Install EmailJS SDK using [npm](https://www.npmjs.com/):
 $ npm install emailjs-com --save
 ```
 
-Using [bower](https://bower.io/):
-``` bash
-$ bower install emailjs-com --save
-```
-
 Or manually: 
 
 ``` html
