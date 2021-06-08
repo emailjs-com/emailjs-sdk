@@ -40,7 +40,7 @@ export const sendForm = (
   validateParams(uID, serviceID, templateID);
 
   const formData: FormData = new FormData(currentForm);
-  formData.append('lib_version', process.env.npm_package_version || 'N/A');
+  formData.append('lib_version', process.env.npm_package_version!);
   formData.append('service_id', serviceID);
   formData.append('template_id', templateID);
   formData.append('user_id', uID!);

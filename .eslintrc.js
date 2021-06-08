@@ -31,7 +31,7 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json',
   },
-  ignorePatterns: ['.eslintrc.cjs', 'webpack.config.js', '*.spec.ts'],
+  ignorePatterns: ['.eslintrc.js', 'webpack.config.js', '*.spec.ts'],
   rules: {
     // TypeScript's `noFallthroughCasesInSwitch` option is more robust (#6906)
     'default-case': 'off',

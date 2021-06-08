@@ -3,7 +3,6 @@
   "version": "2.6.4",
   "description": "Send emails using predefined templates and your private email account",
   "private": false,
-  "type": "module",
   "author": "Sergey Khomushin <xr0master@gmail.com> (https://www.emailjs.com)",
   "contributors": [
     "Sergey Khomushin <xr0master@gmail.com> (https://www.emailjs.com)"
@@ -12,15 +11,17 @@
   "homepage": "https://www.emailjs.com",
   "main": "es/index.js",
   "types": "es/index.d.ts",
+  "module": "es",
   "repository": {
     "type": "git",
     "url": "https://github.com/emailjs-com/emailjs-sdk.git"
   },
   "scripts": {
-    "_build-ts": "tsc",
-    "_clean": "rm -rf ./dist",
-    "build": "gulp --gulpfile gulpfile.ts --cwd ./ build",
-    "release": "gulp --gulpfile gulpfile.ts --cwd ./ build --release",
+    "_clean": "rm -rf es && rm -rf dist",
+    "_set-version": "./set-version.sh $npm_package_version",
+    "_build-ts": "npm run _clean && tsc && npm run _set-version",
+    "_build-bundle": "webpack --env production",
+    "build": "npm run _build-ts && npm run _build-bundle",
     "test": "jest --coverage",
     "lint": "tsc --noEmit && eslint src"
   },
@@ -37,18 +38,21 @@
     "emailjs-com"
   ],
   "devDependencies": {
+    "@babel/preset-env": "^7.14.4",
     "@types/jest": "^26.0.23",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
+    "babel-loader": "^8.2.2",
+    "core-js": "^3.14.0",
     "eslint": "^7.28.0",
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "^2.23.4",
     "jest": "^27.0.4",
     "prettier": "^2.3.1",
-    "ts-loader": "^9.2.3",
-    "tsconfig-paths-webpack-plugin": "^3.5.1",
+    "terser-webpack-plugin": "^5.1.3",
     "typescript": "^4.3.2",
-    "webpack": "^5.38.1"
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2"
   },
   "prettier": {
     "trailingComma": "all",
