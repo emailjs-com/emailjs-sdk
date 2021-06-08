@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
     "typeRoots": ["node_modules/@types"],
@@ -18,12 +18,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "removeComments": false,
-    "sourceMap": true,
-    "outDir": "es",
-    "baseUrl": ".",
-    "paths": {
-      "@*": ["src/*"]
-    }
+    "sourceMap": false,
+    "outDir": "es"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/**/*.spec.ts"]
 }

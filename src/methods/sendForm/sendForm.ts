@@ -1,8 +1,8 @@
-import { store } from '@store/store';
-import { validateParams } from '@utils/validateParams';
-import { sendPost } from '@api/sendPost';
+import { store } from '../../store/store';
+import { validateParams } from '../../utils/validateParams';
+import { sendPost } from '../../api/sendPost';
 
-import type { EmailJSResponseStatus } from '@models/EmailJSResponseStatus';
+import type { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
 
 const findHTMLForm = (form: string | HTMLFormElement): HTMLFormElement => {
   let currentForm: HTMLFormElement | null;
