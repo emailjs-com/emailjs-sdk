@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head>
     <meta charset="UTF-8">
     <title>EmailJS SDK - Test</title>
@@ -8,9 +8,12 @@
     <script type="text/javascript">
         function submitForm(event) {
           event.preventDefault();
-          emailjs.sendForm(document.getElementById('service_id').value,
-            document.getElementById('template_id').value,'.test-form',
-            document.getElementById('user_id').value).then(function(response) {
+          emailjs.sendForm(
+            document.getElementById('service_id').value,
+            document.getElementById('template_id').value,
+            '.test-form',
+            document.getElementById('user_id').value
+          ).then(function(response) {
             console.log(response);
           }, function(error) {
             console.log(error);
@@ -19,15 +22,6 @@
     </script>
 
     <style>
-        .emailjs-sending {
-            background-color: #5f62ff;
-        }
-        .emailjs-success {
-            background-color: #28ff00;
-        }
-        .emailjs-error {
-            background-color: #ff3325;
-        }
         div {
             padding: 5px;
         }
@@ -43,15 +37,15 @@
     <form class="test-form" onsubmit="submitForm(event);">
         <div>
             <label>User ID</label>
-            <input type="text" id="user_id" name="user_id" title="User ID">
+            <input type="text" id="user_id" title="User ID">
         </div>
         <div>
             <label>Service ID</label>
-            <input type="text" id="service_id" name="service_id" title="Service ID">
+            <input type="text" id="service_id" title="Service ID">
         </div>
         <div>
             <label>Template ID</label>
-            <input type="text" id="template_id" name="template_id" title="Template ID">
+            <input type="text" id="template_id" title="Template ID">
         </div>
         <div>
             <label>Username</label>
