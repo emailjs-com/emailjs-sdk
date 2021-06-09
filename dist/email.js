@@ -2535,14 +2535,8 @@ var es_object_keys = __webpack_require__(7941);
 ;// CONCATENATED MODULE: ./es/models/EmailJSResponseStatus.js
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 var EmailJSResponseStatus = function EmailJSResponseStatus(httpResponse) {
   _classCallCheck(this, EmailJSResponseStatus);
-
-  _defineProperty(this, "status", void 0);
-
-  _defineProperty(this, "text", void 0);
 
   this.status = httpResponse.status;
   this.text = httpResponse.responseText;
@@ -2596,7 +2590,7 @@ var send = function send(serviceID, templateID, templatePrams, userID) {
   var uID = userID || store._userID;
   validateParams(uID, serviceID, templateID);
   var params = {
-    lib_version: '3.0.1',
+    lib_version: '3.0.2',
     user_id: uID,
     service_id: serviceID,
     template_id: templateID,
@@ -2643,7 +2637,7 @@ var sendForm = function sendForm(serviceID, templateID, form, userID) {
   var currentForm = findHTMLForm(form);
   validateParams(uID, serviceID, templateID);
   var formData = new FormData(currentForm);
-  formData.append('lib_version', '3.0.1');
+  formData.append('lib_version', '3.0.2');
   formData.append('service_id', serviceID);
   formData.append('template_id', templateID);
   formData.append('user_id', uID);
