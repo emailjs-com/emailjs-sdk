@@ -1,122 +1,100 @@
 import emailjs from './index';
+import { EmailJSResponseStatus } from './models/EmailJSResponseStatus';
 
-// TODO create the mocks
+const responseWrapper = () => {
+  return Promise.resolve(
+    new EmailJSResponseStatus({
+      status: 200,
+      responseText: 'OK',
+    } as XMLHttpRequest),
+  );
+};
 
-it('should send method and fail', (done) => {
-  emailjs
-    .send('test', 'test')
-    .then(
-      (resolve) => {
-        expect(resolve).toBeUndefined();
-      },
-      (error) => {
-        expect(error).toBeDefined();
-      },
-    )
-    .finally(done);
-}, 10000);
+jest.mock('./api/sendPost', () => ({
+  sendPost: jest.fn(() => {
+    return responseWrapper();
+  }),
+}));
 
-it('should init and send method successfully', (done) => {
-  emailjs.init('user_LC2JWGNosRSeMY6HmQFUn');
-
-  emailjs
-    .send('default_service', 'my_test_template', {
-      reply_to: 'support@emailjs.com',
-      to_name: 'Tester',
-      from_name: 'JEST',
-      message_html: '<span style="color:#ff5500">Looks like this test is passed</span>',
-    })
-    .then(
-      (resolve) => {
-        expect(resolve).toEqual({ status: 200, text: 'OK' });
-      },
-      (error) => {
-        expect(error).toBeUndefined();
-      },
-    )
-    .finally(done);
-}, 10000);
-
-it('should send method successfully', (done) => {
-  emailjs
-    .send(
-      'default_service',
-      'my_test_template',
-      {
-        reply_to: 'support@emailjs.com',
-        to_name: 'Tester',
-        from_name: 'JEST',
-        message_html: '<span style="color:#ff5500">Looks like this test is passed</span>',
-      },
-      'user_LC2JWGNosRSeMY6HmQFUn',
-    )
-    .then(
-      (resolve) => {
-        expect(resolve).toEqual({ status: 200, text: 'OK' });
-      },
-      (error) => {
-        expect(error).toBeUndefined();
-      },
-    )
-    .finally(done);
-}, 10000);
-
-it('should call sendForm method form element validation', () => {
-  expect(() => emailjs.sendForm('test', 'test', 'form-not-exist')).toThrow(
-    'Expected the HTML form element or the style selector of form',
+it('should send method and fail on the user ID', () => {
+  expect(() => emailjs.send('default_service', 'my_test_template')).toThrow(
+    'The user ID is required',
   );
 });
 
-it('should call sendForm with non id selector', (done) => {
+it('should send method and fail on the service ID', () => {
+  emailjs.init('user_LC2JWGTestKeySomething');
+
+  expect(() => emailjs.send('', 'my_test_template')).toThrow('The service ID is required');
+});
+
+it('should send method and fail on the template ID', () => {
+  emailjs.init('user_LC2JWGTestKeySomething');
+
+  expect(() => emailjs.send('default_service', '')).toThrow('The template ID is required');
+});
+
+it('should init and send method successfully', async () => {
+  emailjs.init('user_LC2JWGTestKeySomething');
+
+  try {
+    const result = await emailjs.send('default_service', 'my_test_template');
+    expect(result).toEqual({ status: 200, text: 'OK' });
+  } catch (error) {
+    expect(error).toBeUndefined();
+  }
+});
+
+it('should send method successfully with 4 params', async () => {
+  try {
+    const result = await emailjs.send(
+      'default_service',
+      'my_test_template',
+      {},
+      'user_LC2JWGTestKeySomething',
+    );
+    expect(result).toEqual({ status: 200, text: 'OK' });
+  } catch (error) {
+    expect(error).toBeUndefined();
+  }
+});
+
+it('should call sendForm and throw non-form element error', () => {
+  expect(() => emailjs.sendForm('default_service', 'my_test_template', 'form-not-exist')).toThrow(
+    'The 3rd parameter is expected to be the HTML form element or the style selector of form',
+  );
+});
+
+it('should call sendForm with id selector', async () => {
   let form: HTMLFormElement = document.createElement('form');
   form.id = 'form-id';
   document.body.appendChild(form);
 
-  emailjs
-    .sendForm('test', 'test', 'form-id')
-    .then(
-      (resolve) => {
-        expect(resolve).toBeUndefined();
-      },
-      (error) => {
-        expect(error).toBeDefined();
-      },
-    )
-    .finally(done);
-}, 10000);
+  try {
+    const result = await emailjs.sendForm(
+      'default_service',
+      'my_test_template',
+      '#form-id',
+      'user_LC2JWGTestKeySomething',
+    );
+    expect(result).toEqual({ status: 200, text: 'OK' });
+  } catch (error) {
+    expect(error).toBeUndefined();
+  }
+});
 
-it('should call sendForm method and fail', (done) => {
+it('should call sendForm with form element', async () => {
   let form: HTMLFormElement = document.createElement('form');
 
-  emailjs
-    .sendForm('test', 'test', form)
-    .then(
-      (resolve) => {
-        expect(resolve).toBeUndefined();
-      },
-      (error) => {
-        expect(error).toBeDefined();
-      },
-    )
-    .finally(done);
-}, 10000);
-
-it('should call sendForm method successfully', (done) => {
-  let form: HTMLFormElement = document.createElement('form');
-  let username: HTMLInputElement = document.createElement('input');
-  username.name = 'username';
-  username.value = 'JEST';
-  form.appendChild(username);
-
-  emailjs
-    .sendForm('default_service', 'my_test_template', form, 'user_LC2JWGNosRSeMY6HmQFUn')
-    .then(
-      (resolve) => {
-        expect(resolve).toEqual({ status: 200, text: 'OK' });
-      },
-      (error) => {
-        expect(error).toBeUndefined();
-      },
-    )
-    .finally(done);
-}, 10000);
+  try {
+    const result = await emailjs.sendForm(
+      'default_service',
+      'my_test_template',
+      form,
+      'user_LC2JWGTestKeySomething',
+    );
+    expect(result).toEqual({ status: 200, text: 'OK' });
+  } catch (error) {
+    expect(error).toBeUndefined();
+  }
+});
