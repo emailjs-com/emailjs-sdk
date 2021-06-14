@@ -13,7 +13,7 @@ const findHTMLForm = (form: string | HTMLFormElement): HTMLFormElement => {
     currentForm = form;
   }
 
-  if (currentForm?.nodeName !== 'FORM') {
+  if (!currentForm || currentForm.nodeName !== 'FORM') {
     throw 'The 3rd parameter is expected to be the HTML form element or the style selector of form';
   }
 
