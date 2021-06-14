@@ -13,7 +13,7 @@ export const send = (serviceID, templateID, templatePrams, userID) => {
     const uID = userID || store._userID;
     validateParams(uID, serviceID, templateID);
     const params = {
-        lib_version: '3.0.2',
+        lib_version: '3.1.0',
         user_id: uID,
         service_id: serviceID,
         template_id: templateID,

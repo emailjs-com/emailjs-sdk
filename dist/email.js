@@ -2590,7 +2590,7 @@ var send = function send(serviceID, templateID, templatePrams, userID) {
   var uID = userID || store._userID;
   validateParams(uID, serviceID, templateID);
   var params = {
-    lib_version: '3.0.2',
+    lib_version: '3.1.0',
     user_id: uID,
     service_id: serviceID,
     template_id: templateID,
@@ -2606,8 +2606,6 @@ var send = function send(serviceID, templateID, templatePrams, userID) {
 
 
 var findHTMLForm = function findHTMLForm(form) {
-  var _currentForm;
-
   var currentForm;
 
   if (typeof form === 'string') {
@@ -2616,7 +2614,7 @@ var findHTMLForm = function findHTMLForm(form) {
     currentForm = form;
   }
 
-  if (((_currentForm = currentForm) === null || _currentForm === void 0 ? void 0 : _currentForm.nodeName) !== 'FORM') {
+  if (!currentForm || currentForm.nodeName !== 'FORM') {
     throw 'The 3rd parameter is expected to be the HTML form element or the style selector of form';
   }
 
@@ -2637,7 +2635,7 @@ var sendForm = function sendForm(serviceID, templateID, form, userID) {
   var currentForm = findHTMLForm(form);
   validateParams(uID, serviceID, templateID);
   var formData = new FormData(currentForm);
-  formData.append('lib_version', '3.0.2');
+  formData.append('lib_version', '3.1.0');
   formData.append('service_id', serviceID);
   formData.append('template_id', templateID);
   formData.append('user_id', uID);

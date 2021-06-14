@@ -9,7 +9,7 @@ const findHTMLForm = (form) => {
     else {
         currentForm = form;
     }
-    if (currentForm?.nodeName !== 'FORM') {
+    if (!currentForm || currentForm.nodeName !== 'FORM') {
         throw 'The 3rd parameter is expected to be the HTML form element or the style selector of form';
     }
     return currentForm;
@@ -27,7 +27,7 @@ export const sendForm = (serviceID, templateID, form, userID) => {
     const currentForm = findHTMLForm(form);
     validateParams(uID, serviceID, templateID);
     const formData = new FormData(currentForm);
-    formData.append('lib_version', '3.0.2');
+    formData.append('lib_version', '3.1.0');
     formData.append('service_id', serviceID);
     formData.append('template_id', templateID);
     formData.append('user_id', uID);
