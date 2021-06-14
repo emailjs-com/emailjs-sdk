@@ -1,6 +1,6 @@
 {
   "name": "emailjs-com",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "description": "Send emails using predefined templates and your private email account",
   "private": false,
   "author": "Sergey Khomushin <xr0master@gmail.com> (https://www.emailjs.com)",
