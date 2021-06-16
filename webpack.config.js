@@ -32,7 +32,7 @@ module.exports = (webpackEnv) => {
                 [
                   '@babel/preset-env',
                   {
-                    modules: false,
+                    modules: "umd",
                     targets: '> 0.25%, not dead',
                     useBuiltIns: 'usage',
                     corejs: '3.14',

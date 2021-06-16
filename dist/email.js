@@ -1,6 +1,352 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 5423:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;__webpack_require__(5837);
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(1539), __webpack_require__(8674), __webpack_require__(4747), __webpack_require__(7941), __webpack_require__(1140), __webpack_require__(3266)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else { var mod; }
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports, _esObjectToString, _esPromise, _webDomCollectionsForEach, _esObjectKeys, _EmailJSResponseStatus, _store) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.sendPost = void 0;
+
+  var sendPost = function sendPost(url, data) {
+    var headers = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    return new Promise(function (resolve, reject) {
+      var xhr = new XMLHttpRequest();
+      xhr.addEventListener('load', function (_ref) {
+        var target = _ref.target;
+        var responseStatus = new _EmailJSResponseStatus.EmailJSResponseStatus(target);
+
+        if (responseStatus.status === 200 || responseStatus.text === 'OK') {
+          resolve(responseStatus);
+        } else {
+          reject(responseStatus);
+        }
+      });
+      xhr.addEventListener('error', function (_ref2) {
+        var target = _ref2.target;
+        reject(new _EmailJSResponseStatus.EmailJSResponseStatus(target));
+      });
+      xhr.open('POST', _store.store._origin + url, true);
+      Object.keys(headers).forEach(function (key) {
+        xhr.setRequestHeader(key, headers[key]);
+      });
+      xhr.send(data);
+    });
+  };
+
+  _exports.sendPost = sendPost;
+});
+
+/***/ }),
+
+/***/ 4649:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;__webpack_require__(5837);
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(6098), __webpack_require__(8689), __webpack_require__(1407)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else { var mod; }
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports, _init, _send, _sendForm) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "init", {
+    enumerable: true,
+    get: function get() {
+      return _init.init;
+    }
+  });
+  Object.defineProperty(_exports, "send", {
+    enumerable: true,
+    get: function get() {
+      return _send.send;
+    }
+  });
+  Object.defineProperty(_exports, "sendForm", {
+    enumerable: true,
+    get: function get() {
+      return _sendForm.sendForm;
+    }
+  });
+  _exports.default = void 0;
+  var _default = {
+    init: _init.init,
+    send: _send.send,
+    sendForm: _sendForm.sendForm
+  };
+  _exports.default = _default;
+});
+
+/***/ }),
+
+/***/ 6098:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;__webpack_require__(5837);
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(3266)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else { var mod; }
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports, _store) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.init = void 0;
+
+  /**
+   * Initiation
+   * @param {string} userID - set the EmailJS user ID
+   * @param {string} origin - set the EmailJS origin
+   */
+  var init = function init(userID) {
+    var origin = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'https://api.emailjs.com';
+    _store.store._userID = userID;
+    _store.store._origin = origin;
+  };
+
+  _exports.init = init;
+});
+
+/***/ }),
+
+/***/ 8689:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;__webpack_require__(5837);
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(3266), __webpack_require__(2638), __webpack_require__(5423)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else { var mod; }
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports, _store, _validateParams, _sendPost) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.send = void 0;
+
+  /**
+   * Send a template to the specific EmailJS service
+   * @param {string} serviceID - the EmailJS service ID
+   * @param {string} templateID - the EmailJS template ID
+   * @param {object} templatePrams - the template params, what will be set to the EmailJS template
+   * @param {string} userID - the EmailJS user ID
+   * @returns {Promise<EmailJSResponseStatus>}
+   */
+  var send = function send(serviceID, templateID, templatePrams, userID) {
+    var uID = userID || _store.store._userID;
+    (0, _validateParams.validateParams)(uID, serviceID, templateID);
+    var params = {
+      lib_version: '3.1.0',
+      user_id: uID,
+      service_id: serviceID,
+      template_id: templateID,
+      template_params: templatePrams
+    };
+    return (0, _sendPost.sendPost)('/api/v1.0/email/send', JSON.stringify(params), {
+      'Content-type': 'application/json'
+    });
+  };
+
+  _exports.send = send;
+});
+
+/***/ }),
+
+/***/ 1407:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;__webpack_require__(5837);
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(3266), __webpack_require__(2638), __webpack_require__(5423)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else { var mod; }
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports, _store, _validateParams, _sendPost) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.sendForm = void 0;
+
+  var findHTMLForm = function findHTMLForm(form) {
+    var currentForm;
+
+    if (typeof form === 'string') {
+      currentForm = document.querySelector(form);
+    } else {
+      currentForm = form;
+    }
+
+    if (!currentForm || currentForm.nodeName !== 'FORM') {
+      throw 'The 3rd parameter is expected to be the HTML form element or the style selector of form';
+    }
+
+    return currentForm;
+  };
+  /**
+   * Send a form the specific EmailJS service
+   * @param {string} serviceID - the EmailJS service ID
+   * @param {string} templateID - the EmailJS template ID
+   * @param {string | HTMLFormElement} form - the form element or selector
+   * @param {string} userID - the EmailJS user ID
+   * @returns {Promise<EmailJSResponseStatus>}
+   */
+
+
+  var sendForm = function sendForm(serviceID, templateID, form, userID) {
+    var uID = userID || _store.store._userID;
+    var currentForm = findHTMLForm(form);
+    (0, _validateParams.validateParams)(uID, serviceID, templateID);
+    var formData = new FormData(currentForm);
+    formData.append('lib_version', '3.1.0');
+    formData.append('service_id', serviceID);
+    formData.append('template_id', templateID);
+    formData.append('user_id', uID);
+    return (0, _sendPost.sendPost)('/api/v1.0/email/send-form', formData);
+  };
+
+  _exports.sendForm = sendForm;
+});
+
+/***/ }),
+
+/***/ 1140:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;__webpack_require__(5837);
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else { var mod; }
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.EmailJSResponseStatus = void 0;
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  var EmailJSResponseStatus = function EmailJSResponseStatus(httpResponse) {
+    _classCallCheck(this, EmailJSResponseStatus);
+
+    this.status = httpResponse.status;
+    this.text = httpResponse.responseText;
+  };
+
+  _exports.EmailJSResponseStatus = EmailJSResponseStatus;
+});
+
+/***/ }),
+
+/***/ 3266:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;__webpack_require__(5837);
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else { var mod; }
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.store = void 0;
+  var store = {
+    _origin: 'https://api.emailjs.com'
+  };
+  _exports.store = store;
+});
+
+/***/ }),
+
+/***/ 2638:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;__webpack_require__(5837);
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else { var mod; }
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.validateParams = void 0;
+
+  var validateParams = function validateParams(userID, serviceID, templateID) {
+    if (!userID) {
+      throw 'The user ID is required. Visit https://dashboard.emailjs.com/admin/integration';
+    }
+
+    if (!serviceID) {
+      throw 'The service ID is required. Visit https://dashboard.emailjs.com/admin';
+    }
+
+    if (!templateID) {
+      throw 'The template ID is required. Visit https://dashboard.emailjs.com/admin/templates';
+    }
+
+    return true;
+  };
+
+  _exports.validateParams = validateParams;
+});
+
+/***/ }),
+
 /***/ 3099:
 /***/ ((module) => {
 
@@ -1949,6 +2295,21 @@ module.exports = function (name) {
 
 /***/ }),
 
+/***/ 5837:
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+var $ = __webpack_require__(2109);
+var global = __webpack_require__(7854);
+
+// `globalThis` object
+// https://tc39.es/ecma262/#sec-globalthis
+$({ global: true }, {
+  globalThis: global
+});
+
+
+/***/ }),
+
 /***/ 7941:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
@@ -2428,25 +2789,13 @@ for (var COLLECTION_NAME in DOMIterables) {
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -2459,200 +2808,13 @@ for (var COLLECTION_NAME in DOMIterables) {
 /******/ 		})();
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-// ESM COMPAT FLAG
-__webpack_require__.r(__webpack_exports__);
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ es),
-  "init": () => (/* reexport */ init),
-  "send": () => (/* reexport */ send),
-  "sendForm": () => (/* reexport */ sendForm)
-});
-
-;// CONCATENATED MODULE: ./es/store/store.js
-var store = {
-  _origin: 'https://api.emailjs.com'
-};
-;// CONCATENATED MODULE: ./es/methods/init/init.js
-
-/**
- * Initiation
- * @param {string} userID - set the EmailJS user ID
- * @param {string} origin - set the EmailJS origin
- */
-
-var init = function init(userID) {
-  var origin = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'https://api.emailjs.com';
-  store._userID = userID;
-  store._origin = origin;
-};
-;// CONCATENATED MODULE: ./es/utils/validateParams.js
-var validateParams = function validateParams(userID, serviceID, templateID) {
-  if (!userID) {
-    throw 'The user ID is required. Visit https://dashboard.emailjs.com/admin/integration';
-  }
-
-  if (!serviceID) {
-    throw 'The service ID is required. Visit https://dashboard.emailjs.com/admin';
-  }
-
-  if (!templateID) {
-    throw 'The template ID is required. Visit https://dashboard.emailjs.com/admin/templates';
-  }
-
-  return true;
-};
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.to-string.js
-var es_object_to_string = __webpack_require__(1539);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.promise.js
-var es_promise = __webpack_require__(8674);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
-var web_dom_collections_for_each = __webpack_require__(4747);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.keys.js
-var es_object_keys = __webpack_require__(7941);
-;// CONCATENATED MODULE: ./es/models/EmailJSResponseStatus.js
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var EmailJSResponseStatus = function EmailJSResponseStatus(httpResponse) {
-  _classCallCheck(this, EmailJSResponseStatus);
-
-  this.status = httpResponse.status;
-  this.text = httpResponse.responseText;
-};
-;// CONCATENATED MODULE: ./es/api/sendPost.js
-
-
-
-
-
-
-var sendPost = function sendPost(url, data) {
-  var headers = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  return new Promise(function (resolve, reject) {
-    var xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', function (_ref) {
-      var target = _ref.target;
-      var responseStatus = new EmailJSResponseStatus(target);
-
-      if (responseStatus.status === 200 || responseStatus.text === 'OK') {
-        resolve(responseStatus);
-      } else {
-        reject(responseStatus);
-      }
-    });
-    xhr.addEventListener('error', function (_ref2) {
-      var target = _ref2.target;
-      reject(new EmailJSResponseStatus(target));
-    });
-    xhr.open('POST', store._origin + url, true);
-    Object.keys(headers).forEach(function (key) {
-      xhr.setRequestHeader(key, headers[key]);
-    });
-    xhr.send(data);
-  });
-};
-;// CONCATENATED MODULE: ./es/methods/send/send.js
-
-
-
-/**
- * Send a template to the specific EmailJS service
- * @param {string} serviceID - the EmailJS service ID
- * @param {string} templateID - the EmailJS template ID
- * @param {object} templatePrams - the template params, what will be set to the EmailJS template
- * @param {string} userID - the EmailJS user ID
- * @returns {Promise<EmailJSResponseStatus>}
- */
-
-var send = function send(serviceID, templateID, templatePrams, userID) {
-  var uID = userID || store._userID;
-  validateParams(uID, serviceID, templateID);
-  var params = {
-    lib_version: '3.1.0',
-    user_id: uID,
-    service_id: serviceID,
-    template_id: templateID,
-    template_params: templatePrams
-  };
-  return sendPost('/api/v1.0/email/send', JSON.stringify(params), {
-    'Content-type': 'application/json'
-  });
-};
-;// CONCATENATED MODULE: ./es/methods/sendForm/sendForm.js
-
-
-
-
-var findHTMLForm = function findHTMLForm(form) {
-  var currentForm;
-
-  if (typeof form === 'string') {
-    currentForm = document.querySelector(form);
-  } else {
-    currentForm = form;
-  }
-
-  if (!currentForm || currentForm.nodeName !== 'FORM') {
-    throw 'The 3rd parameter is expected to be the HTML form element or the style selector of form';
-  }
-
-  return currentForm;
-};
-/**
- * Send a form the specific EmailJS service
- * @param {string} serviceID - the EmailJS service ID
- * @param {string} templateID - the EmailJS template ID
- * @param {string | HTMLFormElement} form - the form element or selector
- * @param {string} userID - the EmailJS user ID
- * @returns {Promise<EmailJSResponseStatus>}
- */
-
-
-var sendForm = function sendForm(serviceID, templateID, form, userID) {
-  var uID = userID || store._userID;
-  var currentForm = findHTMLForm(form);
-  validateParams(uID, serviceID, templateID);
-  var formData = new FormData(currentForm);
-  formData.append('lib_version', '3.1.0');
-  formData.append('service_id', serviceID);
-  formData.append('template_id', templateID);
-  formData.append('user_id', uID);
-  return sendPost('/api/v1.0/email/send-form', formData);
-};
-;// CONCATENATED MODULE: ./es/index.js
-
-
-
-
-/* harmony default export */ const es = ({
-  init: init,
-  send: send,
-  sendForm: sendForm
-});
-})();
-
-self.emailjs = __webpack_exports__;
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__(4649);
+/******/ 	self.emailjs = __webpack_exports__;
+/******/ 	
 /******/ })()
 ;
