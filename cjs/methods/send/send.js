@@ -1,6 +1,9 @@
-import { store } from '../../store/store';
-import { validateParams } from '../../utils/validateParams';
-import { sendPost } from '../../api/sendPost';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.send = void 0;
+const store_1 = require("../../store/store");
+const validateParams_1 = require("../../utils/validateParams");
+const sendPost_1 = require("../../api/sendPost");
 /**
  * Send a template to the specific EmailJS service
  * @param {string} serviceID - the EmailJS service ID
@@ -9,9 +12,9 @@ import { sendPost } from '../../api/sendPost';
  * @param {string} userID - the EmailJS user ID
  * @returns {Promise<EmailJSResponseStatus>}
  */
-export const send = (serviceID, templateID, templatePrams, userID) => {
-    const uID = userID || store._userID;
-    validateParams(uID, serviceID, templateID);
+const send = (serviceID, templateID, templatePrams, userID) => {
+    const uID = userID || store_1.store._userID;
+    validateParams_1.validateParams(uID, serviceID, templateID);
     const params = {
         lib_version: '3.2.0',
         user_id: uID,
@@ -19,7 +22,8 @@ export const send = (serviceID, templateID, templatePrams, userID) => {
         template_id: templateID,
         template_params: templatePrams,
     };
-    return sendPost('/api/v1.0/email/send', JSON.stringify(params), {
+    return sendPost_1.sendPost('/api/v1.0/email/send', JSON.stringify(params), {
         'Content-type': 'application/json',
     });
 };
+exports.send = send;

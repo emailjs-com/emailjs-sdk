@@ -1,6 +1,9 @@
-import { store } from '../../store/store';
-import { validateParams } from '../../utils/validateParams';
-import { sendPost } from '../../api/sendPost';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.sendForm = void 0;
+const store_1 = require("../../store/store");
+const validateParams_1 = require("../../utils/validateParams");
+const sendPost_1 = require("../../api/sendPost");
 const findHTMLForm = (form) => {
     let currentForm;
     if (typeof form === 'string') {
@@ -22,14 +25,15 @@ const findHTMLForm = (form) => {
  * @param {string} userID - the EmailJS user ID
  * @returns {Promise<EmailJSResponseStatus>}
  */
-export const sendForm = (serviceID, templateID, form, userID) => {
-    const uID = userID || store._userID;
+const sendForm = (serviceID, templateID, form, userID) => {
+    const uID = userID || store_1.store._userID;
     const currentForm = findHTMLForm(form);
-    validateParams(uID, serviceID, templateID);
+    validateParams_1.validateParams(uID, serviceID, templateID);
     const formData = new FormData(currentForm);
     formData.append('lib_version', '3.2.0');
     formData.append('service_id', serviceID);
     formData.append('template_id', templateID);
     formData.append('user_id', uID);
-    return sendPost('/api/v1.0/email/send-form', formData);
+    return sendPost_1.sendPost('/api/v1.0/email/send-form', formData);
 };
+exports.sendForm = sendForm;
