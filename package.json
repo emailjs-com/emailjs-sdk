@@ -22,8 +22,8 @@
   "scripts": {
     "_clean": "rm -rf es && rm -rf cjs && rm -rf dist",
     "_set-version": "./set-version.sh $npm_package_version",
-    "_build-ts": "tsc --declaration && npm run _set-version",
-    "_build-cjs": "tsc --module commonjs --outDir cjs && npm run _set-version",
+    "_build-ts": "tsc --declaration && npm run _set-version es",
+    "_build-cjs": "tsc --module commonjs --outDir cjs && npm run _set-version cjs",
     "_build-bundle": "webpack --env production",
     "build": "npm run _clean && npm run _build-ts && npm run _build-cjs && npm run _build-bundle",
     "test": "jest --coverage",
