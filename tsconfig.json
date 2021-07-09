@@ -6,7 +6,7 @@
     "typeRoots": ["node_modules/@types"],
     "moduleResolution": "node",
     "useDefineForClassFields": false,
-    "declaration": true,
+    "declaration": false,
     "strict": true,
     "noImplicitAny": true,
     "noLib": false,
