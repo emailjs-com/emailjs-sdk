@@ -11,7 +11,7 @@
   "homepage": "https://www.emailjs.com",
   "main": "cjs/index.js",
   "types": "es/index.d.ts",
-  "module": "es",
+  "module": "es/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/emailjs-com/emailjs-sdk.git"
