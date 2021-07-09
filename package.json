@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "homepage": "https://www.emailjs.com",
-  "main": "es/index.js",
+  "main": "cjs/index.js",
   "types": "es/index.d.ts",
   "module": "es",
   "repository": {
@@ -20,11 +20,12 @@
     "node": ">=12.0.0"
   },
   "scripts": {
-    "_clean": "rm -rf es && rm -rf dist",
+    "_clean": "rm -rf es && rm -rf cjs && rm -rf dist",
     "_set-version": "./set-version.sh $npm_package_version",
-    "_build-ts": "npm run _clean && tsc && npm run _set-version",
+    "_build-ts": "tsc --declaration && npm run _set-version",
+    "_build-cjs": "tsc --module commonjs --outDir cjs && npm run _set-version",
     "_build-bundle": "webpack --env production",
-    "build": "npm run _build-ts && npm run _build-bundle",
+    "build": "npm run _clean && npm run _build-ts && npm run _build-cjs && npm run _build-bundle",
     "test": "jest --coverage",
     "lint": "tsc --noEmit && eslint src"
   },
