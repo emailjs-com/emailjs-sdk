@@ -1,4 +1,4 @@
-import type { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
+import { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
 /**
  * Send a form the specific EmailJS service
  * @param {string} serviceID - the EmailJS service ID
