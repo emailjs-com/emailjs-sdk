@@ -65,7 +65,7 @@ emailjs.sendForm('<YOUR SERVICE ID>','<YOUR TEMPLATE ID>', '#myForm')
 
 __Angular X / VueJS / ReactJS__
 ``` js
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 
 const templateParams = {
     name: 'James',
