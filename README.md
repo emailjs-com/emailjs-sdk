@@ -3,10 +3,8 @@ SDK for [EmailJS.com](https://www.emailjs.com) users.
 \
 Use you EmailJS account for sending emails.
 
+[![codecov](https://codecov.io/gh/emailjs-com/emailjs-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/emailjs-com/emailjs-sdk)
 [![npm version](https://img.shields.io/npm/v/@emailjs/browser.svg)](https://www.npmjs.com/package/@emailjs/browser)
-[![npm dm](https://img.shields.io/npm/dm/@emailjs/browser.svg)](https://www.npmjs.com/package/@emailjs/browser)
-[![npm dt](https://img.shields.io/npm/dt/@emailjs/browser.svg)](https://www.npmjs.com/package/@emailjs/browser)
-[![uptimerobot](https://img.shields.io/uptimerobot/ratio/m789941869-52f6a408a7db592327b0c201)](https://stats.uptimerobot.com/x5GYyHLRlo)
 
 ## Disclaimer
 This is a browser-only version, otherwise use the [REST API](https://www.emailjs.com/docs/rest-api/send/).
