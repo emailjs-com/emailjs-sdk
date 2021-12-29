@@ -35,7 +35,7 @@ module.exports = (webpackEnv) => {
                     modules: false,
                     targets: '> 0.25%, not dead',
                     useBuiltIns: 'usage',
-                    corejs: '3.14',
+                    corejs: '3.20',
                   },
                 ],
               ],
