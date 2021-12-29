@@ -28,12 +28,12 @@ const findHTMLForm = (form) => {
 const sendForm = (serviceID, templateID, form, userID) => {
     const uID = userID || store_1.store._userID;
     const currentForm = findHTMLForm(form);
-    validateParams_1.validateParams(uID, serviceID, templateID);
+    (0, validateParams_1.validateParams)(uID, serviceID, templateID);
     const formData = new FormData(currentForm);
-    formData.append('lib_version', '3.2.0');
+    formData.append('lib_version', '3.3.0');
     formData.append('service_id', serviceID);
     formData.append('template_id', templateID);
     formData.append('user_id', uID);
-    return sendPost_1.sendPost('/api/v1.0/email/send-form', formData);
+    return (0, sendPost_1.sendPost)('/api/v1.0/email/send-form', formData);
 };
 exports.sendForm = sendForm;

@@ -14,15 +14,15 @@ const sendPost_1 = require("../../api/sendPost");
  */
 const send = (serviceID, templateID, templatePrams, userID) => {
     const uID = userID || store_1.store._userID;
-    validateParams_1.validateParams(uID, serviceID, templateID);
+    (0, validateParams_1.validateParams)(uID, serviceID, templateID);
     const params = {
-        lib_version: '3.2.0',
+        lib_version: '3.3.0',
         user_id: uID,
         service_id: serviceID,
         template_id: templateID,
         template_params: templatePrams,
     };
-    return sendPost_1.sendPost('/api/v1.0/email/send', JSON.stringify(params), {
+    return (0, sendPost_1.sendPost)('/api/v1.0/email/send', JSON.stringify(params), {
         'Content-type': 'application/json',
     });
 };
