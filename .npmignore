@@ -2,6 +2,7 @@
 # http://git-scm.com/docs/gitignore
 
 # git ignore
+.github/
 node_modules/
 coverage/
 .idea/
