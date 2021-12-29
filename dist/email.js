@@ -3151,7 +3151,7 @@ var send = function send(serviceID, templateID, templatePrams, userID) {
   var uID = userID || store._userID;
   validateParams(uID, serviceID, templateID);
   var params = {
-    lib_version: '3.3.0',
+    lib_version: '3.3.1',
     user_id: uID,
     service_id: serviceID,
     template_id: templateID,
@@ -3196,7 +3196,7 @@ var sendForm = function sendForm(serviceID, templateID, form, userID) {
   var currentForm = findHTMLForm(form);
   validateParams(uID, serviceID, templateID);
   var formData = new FormData(currentForm);
-  formData.append('lib_version', '3.3.0');
+  formData.append('lib_version', '3.3.1');
   formData.append('service_id', serviceID);
   formData.append('template_id', templateID);
   formData.append('user_id', uID);

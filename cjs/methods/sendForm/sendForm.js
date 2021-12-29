@@ -30,7 +30,7 @@ const sendForm = (serviceID, templateID, form, userID) => {
     const currentForm = findHTMLForm(form);
     (0, validateParams_1.validateParams)(uID, serviceID, templateID);
     const formData = new FormData(currentForm);
-    formData.append('lib_version', '3.3.0');
+    formData.append('lib_version', '3.3.1');
     formData.append('service_id', serviceID);
     formData.append('template_id', templateID);
     formData.append('user_id', uID);
