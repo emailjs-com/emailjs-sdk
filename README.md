@@ -1,4 +1,4 @@
-# EmailJS-COM
+# Official EmailJS SDK for Browsers
 SDK for [EmailJS.com](https://www.emailjs.com) users.
 \
 Use you EmailJS account for sending emails.
@@ -6,31 +6,30 @@ Use you EmailJS account for sending emails.
 ## Disclaimer
 This is a browser-only version, otherwise use the [REST API](https://www.emailjs.com/docs/rest-api/send/).
 
+## Links
+* [Official SDK Docs](https://www.emailjs.com/docs)
+
 ## Intro
 EmailJS helps sending emails using client side technologies only. No server is required – just connect EmailJS to one of the supported email services, create an email template, and use our Javascript library to trigger an email.
 
-## Quick Start
+## Usage
 
 Install EmailJS SDK using [npm](https://www.npmjs.com/):
 
 ``` bash
-$ npm install emailjs-com --save
+$ npm install @emailjs/browser
 ```
 
 Or manually: 
 
 ``` html
-<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js'></script>
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js'></script>
 <script type='text/javascript'>
    (function(){
       emailjs.init('<YOUR USER ID>');
    })();
 </script>
 ```
-
-## Documentation
-
-Documentation is available at [https://www.emailjs.com/docs](https://www.emailjs.com/docs)
 
 ## Examples
 
@@ -77,7 +76,3 @@ emailjs.send('<YOUR SERVICE ID>','<YOUR TEMPLATE ID>', templateParams, '<YOUR US
 	   console.log('FAILED...', err);
 	});
 ```
-
-## License
-
-[MIT](./LICENSE)
