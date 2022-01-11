@@ -1,6 +1,6 @@
 {
   "name": "@emailjs/browser",
-  "version": "3.3.2",
+  "version": "3.4.0",
   "description": "Official EmailJS SDK for browsers",
   "private": false,
   "author": "EmailJS",
