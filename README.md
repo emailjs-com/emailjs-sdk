@@ -13,7 +13,7 @@ This is a browser-only version, otherwise use the [REST API](https://www.emailjs
 * [Official SDK Docs](https://www.emailjs.com/docs)
 
 ## Intro
-EmailJS helps sending emails using client side technologies only. No server is required – just connect EmailJS to one of the supported email services, create an email template, and use our Javascript library to trigger an email.
+EmailJS helps to send emails using client side technologies only. No server is required – just connect EmailJS to one of the supported email services, create an email template, and use our Javascript library to trigger an email.
 
 ## Usage
 
