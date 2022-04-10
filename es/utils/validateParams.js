@@ -1,6 +1,6 @@
-export const validateParams = (userID, serviceID, templateID) => {
-    if (!userID) {
-        throw 'The user ID is required. Visit https://dashboard.emailjs.com/admin/integration';
+export const validateParams = (publicKey, serviceID, templateID) => {
+    if (!publicKey) {
+        throw 'The public key is required. Visit https://dashboard.emailjs.com/admin/account';
     }
     if (!serviceID) {
         throw 'The service ID is required. Visit https://dashboard.emailjs.com/admin';

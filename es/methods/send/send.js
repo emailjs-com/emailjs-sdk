@@ -6,14 +6,14 @@ import { sendPost } from '../../api/sendPost';
  * @param {string} serviceID - the EmailJS service ID
  * @param {string} templateID - the EmailJS template ID
  * @param {object} templatePrams - the template params, what will be set to the EmailJS template
- * @param {string} userID - the EmailJS user ID
+ * @param {string} publicKey - the EmailJS public key
  * @returns {Promise<EmailJSResponseStatus>}
  */
-export const send = (serviceID, templateID, templatePrams, userID) => {
-    const uID = userID || store._userID;
+export const send = (serviceID, templateID, templatePrams, publicKey) => {
+    const uID = publicKey || store._userID;
     validateParams(uID, serviceID, templateID);
     const params = {
-        lib_version: '3.6.0',
+        lib_version: '3.6.2',
         user_id: uID,
         service_id: serviceID,
         template_id: templateID,

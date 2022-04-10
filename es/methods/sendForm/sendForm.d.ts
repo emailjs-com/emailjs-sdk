@@ -4,7 +4,7 @@ import type { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
  * @param {string} serviceID - the EmailJS service ID
  * @param {string} templateID - the EmailJS template ID
  * @param {string | HTMLFormElement} form - the form element or selector
- * @param {string} userID - the EmailJS user ID
+ * @param {string} publicKey - the EmailJS public key
  * @returns {Promise<EmailJSResponseStatus>}
  */
-export declare const sendForm: (serviceID: string, templateID: string, form: string | HTMLFormElement, userID?: string | undefined) => Promise<EmailJSResponseStatus>;
+export declare const sendForm: (serviceID: string, templateID: string, form: string | HTMLFormElement, publicKey?: string | undefined) => Promise<EmailJSResponseStatus>;

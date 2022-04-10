@@ -22,15 +22,15 @@ const findHTMLForm = (form) => {
  * @param {string} serviceID - the EmailJS service ID
  * @param {string} templateID - the EmailJS template ID
  * @param {string | HTMLFormElement} form - the form element or selector
- * @param {string} userID - the EmailJS user ID
+ * @param {string} publicKey - the EmailJS public key
  * @returns {Promise<EmailJSResponseStatus>}
  */
-const sendForm = (serviceID, templateID, form, userID) => {
-    const uID = userID || store_1.store._userID;
+const sendForm = (serviceID, templateID, form, publicKey) => {
+    const uID = publicKey || store_1.store._userID;
     const currentForm = findHTMLForm(form);
     (0, validateParams_1.validateParams)(uID, serviceID, templateID);
     const formData = new FormData(currentForm);
-    formData.append('lib_version', '3.6.0');
+    formData.append('lib_version', '3.6.2');
     formData.append('service_id', serviceID);
     formData.append('template_id', templateID);
     formData.append('user_id', uID);

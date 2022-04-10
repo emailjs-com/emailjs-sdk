@@ -4,11 +4,11 @@ exports.init = void 0;
 const store_1 = require("../../store/store");
 /**
  * Initiation
- * @param {string} userID - set the EmailJS user ID
+ * @param {string} publicKey - set the EmailJS public key
  * @param {string} origin - set the EmailJS origin
  */
-const init = (userID, origin = 'https://api.emailjs.com') => {
-    store_1.store._userID = userID;
+const init = (publicKey, origin = 'https://api.emailjs.com') => {
+    store_1.store._userID = publicKey;
     store_1.store._origin = origin;
 };
 exports.init = init;

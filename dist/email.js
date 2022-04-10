@@ -3389,21 +3389,21 @@ var store = {
 
 /**
  * Initiation
- * @param {string} userID - set the EmailJS user ID
+ * @param {string} publicKey - set the EmailJS public key
  * @param {string} origin - set the EmailJS origin
  */
 
-var init = function init(userID) {
+var init = function init(publicKey) {
   var origin = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'https://api.emailjs.com';
-  store._userID = userID;
+  store._userID = publicKey;
   store._origin = origin;
 };
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.json.stringify.js
 var es_json_stringify = __webpack_require__(8862);
 ;// CONCATENATED MODULE: ./es/utils/validateParams.js
-var validateParams = function validateParams(userID, serviceID, templateID) {
-  if (!userID) {
-    throw 'The user ID is required. Visit https://dashboard.emailjs.com/admin/integration';
+var validateParams = function validateParams(publicKey, serviceID, templateID) {
+  if (!publicKey) {
+    throw 'The public key is required. Visit https://dashboard.emailjs.com/admin/account';
   }
 
   if (!serviceID) {
@@ -3486,15 +3486,15 @@ var sendPost = function sendPost(url, data) {
  * @param {string} serviceID - the EmailJS service ID
  * @param {string} templateID - the EmailJS template ID
  * @param {object} templatePrams - the template params, what will be set to the EmailJS template
- * @param {string} userID - the EmailJS user ID
+ * @param {string} publicKey - the EmailJS public key
  * @returns {Promise<EmailJSResponseStatus>}
  */
 
-var send = function send(serviceID, templateID, templatePrams, userID) {
-  var uID = userID || store._userID;
+var send = function send(serviceID, templateID, templatePrams, publicKey) {
+  var uID = publicKey || store._userID;
   validateParams(uID, serviceID, templateID);
   var params = {
-    lib_version: '3.6.0',
+    lib_version: '3.6.2',
     user_id: uID,
     service_id: serviceID,
     template_id: templateID,
@@ -3529,17 +3529,17 @@ var findHTMLForm = function findHTMLForm(form) {
  * @param {string} serviceID - the EmailJS service ID
  * @param {string} templateID - the EmailJS template ID
  * @param {string | HTMLFormElement} form - the form element or selector
- * @param {string} userID - the EmailJS user ID
+ * @param {string} publicKey - the EmailJS public key
  * @returns {Promise<EmailJSResponseStatus>}
  */
 
 
-var sendForm = function sendForm(serviceID, templateID, form, userID) {
-  var uID = userID || store._userID;
+var sendForm = function sendForm(serviceID, templateID, form, publicKey) {
+  var uID = publicKey || store._userID;
   var currentForm = findHTMLForm(form);
   validateParams(uID, serviceID, templateID);
   var formData = new FormData(currentForm);
-  formData.append('lib_version', '3.6.0');
+  formData.append('lib_version', '3.6.2');
   formData.append('service_id', serviceID);
   formData.append('template_id', templateID);
   formData.append('user_id', uID);
