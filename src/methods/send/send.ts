@@ -9,16 +9,16 @@ import type { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
  * @param {string} serviceID - the EmailJS service ID
  * @param {string} templateID - the EmailJS template ID
  * @param {object} templatePrams - the template params, what will be set to the EmailJS template
- * @param {string} userID - the EmailJS user ID
+ * @param {string} publicKey - the EmailJS public key
  * @returns {Promise<EmailJSResponseStatus>}
  */
 export const send = (
   serviceID: string,
   templateID: string,
   templatePrams?: Record<string, unknown>,
-  userID?: string,
+  publicKey?: string,
 ): Promise<EmailJSResponseStatus> => {
-  const uID = userID || store._userID;
+  const uID = publicKey || store._userID;
 
   validateParams(uID, serviceID, templateID);
 

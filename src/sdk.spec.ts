@@ -16,9 +16,9 @@ jest.mock('./api/sendPost', () => ({
   }),
 }));
 
-it('should send method and fail on the user ID', () => {
+it('should send method and fail on the public key', () => {
   expect(() => emailjs.send('default_service', 'my_test_template')).toThrow(
-    'The user ID is required',
+    'The public key is required',
   );
 });
 

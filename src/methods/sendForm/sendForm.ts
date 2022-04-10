@@ -25,16 +25,16 @@ const findHTMLForm = (form: string | HTMLFormElement): HTMLFormElement => {
  * @param {string} serviceID - the EmailJS service ID
  * @param {string} templateID - the EmailJS template ID
  * @param {string | HTMLFormElement} form - the form element or selector
- * @param {string} userID - the EmailJS user ID
+ * @param {string} publicKey - the EmailJS public key
  * @returns {Promise<EmailJSResponseStatus>}
  */
 export const sendForm = (
   serviceID: string,
   templateID: string,
   form: string | HTMLFormElement,
-  userID?: string,
+  publicKey?: string,
 ): Promise<EmailJSResponseStatus> => {
-  const uID = userID || store._userID;
+  const uID = publicKey || store._userID;
   const currentForm = findHTMLForm(form);
 
   validateParams(uID, serviceID, templateID);
