@@ -24,7 +24,7 @@ export const send = (
 
   const params = {
     lib_version: process.env.npm_package_version,
-    user_id: uID,
+    public_key: uID,
     service_id: serviceID,
     template_id: templateID,
     template_params: templatePrams,
