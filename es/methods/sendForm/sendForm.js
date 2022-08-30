@@ -27,7 +27,7 @@ export const sendForm = (serviceID, templateID, form, publicKey) => {
     const currentForm = findHTMLForm(form);
     validateParams(uID, serviceID, templateID);
     const formData = new FormData(currentForm);
-    formData.append('lib_version', '3.6.2');
+    formData.append('lib_version', '3.7.0');
     formData.append('service_id', serviceID);
     formData.append('template_id', templateID);
     formData.append('user_id', uID);

@@ -7,4 +7,4 @@ import type { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
  * @param {string} publicKey - the EmailJS public key
  * @returns {Promise<EmailJSResponseStatus>}
  */
-export declare const send: (serviceID: string, templateID: string, templatePrams?: Record<string, unknown> | undefined, publicKey?: string | undefined) => Promise<EmailJSResponseStatus>;
+export declare const send: (serviceID: string, templateID: string, templatePrams?: Record<string, unknown>, publicKey?: string) => Promise<EmailJSResponseStatus>;

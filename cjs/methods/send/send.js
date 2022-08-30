@@ -16,7 +16,7 @@ const send = (serviceID, templateID, templatePrams, publicKey) => {
     const uID = publicKey || store_1.store._userID;
     (0, validateParams_1.validateParams)(uID, serviceID, templateID);
     const params = {
-        lib_version: '3.6.2',
+        lib_version: '3.7.0',
         user_id: uID,
         service_id: serviceID,
         template_id: templateID,
