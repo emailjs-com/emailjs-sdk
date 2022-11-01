@@ -4,6 +4,6 @@ export class EmailJSResponseStatus {
 
   constructor(httpResponse: XMLHttpRequest | null) {
     this.status = httpResponse?.status || 0;
-    this.text = httpResponse?.responseText || 'network error';
+    this.text = httpResponse?.responseText || 'Network Error';
   }
 }
