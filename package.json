@@ -68,8 +68,5 @@
     "trailingComma": "all",
     "singleQuote": true,
     "printWidth": 100
-  },
-  "dependencies": {
-    "eslint-config-standard-with-typescript": "^22.0.0"
   }
 }
