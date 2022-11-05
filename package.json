@@ -45,13 +45,13 @@
     "emailjs-com"
   ],
   "devDependencies": {
-    "@babel/preset-env": "^7.19.4",
+    "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.18.6",
-    "@types/jest": "^29.2.1",
+    "@types/jest": "^29.2.2",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
     "babel-jest": "^29.2.2",
-    "babel-loader": "^9.0.1",
+    "babel-loader": "^9.1.0",
     "core-js": "^3.26.0",
     "eslint": "^8.26.0",
     "eslint-import-resolver-typescript": "^3.5.2",
