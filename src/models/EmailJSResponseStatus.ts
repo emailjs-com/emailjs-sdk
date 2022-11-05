@@ -3,7 +3,7 @@ export class EmailJSResponseStatus {
   public text: string;
 
   constructor(httpResponse: XMLHttpRequest | null) {
-    this.status = httpResponse?.status || 0;
-    this.text = httpResponse?.responseText || 'Network Error';
+    this.status = httpResponse ? httpResponse.status : 0;
+    this.text = httpResponse ? httpResponse.responseText : 'Network Error';
   }
 }
