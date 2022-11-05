@@ -7,3 +7,6 @@ coverage/
 *.swp
 .DS_Store
 Thumbs.db
+es/
+dist/
+cjs/
