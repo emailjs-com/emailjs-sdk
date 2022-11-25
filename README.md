@@ -10,7 +10,9 @@ Use you EmailJS account for sending emails.
 ## Disclaimer
 
 This is a browser-only version, otherwise use
-the [REST API](https://www.emailjs.com/docs/rest-api/send/).
+- [Node.js SDK](https://www.npmjs.com/package/@emailjs/nodejs)
+- [Flutter SDK](https://pub.dev/packages/emailjs)
+- [REST API](https://www.emailjs.com/docs/rest-api/send/)
 
 ## Links
 
