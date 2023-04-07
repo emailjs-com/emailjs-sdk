@@ -12,7 +12,6 @@
     "noLib": false,
     "skipLibCheck": true,
     "preserveConstEnums": true,
-    "suppressImplicitAnyIndexErrors": true,
     "allowUnusedLabels": false,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
