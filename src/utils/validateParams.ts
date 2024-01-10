@@ -10,6 +10,4 @@ export const validateParams = (publicKey?: string, serviceID?: string, templateI
   if (!templateID) {
     throw 'The template ID is required. Visit https://dashboard.emailjs.com/admin/templates';
   }
-
-  return true;
 };
