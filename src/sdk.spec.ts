@@ -66,7 +66,7 @@ it('should call sendForm and throw non-form element error', () => {
 });
 
 it('should call sendForm with id selector', async () => {
-  let form: HTMLFormElement = document.createElement('form');
+  const form: HTMLFormElement = document.createElement('form');
   form.id = 'form-id';
   document.body.appendChild(form);
 
@@ -84,7 +84,7 @@ it('should call sendForm with id selector', async () => {
 });
 
 it('should call sendForm with form element', async () => {
-  let form: HTMLFormElement = document.createElement('form');
+  const form: HTMLFormElement = document.createElement('form');
 
   try {
     const result = await emailjs.sendForm(
