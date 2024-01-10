@@ -18,6 +18,7 @@ babel.config.js
 jest.config.mjs
 set-version.sh
 tsconfig.json
+tsconfig.build.json
 webpack.config.js
 
 # source code files
