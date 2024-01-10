@@ -4,12 +4,7 @@ import emailjs from './index';
 import { EmailJSResponseStatus } from './models/EmailJSResponseStatus';
 
 const responseWrapper = () => {
-  return Promise.resolve(
-    new EmailJSResponseStatus({
-      status: 200,
-      responseText: 'OK',
-    } as XMLHttpRequest),
-  );
+  return Promise.resolve(new EmailJSResponseStatus(200, 'OK'));
 };
 
 jest.mock('./api/sendPost', () => ({
