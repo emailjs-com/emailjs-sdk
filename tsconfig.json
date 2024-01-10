@@ -3,8 +3,7 @@
     "target": "ESNext",
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
-    "typeRoots": ["node_modules/@types"],
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "useDefineForClassFields": false,
     "declaration": false,
     "strict": true,
@@ -20,6 +19,5 @@
     "sourceMap": false,
     "outDir": "es"
   },
-  "include": ["src"],
-  "exclude": ["src/**/*.spec.ts"]
+  "include": ["src"]
 }

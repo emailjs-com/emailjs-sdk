@@ -1,3 +1,5 @@
+import { it, expect, jest } from '@jest/globals';
+
 import emailjs from './index';
 import { EmailJSResponseStatus } from './models/EmailJSResponseStatus';
 
