@@ -58,7 +58,7 @@ it('should send method successfully with 4 params', async () => {
 
 it('should call sendForm and throw non-form element error', () => {
   expect(() => emailjs.sendForm('default_service', 'my_test_template', 'form-not-exist')).toThrow(
-    'The 3rd parameter is expected to be the HTML form element or the style selector of form',
+    'The 3rd parameter is expected to be the HTML form element or the style selector of the form',
   );
 });
 

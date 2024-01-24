@@ -6,7 +6,7 @@ export const sendPost = async (
   data: string | FormData,
   headers: Record<string, string> = {},
 ): Promise<EmailJSResponseStatus> => {
-  const response = await fetch(store._origin + url, {
+  const response = await fetch(store.origin + url, {
     method: 'POST',
     headers,
     body: data,

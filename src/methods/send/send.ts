@@ -1,30 +1,35 @@
 import { store } from '../../store/store';
-import { validateParams } from '../../utils/validateParams';
 import { sendPost } from '../../api/sendPost';
+import { buildOptions } from '../../utils/buildOptions';
+import { validateParams } from '../../utils/validateParams';
+import { validateTemplateParams } from '../../utils/validateTemplateParams';
 
 import type { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
+import type { Options } from '../../types/Options';
 
 /**
  * Send a template to the specific EmailJS service
  * @param {string} serviceID - the EmailJS service ID
  * @param {string} templateID - the EmailJS template ID
  * @param {object} templateParams - the template params, what will be set to the EmailJS template
- * @param {string} publicKey - the EmailJS public key
+ * @param {object} options - the EmailJS SDK config options
  * @returns {Promise<EmailJSResponseStatus>}
  */
 export const send = (
   serviceID: string,
   templateID: string,
   templateParams?: Record<string, unknown>,
-  publicKey?: string,
+  options?: Options | string,
 ): Promise<EmailJSResponseStatus> => {
-  const uID = publicKey || store._userID;
+  const opts = buildOptions(options);
+  const publicKey = opts.publicKey || store.publicKey;
 
-  validateParams(uID, serviceID, templateID);
+  validateParams(publicKey, serviceID, templateID);
+  validateTemplateParams(templateParams);
 
   const params = {
     lib_version: process.env.npm_package_version,
-    user_id: uID,
+    user_id: publicKey,
     service_id: serviceID,
     template_id: templateID,
     template_params: templateParams,
