@@ -1,5 +1,5 @@
 import { store } from '../../store/store';
-import { buildOptions } from '../../utils/buildOptions';
+import { buildOptions } from '../../utils/buildOptions/buildOptions';
 import type { Options } from '../../types/Options';
 
 /**

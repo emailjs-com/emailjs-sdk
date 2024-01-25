@@ -30,7 +30,7 @@
     "build:lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "build:bundle": "webpack --env production",
     "build": "npm run build:clean && npm run build:lint && npm run build:ts && npm run build:cjs && npm run build:bundle",
-    "test": "jest --coverage",
+    "test": "jest --coverage --no-cache",
     "lint": "tsc --noEmit && eslint src"
   },
   "keywords": [

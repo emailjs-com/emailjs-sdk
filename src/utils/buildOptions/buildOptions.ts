@@ -1,4 +1,4 @@
-import type { Options } from '../types/Options';
+import type { Options } from '../../types/Options';
 
 export const buildOptions = (options?: Options | string): Options => {
   if (!options) return {};
@@ -10,7 +10,7 @@ export const buildOptions = (options?: Options | string): Options => {
     };
   }
 
-  if (typeof options == 'object') {
+  if (options.toString() === '[object Object]') {
     return options;
   }
 

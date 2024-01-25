@@ -1,8 +1,8 @@
 import { store } from '../../store/store';
 import { sendPost } from '../../api/sendPost';
-import { buildOptions } from '../../utils/buildOptions';
-import { validateParams } from '../../utils/validateParams';
-import { validateTemplateParams } from '../../utils/validateTemplateParams';
+import { buildOptions } from '../../utils/buildOptions/buildOptions';
+import { validateParams } from '../../utils/validateParams/validateParams';
+import { validateTemplateParams } from '../../utils/validateTemplateParams/validateTemplateParams';
 
 import type { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
 import type { Options } from '../../types/Options';
