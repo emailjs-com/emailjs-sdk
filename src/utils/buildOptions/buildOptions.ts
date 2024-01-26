@@ -10,6 +10,7 @@ export const buildOptions = (options?: Options | string): Options => {
     };
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-base-to-string
   if (options.toString() === '[object Object]') {
     return options;
   }
