@@ -39,8 +39,8 @@ Or manually:
 ```html
 <script
   type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-></script>
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
 <script type="text/javascript">
   (function () {
     emailjs.init({
@@ -52,7 +52,7 @@ Or manually:
 
 ## Examples
 
-**send email**
+**Send the email using the customized send method**
 
 ```js
 var templateParams = {
@@ -70,7 +70,7 @@ emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams).then(
 );
 ```
 
-**send form**
+**Send the email from a form using the sendForm method**
 
 ```js
 emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', '#myForm').then(
@@ -83,7 +83,7 @@ emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', '#myForm').then(
 );
 ```
 
-**Angular X / VueJS / ReactJS**
+**Using Angular / VueJS / ReactJS / Svelte / any other modern framework**
 
 ```js
 import emailjs from '@emailjs/browser';
@@ -111,13 +111,15 @@ emailjs
 
 **Options**
 
-Options can be declared globally using the init method or locally as the fourth parameter of a function.
+Options can be declared globally using the **init** method or locally as the fourth parameter of a function.
 \
 The local parameter will have higher priority than the global one.
 
 | Name      | Type   | Description                                       |
 | --------- | ------ | ------------------------------------------------- |
 | publicKey | String | The public key is required to invoke the command. |
+
+**Declare global settings**
 
 ```js
 import emailjs from '@emailjs/browser';
@@ -126,6 +128,8 @@ emailjs.init({
   publicKey: 'YOUR_PUBLIC_KEY',
 });
 ```
+
+**Overwrite settings locally**
 
 ```js
 import emailjs from '@emailjs/browser';
