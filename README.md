@@ -39,8 +39,8 @@ Or manually:
 ```html
 <script
   type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-></script>
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
 <script type="text/javascript">
   (function () {
     emailjs.init({
@@ -124,6 +124,8 @@ The local parameter will have higher priority than the global one.
 **BlockList**
 
 Allows to ignore a method call if the watched variable contains a value from the block list.
+\
+Method will return error 403 if request is blocked.
 
 | Name          | Type     | Description                                        |
 | ------------- | -------- | -------------------------------------------------- |
