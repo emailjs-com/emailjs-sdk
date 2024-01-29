@@ -1,11 +1,13 @@
+import type { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
+import type { Options } from '../../types/Options';
+
 import { store } from '../../store/store';
 import { sendPost } from '../../api/sendPost';
 import { buildOptions } from '../../utils/buildOptions/buildOptions';
 import { validateParams } from '../../utils/validateParams/validateParams';
 import { validateTemplateParams } from '../../utils/validateTemplateParams/validateTemplateParams';
-
-import type { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
-import type { Options } from '../../types/Options';
+import { isHeadless } from '../../utils/isHeadless/isHeadless';
+import { headlessError } from '../../errors/headlessError/headlessError';
 
 /**
  * Send a template to the specific EmailJS service
@@ -23,6 +25,11 @@ export const send = (
 ): Promise<EmailJSResponseStatus> => {
   const opts = buildOptions(options);
   const publicKey = opts.publicKey || store.publicKey;
+  const blockHeadless = opts.blockHeadless || store.blockHeadless;
+
+  if (blockHeadless && isHeadless(navigator)) {
+    return Promise.reject(headlessError());
+  }
 
   validateParams(publicKey, serviceID, templateID);
   validateTemplateParams(templateParams);

@@ -17,6 +17,7 @@ export const init = (
   const opts = buildOptions(options);
 
   store.publicKey = opts.publicKey;
+  store.blockHeadless = opts.blockHeadless;
   store.limitRate = opts.limitRate || store.limitRate;
   store.blockList = opts.blockList || store.blockList;
   store.origin = opts.origin || origin;

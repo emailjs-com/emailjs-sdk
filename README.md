@@ -115,9 +115,10 @@ Options can be declared globally using the **init** method or locally as the fou
 \
 The local parameter will have higher priority than the global one.
 
-| Name      | Type   | Description                                       |
-| --------- | ------ | ------------------------------------------------- |
-| publicKey | String | The public key is required to invoke the command. |
+| Name          | Type    | Default | Description                                              |
+| ------------- | ------- | ------- | -------------------------------------------------------- |
+| publicKey     | String  |         | The public key is required to invoke the method.         |
+| blockHeadless | Boolean | False   | Method will return error 451 if the browser is headless. |
 
 **Declare global settings**
 
@@ -126,6 +127,7 @@ import emailjs from '@emailjs/browser';
 
 emailjs.init({
   publicKey: 'YOUR_PUBLIC_KEY',
+  blockHeadless: true,
 });
 ```
 

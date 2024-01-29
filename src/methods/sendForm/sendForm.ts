@@ -1,11 +1,13 @@
+import type { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
+import type { Options } from '../../types/Options';
+
 import { store } from '../../store/store';
 import { sendPost } from '../../api/sendPost';
 import { buildOptions } from '../../utils/buildOptions/buildOptions';
 import { validateForm } from '../../utils/validateForm/validateForm';
 import { validateParams } from '../../utils/validateParams/validateParams';
-
-import type { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
-import type { Options } from '../../types/Options';
+import { isHeadless } from '../../utils/isHeadless/isHeadless';
+import { headlessError } from '../../errors/headlessError/headlessError';
 
 const findHTMLForm = (form: string | HTMLFormElement): HTMLFormElement | null => {
   return typeof form === 'string' ? document.querySelector<HTMLFormElement>(form) : form;
@@ -27,6 +29,12 @@ export const sendForm = (
 ): Promise<EmailJSResponseStatus> => {
   const opts = buildOptions(options);
   const publicKey = opts.publicKey || store.publicKey;
+  const blockHeadless = opts.blockHeadless || store.blockHeadless;
+
+  if (blockHeadless && isHeadless(navigator)) {
+    return Promise.reject(headlessError());
+  }
+
   const currentForm = findHTMLForm(form);
 
   validateParams(publicKey, serviceID, templateID);
