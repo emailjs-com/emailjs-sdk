@@ -4,5 +4,4 @@ export const store: Options = {
   origin: 'https://api.emailjs.com',
   blockHeadless: false,
   limitRate: 0,
-  blockList: [],
 };
