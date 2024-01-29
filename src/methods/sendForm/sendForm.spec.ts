@@ -90,6 +90,42 @@ describe('sdk v4', () => {
     ).toThrow('The template ID is required');
   });
 
+  it('should call the sendForm and fail on headless', async () => {
+    const form: HTMLFormElement = document.createElement('form');
+
+    try {
+      const result = await sendForm('default_service', 'my_test_template', form, {
+        publicKey: 'C2JWGTestKeySomething',
+        blockHeadless: true,
+      });
+      expect(result).toBeUndefined();
+    } catch (error) {
+      expect(error).toEqual({
+        status: 451,
+        text: 'Unavailable For Headless Browser',
+      });
+    }
+  });
+
+  it('should call the sendForm and fail on headless as promise', () => {
+    const form: HTMLFormElement = document.createElement('form');
+
+    return sendForm('default_service', 'my_test_template', form, {
+      publicKey: 'C2JWGTestKeySomething',
+      blockHeadless: true,
+    }).then(
+      (result) => {
+        expect(result).toBeUndefined();
+      },
+      (error) => {
+        expect(error).toEqual({
+          status: 451,
+          text: 'Unavailable For Headless Browser',
+        });
+      },
+    );
+  });
+
   it('should call the sendForm with id selector', async () => {
     const form: HTMLFormElement = document.createElement('form');
     form.id = 'form-id';
@@ -116,5 +152,20 @@ describe('sdk v4', () => {
     } catch (error) {
       expect(error).toBeUndefined();
     }
+  });
+
+  it('should call the sendForm with form element as promise', () => {
+    const form: HTMLFormElement = document.createElement('form');
+
+    return sendForm('default_service', 'my_test_template', form, {
+      publicKey: 'C2JWGTestKeySomething',
+    }).then(
+      (result) => {
+        expect(result).toEqual({ status: 200, text: 'OK' });
+      },
+      (error) => {
+        expect(error).toBeUndefined();
+      },
+    );
   });
 });

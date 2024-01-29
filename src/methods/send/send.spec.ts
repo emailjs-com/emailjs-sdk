@@ -55,6 +55,43 @@ describe('sdk v4', () => {
     ).toThrow('The service ID is required');
   });
 
+  it('should call the send method and fail on headless', async () => {
+    try {
+      const result = await send(
+        'default_service',
+        'my_test_template',
+        {},
+        {
+          publicKey: 'C2JWGTestKeySomething',
+          blockHeadless: true,
+        },
+      );
+      expect(result).toBeUndefined();
+    } catch (error) {
+      expect(error).toEqual({
+        status: 451,
+        text: 'Unavailable For Headless Browser',
+      });
+    }
+  });
+
+  it('should call the send method and fail on headless as promise', () => {
+    return send('', 'my_test_template', undefined, {
+      publicKey: 'C2JWGTestKeySomething',
+      blockHeadless: true,
+    }).then(
+      (result) => {
+        expect(result).toBeUndefined();
+      },
+      (error) => {
+        expect(error).toEqual({
+          status: 451,
+          text: 'Unavailable For Headless Browser',
+        });
+      },
+    );
+  });
+
   it('should call the send method and fail on the template ID', () => {
     expect(() =>
       send('default_service', '', undefined, {
@@ -77,5 +114,23 @@ describe('sdk v4', () => {
     } catch (error) {
       expect(error).toBeUndefined();
     }
+  });
+
+  it('should call the send method as promise', () => {
+    return send(
+      'default_service',
+      'my_test_template',
+      {},
+      {
+        publicKey: 'C2JWGTestKeySomething',
+      },
+    ).then(
+      (result) => {
+        expect(result).toEqual({ status: 200, text: 'OK' });
+      },
+      (error) => {
+        expect(error).toBeUndefined();
+      },
+    );
   });
 });

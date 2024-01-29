@@ -26,6 +26,21 @@ describe('send method', () => {
       expect(error).toBeUndefined();
     }
   });
+
+  it('should call the init and the send method successfully as promise', () => {
+    emailjs.init({
+      publicKey: 'C2JWGTestKeySomething',
+    });
+
+    return emailjs.send('default_service', 'my_test_template').then(
+      (result) => {
+        expect(result).toEqual({ status: 200, text: 'OK' });
+      },
+      (error) => {
+        expect(error).toBeUndefined();
+      },
+    );
+  });
 });
 
 describe('send-form method', () => {
@@ -42,5 +57,22 @@ describe('send-form method', () => {
     } catch (error) {
       expect(error).toBeUndefined();
     }
+  });
+
+  it('should call the init and the sendForm method successfully as promise', () => {
+    const form: HTMLFormElement = document.createElement('form');
+
+    emailjs.init({
+      publicKey: 'C2JWGTestKeySomething',
+    });
+
+    return emailjs.sendForm('default_service', 'my_test_template', form).then(
+      (result) => {
+        expect(result).toEqual({ status: 200, text: 'OK' });
+      },
+      (error) => {
+        expect(error).toBeUndefined();
+      },
+    );
   });
 });
