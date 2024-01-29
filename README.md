@@ -39,8 +39,8 @@ Or manually:
 ```html
 <script
   type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+></script>
 <script type="text/javascript">
   (function () {
     emailjs.init({
@@ -115,10 +115,20 @@ Options can be declared globally using the **init** method or locally as the fou
 \
 The local parameter will have higher priority than the global one.
 
-| Name          | Type    | Default | Description                                              |
-| ------------- | ------- | ------- | -------------------------------------------------------- |
-| publicKey     | String  |         | The public key is required to invoke the method.         |
-| blockHeadless | Boolean | False   | Method will return error 451 if the browser is headless. |
+| Name          | Type      | Default | Description                                              |
+| ------------- | --------- | ------- | -------------------------------------------------------- |
+| publicKey     | String    |         | The public key is required to invoke the method.         |
+| blockHeadless | Boolean   | False   | Method will return error 451 if the browser is headless. |
+| blockList     | BlockList |         | Block list settings.                                     |
+
+**BlockList**
+
+Allows to ignore a method call if the watched variable contains a value from the block list.
+
+| Name          | Type     | Description                                        |
+| ------------- | -------- | -------------------------------------------------- |
+| list          | String[] | The array of strings contains values for blocking. |
+| watchVariable | String   | A name of the variable to be watched.              |
 
 **Declare global settings**
 
@@ -128,6 +138,9 @@ import emailjs from '@emailjs/browser';
 emailjs.init({
   publicKey: 'YOUR_PUBLIC_KEY',
   blockHeadless: true,
+  blockList: {
+    list: ['foo@emailjs.com', 'bar@emailjs.com'],
+  },
 });
 ```
 
@@ -144,6 +157,9 @@ const templateParams = {
 emailjs
   .send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, {
     publicKey: 'YOUR_PUBLIC_KEY',
+    blockList: {
+      watchVariable: 'userEmail',
+    },
   })
   .then(
     (response) => {
