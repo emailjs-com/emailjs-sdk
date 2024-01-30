@@ -10,6 +10,8 @@ import { isHeadless } from '../../utils/isHeadless/isHeadless';
 import { headlessError } from '../../errors/headlessError/headlessError';
 import { isBlockedValueInParams } from '../../utils/isBlockedValue/isBlockedValue';
 import { blockedEmailError } from '../../errors/blockedEmailError/blockedEmailError';
+import { isLimitRateHit } from '../../utils/isLimitRateHit/isLimitRateHit';
+import { limitRateError } from '../../errors/limitRateError/limitRateError';
 
 /**
  * Send a template to the specific EmailJS service
@@ -29,6 +31,7 @@ export const send = (
   const publicKey = opts.publicKey || store.publicKey;
   const blockHeadless = opts.blockHeadless || store.blockHeadless;
   const blockList = { ...store.blockList, ...opts.blockList };
+  const limitRate = { ...store.limitRate, ...opts.limitRate };
 
   if (blockHeadless && isHeadless(navigator)) {
     return Promise.reject(headlessError());
@@ -39,6 +42,10 @@ export const send = (
 
   if (templateParams && isBlockedValueInParams(blockList, templateParams)) {
     return Promise.reject(blockedEmailError());
+  }
+
+  if (isLimitRateHit(localStorage, location.pathname, limitRate)) {
+    return Promise.reject(limitRateError());
   }
 
   const params = {

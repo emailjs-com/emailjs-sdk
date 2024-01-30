@@ -10,6 +10,8 @@ import { isHeadless } from '../../utils/isHeadless/isHeadless';
 import { headlessError } from '../../errors/headlessError/headlessError';
 import { isBlockedValueInParams } from '../../utils/isBlockedValue/isBlockedValue';
 import { blockedEmailError } from '../../errors/blockedEmailError/blockedEmailError';
+import { isLimitRateHit } from '../../utils/isLimitRateHit/isLimitRateHit';
+import { limitRateError } from '../../errors/limitRateError/limitRateError';
 
 const findHTMLForm = (form: string | HTMLFormElement): HTMLFormElement | null => {
   return typeof form === 'string' ? document.querySelector<HTMLFormElement>(form) : form;
@@ -33,6 +35,7 @@ export const sendForm = (
   const publicKey = opts.publicKey || store.publicKey;
   const blockHeadless = opts.blockHeadless || store.blockHeadless;
   const blockList = { ...store.blockList, ...opts.blockList };
+  const limitRate = { ...store.limitRate, ...opts.limitRate };
 
   if (blockHeadless && isHeadless(navigator)) {
     return Promise.reject(headlessError());
@@ -47,6 +50,10 @@ export const sendForm = (
 
   if (isBlockedValueInParams(blockList, formData)) {
     return Promise.reject(blockedEmailError());
+  }
+
+  if (isLimitRateHit(localStorage, location.pathname, limitRate)) {
+    return Promise.reject(limitRateError());
   }
 
   formData.append('lib_version', process.env.npm_package_version!);

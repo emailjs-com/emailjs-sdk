@@ -19,6 +19,6 @@ export const init = (
   store.publicKey = opts.publicKey;
   store.blockHeadless = opts.blockHeadless;
   store.blockList = opts.blockList;
-  store.limitRate = opts.limitRate || store.limitRate;
+  store.limitRate = opts.limitRate;
   store.origin = opts.origin || origin;
 };
