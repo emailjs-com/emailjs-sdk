@@ -39,8 +39,8 @@ Or manually:
 ```html
 <script
   type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+></script>
 <script type="text/javascript">
   (function () {
     emailjs.init({
@@ -120,17 +120,29 @@ The local parameter will have higher priority than the global one.
 | publicKey     | String    |         | The public key is required to invoke the method.         |
 | blockHeadless | Boolean   | False   | Method will return error 451 if the browser is headless. |
 | blockList     | BlockList |         | Block list settings.                                     |
+| limitRate     | LimitRate |         | Limit rate configuration.                                |
 
 **BlockList**
 
 Allows to ignore a method call if the watched variable contains a value from the block list.
 \
-Method will return error 403 if request is blocked.
+The method will return the error 403 if the request is blocked.
 
 | Name          | Type     | Description                                        |
 | ------------- | -------- | -------------------------------------------------- |
 | list          | String[] | The array of strings contains values for blocking. |
 | watchVariable | String   | A name of the variable to be watched.              |
+
+**LimitRate**
+
+Allows to set the limit rate for calling a method.
+\
+If the request hits the limit rate, the method will return the error 429.
+
+| Name     | Type   | Default   | Description                                                                                                                              |
+| -------- | ------ | --------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| id       | String | page path | The limit rate is per page by default. To override the behavior, set the ID. It can be a custom ID for each page, group, or application. |
+| throttle | Number |           | _(ms)_ After how many milliseconds a next request is allowed.                                                                            |
 
 **Declare global settings**
 
@@ -142,6 +154,9 @@ emailjs.init({
   blockHeadless: true,
   blockList: {
     list: ['foo@emailjs.com', 'bar@emailjs.com'],
+  },
+  limitRate: {
+    throttle: 10000, // 10s
   },
 });
 ```
@@ -161,6 +176,9 @@ emailjs
     publicKey: 'YOUR_PUBLIC_KEY',
     blockList: {
       watchVariable: 'userEmail',
+    },
+    limitRate: {
+      throttle: 0, // turn off the limit rate for these requests
     },
   })
   .then(
