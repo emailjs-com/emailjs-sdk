@@ -8,6 +8,8 @@ import { validateForm } from '../../utils/validateForm/validateForm';
 import { validateParams } from '../../utils/validateParams/validateParams';
 import { isHeadless } from '../../utils/isHeadless/isHeadless';
 import { headlessError } from '../../errors/headlessError/headlessError';
+import { isBlockedValueInParams } from '../../utils/isBlockedValue/isBlockedValue';
+import { blockedEmailError } from '../../errors/blockedEmailError/blockedEmailError';
 
 const findHTMLForm = (form: string | HTMLFormElement): HTMLFormElement | null => {
   return typeof form === 'string' ? document.querySelector<HTMLFormElement>(form) : form;
@@ -30,6 +32,7 @@ export const sendForm = (
   const opts = buildOptions(options);
   const publicKey = opts.publicKey || store.publicKey;
   const blockHeadless = opts.blockHeadless || store.blockHeadless;
+  const blockList = { ...store.blockList, ...opts.blockList };
 
   if (blockHeadless && isHeadless(navigator)) {
     return Promise.reject(headlessError());
@@ -41,6 +44,11 @@ export const sendForm = (
   validateForm(currentForm);
 
   const formData: FormData = new FormData(currentForm!);
+
+  if (isBlockedValueInParams(blockList, formData)) {
+    return Promise.reject(blockedEmailError());
+  }
+
   formData.append('lib_version', process.env.npm_package_version!);
   formData.append('service_id', serviceID);
   formData.append('template_id', templateID);

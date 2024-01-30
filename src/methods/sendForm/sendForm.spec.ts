@@ -126,6 +126,63 @@ describe('sdk v4', () => {
     );
   });
 
+  it('should call the sendForm and fail on blocklist', async () => {
+    const form: HTMLFormElement = document.createElement('form');
+    const input: HTMLInputElement = document.createElement('input');
+
+    input.type = 'hidden';
+    input.name = 'email';
+    input.value = 'bar@emailjs.com';
+
+    form.append(input);
+
+    try {
+      const result = await sendForm('default_service', 'my_test_template', form, {
+        publicKey: 'C2JWGTestKeySomething',
+        blockList: {
+          list: ['foo@emailjs.com', 'bar@emailjs.com'],
+          watchVariable: 'email',
+        },
+      });
+
+      expect(result).toBeUndefined();
+    } catch (error) {
+      expect(error).toEqual({
+        status: 403,
+        text: 'Forbidden',
+      });
+    }
+  });
+
+  it('should call the sendForm and fail on blocklist as promise', () => {
+    const form: HTMLFormElement = document.createElement('form');
+    const input: HTMLInputElement = document.createElement('input');
+
+    input.type = 'hidden';
+    input.name = 'email';
+    input.value = 'bar@emailjs.com';
+
+    form.append(input);
+
+    return sendForm('default_service', 'my_test_template', form, {
+      publicKey: 'C2JWGTestKeySomething',
+      blockList: {
+        list: ['foo@emailjs.com', 'bar@emailjs.com'],
+        watchVariable: 'email',
+      },
+    }).then(
+      (result) => {
+        expect(result).toBeUndefined();
+      },
+      (error) => {
+        expect(error).toEqual({
+          status: 403,
+          text: 'Forbidden',
+        });
+      },
+    );
+  });
+
   it('should call the sendForm with id selector', async () => {
     const form: HTMLFormElement = document.createElement('form');
     form.id = 'form-id';
@@ -135,6 +192,7 @@ describe('sdk v4', () => {
       const result = await sendForm('default_service', 'my_test_template', '#form-id', {
         publicKey: 'C2JWGTestKeySomething',
       });
+
       expect(result).toEqual({ status: 200, text: 'OK' });
     } catch (error) {
       expect(error).toBeUndefined();
@@ -148,6 +206,7 @@ describe('sdk v4', () => {
       const result = await sendForm('default_service', 'my_test_template', form, {
         publicKey: 'C2JWGTestKeySomething',
       });
+
       expect(result).toEqual({ status: 200, text: 'OK' });
     } catch (error) {
       expect(error).toBeUndefined();

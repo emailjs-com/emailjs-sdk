@@ -8,6 +8,8 @@ import { validateParams } from '../../utils/validateParams/validateParams';
 import { validateTemplateParams } from '../../utils/validateTemplateParams/validateTemplateParams';
 import { isHeadless } from '../../utils/isHeadless/isHeadless';
 import { headlessError } from '../../errors/headlessError/headlessError';
+import { isBlockedValueInParams } from '../../utils/isBlockedValue/isBlockedValue';
+import { blockedEmailError } from '../../errors/blockedEmailError/blockedEmailError';
 
 /**
  * Send a template to the specific EmailJS service
@@ -26,6 +28,7 @@ export const send = (
   const opts = buildOptions(options);
   const publicKey = opts.publicKey || store.publicKey;
   const blockHeadless = opts.blockHeadless || store.blockHeadless;
+  const blockList = { ...store.blockList, ...opts.blockList };
 
   if (blockHeadless && isHeadless(navigator)) {
     return Promise.reject(headlessError());
@@ -33,6 +36,10 @@ export const send = (
 
   validateParams(publicKey, serviceID, templateID);
   validateTemplateParams(templateParams);
+
+  if (templateParams && isBlockedValueInParams(blockList, templateParams)) {
+    return Promise.reject(blockedEmailError());
+  }
 
   const params = {
     lib_version: process.env.npm_package_version,

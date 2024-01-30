@@ -55,6 +55,14 @@ describe('sdk v4', () => {
     ).toThrow('The service ID is required');
   });
 
+  it('should call the send method and fail on the template ID', () => {
+    expect(() =>
+      send('default_service', '', undefined, {
+        publicKey: 'C2JWGTestKeySomething',
+      }),
+    ).toThrow('The template ID is required');
+  });
+
   it('should call the send method and fail on headless', async () => {
     try {
       const result = await send(
@@ -76,7 +84,7 @@ describe('sdk v4', () => {
   });
 
   it('should call the send method and fail on headless as promise', () => {
-    return send('', 'my_test_template', undefined, {
+    return send('default_service', 'my_test_template', undefined, {
       publicKey: 'C2JWGTestKeySomething',
       blockHeadless: true,
     }).then(
@@ -92,12 +100,56 @@ describe('sdk v4', () => {
     );
   });
 
-  it('should call the send method and fail on the template ID', () => {
-    expect(() =>
-      send('default_service', '', undefined, {
+  it('should call the send method and fail on blocklist', async () => {
+    try {
+      const result = await send(
+        'default_service',
+        'my_test_template',
+        {
+          email: 'bar@emailjs.com',
+        },
+        {
+          publicKey: 'C2JWGTestKeySomething',
+          blockList: {
+            list: ['foo@emailjs.com', 'bar@emailjs.com'],
+            watchVariable: 'email',
+          },
+        },
+      );
+      expect(result).toBeUndefined();
+    } catch (error) {
+      expect(error).toEqual({
+        status: 403,
+        text: 'Forbidden',
+      });
+    }
+  });
+
+  it('should call the send method and fail on blocklist as promise', () => {
+    return send(
+      'default_service',
+      'my_test_template',
+      {
+        email: 'bar@emailjs.com',
+      },
+      {
         publicKey: 'C2JWGTestKeySomething',
-      }),
-    ).toThrow('The template ID is required');
+        blockList: {
+          list: ['foo@emailjs.com', 'bar@emailjs.com'],
+          watchVariable: 'email',
+        },
+      },
+    ).then(
+      (result) => {
+        expect(result).toBeUndefined();
+      },
+      (error) => {
+        expect(error).toEqual({
+          status: 403,
+          text: 'Forbidden',
+        });
+      },
+    );
   });
 
   it('should call the send method successfully with 4 params', async () => {
