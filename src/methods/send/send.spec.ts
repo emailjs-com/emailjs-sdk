@@ -152,6 +152,66 @@ describe('sdk v4', () => {
     );
   });
 
+  it('should call the send method and fail on limit rate', async () => {
+    const sendEmail = () =>
+      send('default_service', 'my_test_template', undefined, {
+        publicKey: 'C2JWGTestKeySomething',
+        limitRate: {
+          id: 'async-send',
+          throttle: 100,
+        },
+      });
+
+    try {
+      const result = await sendEmail();
+      expect(result).toEqual({ status: 200, text: 'OK' });
+    } catch (error) {
+      expect(error).toBeUndefined();
+    }
+
+    try {
+      const result = await sendEmail();
+      expect(result).toBeUndefined();
+    } catch (error) {
+      expect(error).toEqual({
+        status: 429,
+        text: 'Too Many Requests',
+      });
+    }
+  });
+
+  it('should call the send method and fail on limit rate as promise', () => {
+    const sendEmail = () =>
+      send('default_service', 'my_test_template', undefined, {
+        publicKey: 'C2JWGTestKeySomething',
+        limitRate: {
+          id: 'promise-send',
+          throttle: 100,
+        },
+      });
+
+    return sendEmail().then(
+      (result) => {
+        expect(result).toEqual({ status: 200, text: 'OK' });
+
+        return sendEmail().then(
+          (result) => {
+            expect(result).toBeUndefined();
+          },
+          (error) => {
+            expect(error).toEqual({
+              status: 429,
+              text: 'Too Many Requests',
+            });
+          },
+        );
+      },
+      (error) => {
+        expect(error).toBeUndefined();
+      },
+    );
+  });
+
   it('should call the send method successfully with 4 params', async () => {
     try {
       const result = await send(
