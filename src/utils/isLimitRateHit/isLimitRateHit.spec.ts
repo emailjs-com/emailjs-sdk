@@ -43,7 +43,7 @@ describe('limit rate is disabed', () => {
     expect(isLimitRateHit(localStorage, location.pathname, limitRate)).toBeFalsy();
   });
 
-  it('not same page or ID', async () => {
+  it('not same page or ID', () => {
     const limitRate: LimitRate = {
       throttle: 100,
     };
@@ -57,7 +57,7 @@ describe('limit rate is disabed', () => {
 });
 
 describe('limit rate is enabled', () => {
-  it('hit limit', async () => {
+  it('hit limit', () => {
     const limitRate: LimitRate = {
       id: 'app',
       throttle: 100,
