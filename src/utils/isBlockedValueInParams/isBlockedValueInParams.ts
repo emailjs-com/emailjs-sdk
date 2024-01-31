@@ -1,4 +1,5 @@
 import type { BlockList } from '../../types/BlockList';
+import { validateBlockListParams } from '../validateBlockListParams/validateBlockListParams';
 
 const isBlockListDisabled = (options: BlockList): boolean => {
   return !options.list?.length || !options.watchVariable;
@@ -13,6 +14,8 @@ export const isBlockedValueInParams = (
   params: Record<string, unknown> | FormData,
 ): boolean => {
   if (isBlockListDisabled(options)) return false;
+
+  validateBlockListParams(options.list, options.watchVariable);
 
   const value = getValue(params, options.watchVariable!);
 

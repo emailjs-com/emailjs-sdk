@@ -1,5 +1,5 @@
 import { it, describe, expect } from '@jest/globals';
-import { isBlockedValueInParams } from './isBlockedValue';
+import { isBlockedValueInParams } from './isBlockedValueInParams';
 import type { BlockList } from '../../types/BlockList';
 
 describe('should be disabled', () => {

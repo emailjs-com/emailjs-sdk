@@ -8,7 +8,7 @@ import { validateForm } from '../../utils/validateForm/validateForm';
 import { validateParams } from '../../utils/validateParams/validateParams';
 import { isHeadless } from '../../utils/isHeadless/isHeadless';
 import { headlessError } from '../../errors/headlessError/headlessError';
-import { isBlockedValueInParams } from '../../utils/isBlockedValue/isBlockedValue';
+import { isBlockedValueInParams } from '../../utils/isBlockedValueInParams/isBlockedValueInParams';
 import { blockedEmailError } from '../../errors/blockedEmailError/blockedEmailError';
 import { isLimitRateHit } from '../../utils/isLimitRateHit/isLimitRateHit';
 import { limitRateError } from '../../errors/limitRateError/limitRateError';
