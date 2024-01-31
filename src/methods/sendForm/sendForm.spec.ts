@@ -183,6 +183,70 @@ describe('sdk v4', () => {
     );
   });
 
+  it('should call the sendForm method and fail on limit rate', async () => {
+    const form: HTMLFormElement = document.createElement('form');
+
+    const sendEmail = () =>
+      sendForm('default_service', 'my_test_template', form, {
+        publicKey: 'C2JWGTestKeySomething',
+        limitRate: {
+          id: 'async-form',
+          throttle: 100,
+        },
+      });
+
+    try {
+      const result = await sendEmail();
+      expect(result).toEqual({ status: 200, text: 'OK' });
+    } catch (error) {
+      expect(error).toBeUndefined();
+    }
+
+    try {
+      const result = await sendEmail();
+      expect(result).toBeUndefined();
+    } catch (error) {
+      expect(error).toEqual({
+        status: 429,
+        text: 'Too Many Requests',
+      });
+    }
+  });
+
+  it('should call the sendForm method and fail on limit rate as promise', () => {
+    const form: HTMLFormElement = document.createElement('form');
+
+    const sendEmail = () =>
+      sendForm('default_service', 'my_test_template', form, {
+        publicKey: 'C2JWGTestKeySomething',
+        limitRate: {
+          id: 'promise-form',
+          throttle: 100,
+        },
+      });
+
+    return sendEmail().then(
+      (result) => {
+        expect(result).toEqual({ status: 200, text: 'OK' });
+
+        return sendEmail().then(
+          (result) => {
+            expect(result).toBeUndefined();
+          },
+          (error) => {
+            expect(error).toEqual({
+              status: 429,
+              text: 'Too Many Requests',
+            });
+          },
+        );
+      },
+      (error) => {
+        expect(error).toBeUndefined();
+      },
+    );
+  });
+
   it('should call the sendForm with id selector', async () => {
     const form: HTMLFormElement = document.createElement('form');
     form.id = 'form-id';
