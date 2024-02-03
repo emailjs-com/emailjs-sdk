@@ -2,10 +2,7 @@ import { it, expect } from '@jest/globals';
 import { EmailJSResponseStatus } from './EmailJSResponseStatus';
 
 it('should handle the success response', () => {
-  const error = new EmailJSResponseStatus({
-    status: 200,
-    responseText: 'OK',
-  } as XMLHttpRequest);
+  const error = new EmailJSResponseStatus(200, 'OK');
 
   expect(error).toEqual({
     status: 200,
@@ -14,10 +11,7 @@ it('should handle the success response', () => {
 });
 
 it('should handle the fail response', () => {
-  const error = new EmailJSResponseStatus({
-    status: 404,
-    responseText: 'No Found',
-  } as XMLHttpRequest);
+  const error = new EmailJSResponseStatus(404, 'No Found');
 
   expect(error).toEqual({
     status: 404,
@@ -26,7 +20,7 @@ it('should handle the fail response', () => {
 });
 
 it('should handle the null response', () => {
-  const error = new EmailJSResponseStatus(null);
+  const error = new EmailJSResponseStatus();
 
   expect(error).toEqual({
     status: 0,
