@@ -12,7 +12,9 @@
             document.getElementById('service_id').value,
             document.getElementById('template_id').value,
             '.test-form',
-            document.getElementById('user_id').value
+            {
+                publicKey: document.getElementById('user_id').value,
+            },
           ).then(function(response) {
             console.log('result', response);
           }, function(error) {
