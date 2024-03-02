@@ -30,6 +30,7 @@ export const send = (
   const opts = buildOptions(options);
   const publicKey = opts.publicKey || store.publicKey;
   const blockHeadless = opts.blockHeadless || store.blockHeadless;
+  const storageProvider = store.storageProvider || opts.storageProvider;
   const blockList = { ...store.blockList, ...opts.blockList };
   const limitRate = { ...store.limitRate, ...opts.limitRate };
 
@@ -44,7 +45,7 @@ export const send = (
     return Promise.reject(blockedEmailError());
   }
 
-  if (isLimitRateHit(localStorage, location.pathname, limitRate)) {
+  if (isLimitRateHit(location.pathname, limitRate, storageProvider)) {
     return Promise.reject(limitRateError());
   }
 

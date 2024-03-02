@@ -6,6 +6,7 @@ import { store } from '../../store/store';
 beforeEach(() => {
   store.origin = 'https://api.emailjs.com';
   store.publicKey = undefined;
+  store.storageProvider = undefined;
 });
 
 describe('sdk v3', () => {

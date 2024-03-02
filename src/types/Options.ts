@@ -1,5 +1,6 @@
 import type { BlockList } from './BlockList';
 import type { LimitRate } from './LimitRate';
+import type { StorageProvider } from './StorageProvider';
 
 export interface Options {
   origin?: string;
@@ -7,4 +8,5 @@ export interface Options {
   blockHeadless?: boolean;
   blockList?: BlockList;
   limitRate?: LimitRate;
+  storageProvider?: StorageProvider;
 }

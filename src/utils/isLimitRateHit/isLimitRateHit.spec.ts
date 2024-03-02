@@ -1,6 +1,14 @@
-import { it, describe, expect, beforeEach } from '@jest/globals';
-import { isLimitRateHit } from './isLimitRateHit';
+import { it, describe, expect, beforeEach, beforeAll } from '@jest/globals';
 import type { LimitRate } from '../../types/LimitRate';
+import type { StorageProvider } from '../../types/StorageProvider';
+import { isLimitRateHit } from './isLimitRateHit';
+import { createWebStorage } from '../createWebStorage/createWebStorage';
+
+let storage: StorageProvider;
+
+beforeAll(() => {
+  storage = createWebStorage()!;
+});
 
 beforeEach(() => {
   localStorage.clear();
@@ -10,7 +18,7 @@ describe('limit rate is disabed', () => {
   it('empty limit rate options', () => {
     const limitRate: LimitRate = {};
 
-    expect(isLimitRateHit(localStorage, location.pathname, limitRate)).toBeFalsy();
+    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
   });
 
   it('throttle is 0', () => {
@@ -18,7 +26,7 @@ describe('limit rate is disabed', () => {
       throttle: 0,
     };
 
-    expect(isLimitRateHit(localStorage, location.pathname, limitRate)).toBeFalsy();
+    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
   });
 
   it('no record', () => {
@@ -27,7 +35,7 @@ describe('limit rate is disabed', () => {
       throttle: 1000,
     };
 
-    expect(isLimitRateHit(localStorage, location.pathname, limitRate)).toBeFalsy();
+    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
   });
 
   it('no hit limit', async () => {
@@ -36,11 +44,11 @@ describe('limit rate is disabed', () => {
       throttle: 100,
     };
 
-    expect(isLimitRateHit(localStorage, location.pathname, limitRate)).toBeFalsy();
+    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
 
     await new Promise((r) => setTimeout(r, 150));
 
-    expect(isLimitRateHit(localStorage, location.pathname, limitRate)).toBeFalsy();
+    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
   });
 
   it('not same page or ID', () => {
@@ -48,11 +56,11 @@ describe('limit rate is disabed', () => {
       throttle: 100,
     };
 
-    expect(isLimitRateHit(localStorage, location.pathname, limitRate)).toBeFalsy();
+    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
 
     location.replace('/new-form');
 
-    expect(isLimitRateHit(localStorage, location.pathname, limitRate)).toBeFalsy();
+    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
   });
 });
 
@@ -63,8 +71,8 @@ describe('limit rate is enabled', () => {
       throttle: 100,
     };
 
-    expect(isLimitRateHit(localStorage, location.pathname, limitRate)).toBeFalsy();
-    expect(isLimitRateHit(localStorage, location.pathname, limitRate)).toBeTruthy();
+    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
+    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeTruthy();
   });
 
   it('restore after page refresh and hit limit', () => {
@@ -72,11 +80,11 @@ describe('limit rate is enabled', () => {
       throttle: 100,
     };
 
-    expect(isLimitRateHit(localStorage, location.pathname, limitRate)).toBeFalsy();
+    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
 
     location.reload();
 
-    expect(isLimitRateHit(localStorage, location.pathname, limitRate)).toBeTruthy();
+    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeTruthy();
   });
 
   it('next page refresh and hit limit', () => {
@@ -85,10 +93,10 @@ describe('limit rate is enabled', () => {
       throttle: 100,
     };
 
-    expect(isLimitRateHit(localStorage, location.pathname, limitRate)).toBeFalsy();
+    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
 
     location.replace('/new-form');
 
-    expect(isLimitRateHit(localStorage, location.pathname, limitRate)).toBeTruthy();
+    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeTruthy();
   });
 });
