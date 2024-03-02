@@ -115,12 +115,13 @@ Options can be declared globally using the **init** method or locally as the fou
 \
 The local parameter will have higher priority than the global one.
 
-| Name          | Type      | Default | Description                                              |
-| ------------- | --------- | ------- | -------------------------------------------------------- |
-| publicKey     | String    |         | The public key is required to invoke the method.         |
-| blockHeadless | Boolean   | False   | Method will return error 451 if the browser is headless. |
-| blockList     | BlockList |         | Block list settings.                                     |
-| limitRate     | LimitRate |         | Limit rate configuration.                                |
+| Name            | Type            | Default | Description                                              |
+| --------------- | --------------- | ------- | -------------------------------------------------------- |
+| publicKey       | String          |         | The public key is required to invoke the method.         |
+| blockHeadless   | Boolean         | False   | Method will return error 451 if the browser is headless. |
+| blockList       | BlockList       |         | Block list settings.                                     |
+| limitRate       | LimitRate       |         | Limit rate configuration.                                |
+| storageProvider | StorageProvider |         | Provider for a custom key-value storage.                 |
 
 **BlockList**
 
@@ -143,6 +144,20 @@ If the request hits the limit rate, the method will return the error 429.
 | -------- | ------ | --------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | id       | String | page path | The limit rate is per page by default. To override the behavior, set the ID. It can be a custom ID for each page, group, or application. |
 | throttle | Number |           | _(ms)_ After how many milliseconds a next request is allowed.                                                                            |
+
+**StorageProvider**
+
+Allows to provide a custom key value storage. By default, localStorage is used if available.
+\
+The custom provider must match the interface.
+
+```ts
+interface StorageProvider {
+  get: (key: string) => string | null | undefined;
+  set: (key: string, value: string) => void;
+  remove: (key: string) => void;
+}
+```
 
 **Declare global settings**
 
