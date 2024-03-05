@@ -19,7 +19,7 @@ jest.config.mjs
 set-version.sh
 tsconfig.json
 tsconfig.build.json
-webpack.config.js
+rollup.config.mjs 
 
 # source code files
 src/
