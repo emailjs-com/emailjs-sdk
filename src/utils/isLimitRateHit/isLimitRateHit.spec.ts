@@ -15,27 +15,27 @@ beforeEach(() => {
 });
 
 describe('limit rate is disabed', () => {
-  it('empty limit rate options', () => {
+  it('empty limit rate options', async () => {
     const limitRate: LimitRate = {};
 
-    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
+    expect(await isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
   });
 
-  it('throttle is 0', () => {
+  it('throttle is 0', async () => {
     const limitRate: LimitRate = {
       throttle: 0,
     };
 
-    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
+    expect(await isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
   });
 
-  it('no record', () => {
+  it('no record', async () => {
     const limitRate: LimitRate = {
       id: 'app',
       throttle: 1000,
     };
 
-    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
+    expect(await isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
   });
 
   it('no hit limit', async () => {
@@ -44,59 +44,59 @@ describe('limit rate is disabed', () => {
       throttle: 100,
     };
 
-    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
+    expect(await isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
 
     await new Promise((r) => setTimeout(r, 150));
 
-    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
+    expect(await isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
   });
 
-  it('not same page or ID', () => {
+  it('not same page or ID', async () => {
     const limitRate: LimitRate = {
       throttle: 100,
     };
 
-    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
+    expect(await isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
 
     location.replace('/new-form');
 
-    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
+    expect(await isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
   });
 });
 
 describe('limit rate is enabled', () => {
-  it('hit limit', () => {
+  it('hit limit', async () => {
     const limitRate: LimitRate = {
       id: 'app',
       throttle: 100,
     };
 
-    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
-    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeTruthy();
+    expect(await isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
+    expect(await isLimitRateHit(location.pathname, limitRate, storage)).toBeTruthy();
   });
 
-  it('restore after page refresh and hit limit', () => {
+  it('restore after page refresh and hit limit', async () => {
     const limitRate: LimitRate = {
       throttle: 100,
     };
 
-    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
+    expect(await isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
 
     location.reload();
 
-    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeTruthy();
+    expect(await isLimitRateHit(location.pathname, limitRate, storage)).toBeTruthy();
   });
 
-  it('next page refresh and hit limit', () => {
+  it('next page refresh and hit limit', async () => {
     const limitRate: LimitRate = {
       id: 'app',
       throttle: 100,
     };
 
-    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
+    expect(await isLimitRateHit(location.pathname, limitRate, storage)).toBeFalsy();
 
     location.replace('/new-form');
 
-    expect(isLimitRateHit(location.pathname, limitRate, storage)).toBeTruthy();
+    expect(await isLimitRateHit(location.pathname, limitRate, storage)).toBeTruthy();
   });
 });

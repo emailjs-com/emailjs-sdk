@@ -4,18 +4,18 @@ import type { StorageProvider } from '../../types/StorageProvider';
 
 let storage: StorageProvider;
 
-beforeAll(() => {
+beforeAll(async () => {
   storage = createWebStorage()!;
-  storage.set('test', 'foo');
+  await storage.set('test', 'foo');
 });
 
-it('get value', () => {
-  expect(storage.get('test')).toEqual('foo');
+it('get value', async () => {
+  expect(await storage.get('test')).toEqual('foo');
 });
 
-it('remove value', () => {
-  storage.remove('test');
-  expect(storage.get('test')).toEqual(null);
+it('remove value', async () => {
+  await storage.remove('test');
+  expect(await storage.get('test')).toEqual(null);
 });
 
 it('localStorage is not defined', () => {

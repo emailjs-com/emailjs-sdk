@@ -15,21 +15,21 @@ jest.mock('../../api/sendPost', () => ({
 
 describe('sdk v3', () => {
   it('should call the sendForm method and fail on the public key', () => {
-    expect(() => sendForm('default_service', 'my_test_template', '#form-id')).toThrow(
-      'The public key is required',
-    );
+    sendForm('default_service', 'my_test_template', '#form-id').catch((error) => {
+      expect(error).toMatch('The public key is required');
+    });
   });
 
   it('should call the sendForm method and fail on the service ID', () => {
-    expect(() => sendForm('', 'my_test_template', '#form-id', 'C2JWGTestKeySomething')).toThrow(
-      'The service ID is required',
-    );
+    sendForm('', 'my_test_template', '#form-id', 'C2JWGTestKeySomething').catch((error) => {
+      expect(error).toMatch('The service ID is required');
+    });
   });
 
   it('should call the sendForm method and fail on the template ID', () => {
-    expect(() => sendForm('default_service', '', '#form-id', 'C2JWGTestKeySomething')).toThrow(
-      'The template ID is required',
-    );
+    sendForm('default_service', '', '#form-id', 'C2JWGTestKeySomething').catch((error) => {
+      expect(error).toMatch('The template ID is required');
+    });
   });
 
   it('should call the sendForm with id selector', async () => {
@@ -69,25 +69,25 @@ describe('sdk v3', () => {
 
 describe('sdk v4', () => {
   it('should call the sendForm method and fail on the public key', () => {
-    expect(() => sendForm('default_service', 'my_test_template', '#form-id')).toThrow(
-      'The public key is required',
-    );
+    sendForm('default_service', 'my_test_template', '#form-id').catch((error) => {
+      expect(error).toMatch('The public key is required');
+    });
   });
 
   it('should call the sendForm method and fail on the service ID', () => {
-    expect(() =>
-      sendForm('', 'my_test_template', '#form-id', {
-        publicKey: 'C2JWGTestKeySomething',
-      }),
-    ).toThrow('The service ID is required');
+    sendForm('', 'my_test_template', '#form-id', {
+      publicKey: 'C2JWGTestKeySomething',
+    }).catch((error) => {
+      expect(error).toMatch('The service ID is required');
+    });
   });
 
   it('should call the sendForm method and fail on the template ID', () => {
-    expect(() =>
-      sendForm('default_service', '', '#form-id', {
-        publicKey: 'C2JWGTestKeySomething',
-      }),
-    ).toThrow('The template ID is required');
+    sendForm('default_service', '', '#form-id', {
+      publicKey: 'C2JWGTestKeySomething',
+    }).catch((error) => {
+      expect(error).toMatch('The template ID is required');
+    });
   });
 
   it('should call the sendForm and fail on headless', async () => {

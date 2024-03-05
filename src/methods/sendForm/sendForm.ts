@@ -25,7 +25,7 @@ const findHTMLForm = (form: string | HTMLFormElement): HTMLFormElement | null =>
  * @param {object} options - the EmailJS SDK config options
  * @returns {Promise<EmailJSResponseStatus>}
  */
-export const sendForm = (
+export const sendForm = async (
   serviceID: string,
   templateID: string,
   form: string | HTMLFormElement,
@@ -53,7 +53,7 @@ export const sendForm = (
     return Promise.reject(blockedEmailError());
   }
 
-  if (isLimitRateHit(location.pathname, limitRate, storageProvider)) {
+  if (await isLimitRateHit(location.pathname, limitRate, storageProvider)) {
     return Promise.reject(limitRateError());
   }
 

@@ -21,7 +21,7 @@ import { limitRateError } from '../../errors/limitRateError/limitRateError';
  * @param {object} options - the EmailJS SDK config options
  * @returns {Promise<EmailJSResponseStatus>}
  */
-export const send = (
+export const send = async (
   serviceID: string,
   templateID: string,
   templateParams?: Record<string, unknown>,
@@ -45,7 +45,7 @@ export const send = (
     return Promise.reject(blockedEmailError());
   }
 
-  if (isLimitRateHit(location.pathname, limitRate, storageProvider)) {
+  if (await isLimitRateHit(location.pathname, limitRate, storageProvider)) {
     return Promise.reject(limitRateError());
   }
 
