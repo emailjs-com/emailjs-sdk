@@ -27,7 +27,7 @@ export default {
   testEnvironment: '@happy-dom/jest-environment',
 
   // The glob patterns Jest uses to detect test files
-  testMatch: ['<rootDir>/src/**/?(*.)+(spec).[tj]s'],
+  testMatch: ['<rootDir>/src/**/?(*.)+(spec).ts'],
 
   // A map from regular expressions to paths to transformers
   transform: {
