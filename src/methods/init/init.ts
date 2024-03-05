@@ -3,11 +3,10 @@ import { buildOptions } from '../../utils/buildOptions/buildOptions';
 import type { Options } from '../../types/Options';
 
 /**
- * Initiation
+ * EmailJS global SDK config
  * @param {object} options - the EmailJS global SDK config options
  * @param {string} origin - the non-default EmailJS origin
  */
-
 export const init = (
   options: Options | string,
   origin: string = 'https://api.emailjs.com',
