@@ -6,7 +6,7 @@ import { sendForm } from './methods/sendForm/sendForm';
 
 export type { StorageProvider };
 
-export { init, send, sendForm };
+export { init, send, sendForm, EmailJSResponseStatus };
 
 export default {
   init,
