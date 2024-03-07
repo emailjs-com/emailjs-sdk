@@ -107,6 +107,31 @@ emailjs
   );
 ```
 
+**await/async with EmailJS error handler**
+
+```js
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
+
+try {
+  await emailjs.send(
+    'YOUR_SERVICE_ID',
+    'YOUR_TEMPLATE_ID',
+    {},
+    {
+      publicKey: 'YOUR_PUBLIC_KEY',
+    },
+  );
+  console.log('SUCCESS!');
+} catch (err) {
+  if (err instanceof EmailJSResponseStatus) {
+    console.log('EMAILJS FAILED...', err);
+    return;
+  }
+
+  console.log('ERROR', err);
+}
+```
+
 ## Configuration
 
 **Options**
