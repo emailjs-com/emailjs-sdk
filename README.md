@@ -9,10 +9,11 @@ Use your EmailJS account for sending emails.
 
 ## Disclaimer
 
-This is a browser-only version, otherwise use
+This is a browser platform, otherwise use
 
-- [Node.js SDK](https://www.npmjs.com/package/@emailjs/nodejs)
-- [Flutter SDK](https://pub.dev/packages/emailjs)
+- [Node.js](https://www.npmjs.com/package/@emailjs/nodejs)
+- [React Native](https://www.npmjs.com/package/@emailjs/react-native)
+- [Flutter](https://pub.dev/packages/emailjs)
 - [REST API](https://www.emailjs.com/docs/rest-api/send/)
 
 ## Links
