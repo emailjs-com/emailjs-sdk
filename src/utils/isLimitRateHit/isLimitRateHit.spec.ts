@@ -14,7 +14,7 @@ beforeEach(() => {
   localStorage.clear();
 });
 
-describe('limit rate is disabed', () => {
+describe('limit rate is disabled', () => {
   it('empty limit rate options', async () => {
     const limitRate: LimitRate = {};
 
