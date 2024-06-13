@@ -4,6 +4,6 @@ export const validateLimitRateParams = (throttle: unknown, id?: unknown) => {
   }
 
   if (id && typeof id !== 'string') {
-    throw 'The LimitRate ID has to be a string';
+    throw 'The LimitRate ID has to be a non-empty string';
   }
 };
