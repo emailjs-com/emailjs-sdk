@@ -7,7 +7,7 @@ it('should return EmailJSResponseStatus', () => {
   expect(limitRateError()).toBeInstanceOf(EmailJSResponseStatus);
 });
 
-it('should return status 451', () => {
+it('should return status 429', () => {
   expect(limitRateError()).toEqual({
     status: 429,
     text: 'Too Many Requests',
