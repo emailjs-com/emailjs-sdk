@@ -8,7 +8,7 @@ describe('should fail on the public key', () => {
     );
   });
 
-  it('invalida type', () => {
+  it('invalid type', () => {
     expect(() => validateParams({}, 'default_service', 'my_test_template')).toThrow(
       'The public key is required',
     );
@@ -22,7 +22,7 @@ describe('should fail on the service ID', () => {
     );
   });
 
-  it('invalida type', () => {
+  it('invalid type', () => {
     expect(() => validateParams('d2JWGTestKeySomething', [], 'my_test_template')).toThrow(
       'The service ID is required',
     );
@@ -36,7 +36,7 @@ describe('should fail on the template ID', () => {
     );
   });
 
-  it('invalida type', () => {
+  it('invalid type', () => {
     expect(() => validateParams('d2JWGTestKeySomething', 'default_service', 3)).toThrow(
       'The template ID is required',
     );
