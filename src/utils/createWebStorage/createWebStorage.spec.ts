@@ -19,8 +19,12 @@ it('remove value', async () => {
 });
 
 it('localStorage is not defined', () => {
-  // @ts-expect-error: remove localStorage
-  global.localStorage = undefined;
+  Object.defineProperty(global, 'localStorage', {
+    // only returns odd die sides
+    get: function () {
+      return undefined;
+    },
+  });
   storage = createWebStorage()!;
   expect(storage).toBeUndefined();
 });
