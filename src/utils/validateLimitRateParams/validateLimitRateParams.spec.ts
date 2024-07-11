@@ -17,7 +17,9 @@ describe('should fail on throttle', () => {
 
 describe('should fail on ID', () => {
   it('is invalid type', () => {
-    expect(() => validateLimitRateParams(1000, 30)).toThrow('The LimitRate ID has to be a string');
+    expect(() => validateLimitRateParams(1000, 30)).toThrow(
+      'The LimitRate ID has to be a non-empty  string',
+    );
   });
 });
 
