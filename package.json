@@ -14,7 +14,7 @@
   "module": "es/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/emailjs-com/emailjs-sdk.git"
+    "url": "git+https://github.com/emailjs-com/emailjs-sdk.git"
   },
   "publishConfig": {
     "access": "public"
