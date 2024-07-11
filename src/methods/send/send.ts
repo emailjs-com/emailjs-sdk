@@ -30,7 +30,7 @@ export const send = async (
   const opts = buildOptions(options);
   const publicKey = opts.publicKey || store.publicKey;
   const blockHeadless = opts.blockHeadless || store.blockHeadless;
-  const storageProvider = store.storageProvider || opts.storageProvider;
+  const storageProvider = opts.storageProvider || store.storageProvider;
   const blockList = { ...store.blockList, ...opts.blockList };
   const limitRate = { ...store.limitRate, ...opts.limitRate };
 
