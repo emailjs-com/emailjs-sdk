@@ -9,7 +9,7 @@ export default {
   coverageDirectory: 'coverage',
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: 'v8',
+  coverageProvider: 'babel',
 
   // Make calling deprecated APIs throw helpful error messages
   errorOnDeprecated: true,
