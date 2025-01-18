@@ -4,7 +4,7 @@ SDK for [EmailJS.com](https://www.emailjs.com) customers.
 \
 Use your EmailJS account for sending emails.
 
-[![codecov](https://codecov.io/gh/emailjs-com/emailjs-sdk/branch/main/graph/badge.svg)](https://codecov.io/gh/emailjs-com/emailjs-sdk)
+[![codecov](https://codecov.io/gh/emailjs-com/emailjs-sdk/branch/main/graph/badge.svg?token=4I0L59Z914)](https://codecov.io/gh/emailjs-com/emailjs-sdk)
 [![npm version](https://img.shields.io/npm/v/@emailjs/browser.svg)](https://www.npmjs.com/package/@emailjs/browser)
 
 ## Disclaimer
