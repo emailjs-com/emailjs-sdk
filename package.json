@@ -48,7 +48,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-typescript": "^7.26.0",
-    "@happy-dom/jest-environment": "^16.6.0",
+    "@happy-dom/jest-environment": "^20.0.2",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-terser": "^0.4.4",
     "@stylistic/eslint-plugin-ts": "^2.13.0",
