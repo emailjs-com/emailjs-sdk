@@ -2,7 +2,7 @@ import terser from '@rollup/plugin-terser';
 import { babel } from '@rollup/plugin-babel';
 
 export default {
-  input: './es/index.js',
+  input: './esm/index.js',
   output: [
     {
       dir: './dist',

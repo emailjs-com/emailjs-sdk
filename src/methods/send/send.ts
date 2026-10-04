@@ -50,7 +50,7 @@ export const send = async (
   }
 
   const params = {
-    lib_version: process.env.npm_package_version,
+    lib_version: '$$npm_package_version',
     user_id: publicKey,
     service_id: serviceID,
     template_id: templateID,

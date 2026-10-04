@@ -57,7 +57,7 @@ export const sendForm = async (
     return Promise.reject(limitRateError());
   }
 
-  formData.append('lib_version', process.env.npm_package_version!);
+  formData.append('lib_version', '$$npm_package_version');
   formData.append('service_id', serviceID);
   formData.append('template_id', templateID);
   formData.append('user_id', publicKey!);

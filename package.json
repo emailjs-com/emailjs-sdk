@@ -9,9 +9,17 @@
   ],
   "homepage": "https://www.emailjs.com",
   "license": "BSD-3-Clause",
+  "type": "module",
   "main": "cjs/index.js",
-  "types": "es/index.d.ts",
-  "module": "es/index.js",
+  "types": "esm/index.d.ts",
+  "module": "esm/index.js",
+  "exports": {
+    ".": {
+      "types": "./esm/index.d.ts",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/emailjs-com/emailjs-sdk.git"
@@ -23,13 +31,15 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "build:clean": "rm -rf es && rm -rf cjs && rm -rf dist",
-    "build:version": "./set-version.sh $npm_package_version",
-    "build:ts": "tsc --declaration --project ./tsconfig.build.json && npm run build:version es",
-    "build:cjs": "tsc --module commonjs --outDir cjs --project ./tsconfig.build.json && npm run build:version cjs",
-    "build:lint": "eslint src --report-unused-disable-directives --max-warnings 0",
-    "build:bundle": "rollup -c",
-    "build": "npm run build:clean && npm run build:lint && npm run build:ts && npm run build:cjs && npm run build:bundle",
+    "_clean": "rm -rf esm && rm -rf cjs && rm -rf dist",
+    "_set-version": "./set-version.sh $npm_package_version",
+    "_set-type:cjs": "./set-type.sh cjs commonjs",
+    "_set-type:esm": "./set-type.sh esm module",
+    "_build:esm": "tsc --declaration --project ./tsconfig.build.json && npm run _set-version esm && npm run _set-type:esm",
+    "_build:cjs": "tsc --target ES2019 --module CommonJS --moduleResolution Bundler --outDir cjs --project ./tsconfig.build.json && npm run _set-version cjs && npm run _set-type:cjs",
+    "_build:bundle": "rollup -c",
+    "_build:lint": "eslint src --report-unused-disable-directives --max-warnings 0",
+    "build": "npm run _clean && npm run _build:lint && npm run _build:esm && npm run _build:cjs && npm run _build:bundle",
     "test": "jest --coverage --no-cache",
     "lint": "tsc --noEmit && eslint src"
   },
@@ -51,19 +61,25 @@
     "@happy-dom/jest-environment": "^16.6.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-terser": "^0.4.4",
-    "@stylistic/eslint-plugin-ts": "^2.13.0",
-    "core-js": "^3.40.0",
-    "eslint": "^9.18.0",
-    "eslint-config-prettier": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/node": "^26.6.4",
+    "core-js": "^3.50.0",
+    "eslint": "^10.12.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-compat": "^7.0.2",
     "jest": "^29.7.0",
-    "prettier": "^3.4.2",
+    "prettier": "^3.9.9",
     "rollup": "^4.30.1",
-    "typescript": "^5.7.3",
-    "typescript-eslint": "^8.20.0"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.0"
   },
   "prettier": {
     "trailingComma": "all",
     "singleQuote": true,
     "printWidth": 100
-  }
+  },
+  "browserslist": [
+    "> 0.25%",
+    "not dead"
+  ]
 }
