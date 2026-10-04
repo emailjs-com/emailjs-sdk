@@ -32,6 +32,6 @@ jobs:
         run: npm run test
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@main
         with:
           token: 541081be-589e-42cd-b55d-481cedb4be91
