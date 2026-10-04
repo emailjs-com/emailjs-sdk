@@ -1,7 +1,7 @@
 import { it, expect } from '@jest/globals';
 
-import { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
-import { headlessError } from './headlessError';
+import { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus.js';
+import { headlessError } from './headlessError.js';
 
 it('should return EmailJSResponseStatus', () => {
   expect(headlessError()).toBeInstanceOf(EmailJSResponseStatus);

@@ -1,8 +1,8 @@
 import { it, describe, expect, beforeEach, beforeAll } from '@jest/globals';
-import type { LimitRate } from '../../types/LimitRate';
-import type { StorageProvider } from '../../types/StorageProvider';
-import { isLimitRateHit } from './isLimitRateHit';
-import { createWebStorage } from '../createWebStorage/createWebStorage';
+import type { LimitRate } from '../../types/LimitRate.js';
+import type { StorageProvider } from '../../types/StorageProvider.js';
+import { isLimitRateHit } from './isLimitRateHit.js';
+import { createWebStorage } from '../createWebStorage/createWebStorage.js';
 
 let storage: StorageProvider;
 

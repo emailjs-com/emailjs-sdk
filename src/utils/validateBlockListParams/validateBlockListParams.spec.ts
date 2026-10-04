@@ -1,5 +1,5 @@
 import { it, expect } from '@jest/globals';
-import { validateBlockListParams } from './validateBlockListParams';
+import { validateBlockListParams } from './validateBlockListParams.js';
 
 it('should fail on list is invalid type', () => {
   expect(() => validateBlockListParams('100', 'send')).toThrow(

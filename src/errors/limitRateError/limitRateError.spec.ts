@@ -1,7 +1,7 @@
 import { it, expect } from '@jest/globals';
 
-import { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
-import { limitRateError } from './limitRateError';
+import { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus.js';
+import { limitRateError } from './limitRateError.js';
 
 it('should return EmailJSResponseStatus', () => {
   expect(limitRateError()).toBeInstanceOf(EmailJSResponseStatus);

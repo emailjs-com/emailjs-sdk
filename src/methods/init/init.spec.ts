@@ -1,7 +1,7 @@
 import { it, describe, expect, beforeEach } from '@jest/globals';
 
-import { init } from './init';
-import { store } from '../../store/store';
+import { init } from './init.js';
+import { store } from '../../store/store.js';
 
 beforeEach(() => {
   store.origin = 'https://api.emailjs.com';

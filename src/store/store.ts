@@ -1,5 +1,5 @@
-import type { Options } from '../types/Options';
-import { createWebStorage } from '../utils/createWebStorage/createWebStorage';
+import type { Options } from '../types/Options.js';
+import { createWebStorage } from '../utils/createWebStorage/createWebStorage.js';
 
 export const store: Options = {
   origin: 'https://api.emailjs.com',

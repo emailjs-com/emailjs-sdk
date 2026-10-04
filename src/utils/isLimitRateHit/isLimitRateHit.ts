@@ -1,6 +1,6 @@
-import type { LimitRate } from '../../types/LimitRate';
-import type { StorageProvider } from '../../types/StorageProvider';
-import { validateLimitRateParams } from '../validateLimitRateParams/validateLimitRateParams';
+import type { LimitRate } from '../../types/LimitRate.js';
+import type { StorageProvider } from '../../types/StorageProvider.js';
+import { validateLimitRateParams } from '../validateLimitRateParams/validateLimitRateParams.js';
 
 const getLeftTime = async (
   id: string,

@@ -1,5 +1,5 @@
 import { it, expect, describe } from '@jest/globals';
-import { validateParams } from './validateParams';
+import { validateParams } from './validateParams.js';
 
 describe('should fail on the public key', () => {
   it('no key', () => {

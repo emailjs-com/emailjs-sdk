@@ -1,6 +1,6 @@
 import { it, describe, expect } from '@jest/globals';
-import { isBlockedValueInParams } from './isBlockedValueInParams';
-import type { BlockList } from '../../types/BlockList';
+import { isBlockedValueInParams } from './isBlockedValueInParams.js';
+import type { BlockList } from '../../types/BlockList.js';
 
 describe('should be disabled', () => {
   it('empty block list options', () => {

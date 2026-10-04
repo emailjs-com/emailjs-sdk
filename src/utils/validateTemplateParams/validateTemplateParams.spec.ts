@@ -1,5 +1,5 @@
 import { it, expect } from '@jest/globals';
-import { validateTemplateParams } from './validateTemplateParams';
+import { validateTemplateParams } from './validateTemplateParams.js';
 
 it('should fail on wrong type', () => {
   expect(() => validateTemplateParams('variable')).toThrow(

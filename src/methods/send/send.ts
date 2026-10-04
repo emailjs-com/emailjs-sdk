@@ -1,17 +1,17 @@
-import type { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus';
-import type { Options } from '../../types/Options';
+import type { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus.js';
+import type { Options } from '../../types/Options.js';
 
-import { store } from '../../store/store';
-import { sendPost } from '../../api/sendPost';
-import { buildOptions } from '../../utils/buildOptions/buildOptions';
-import { validateParams } from '../../utils/validateParams/validateParams';
-import { validateTemplateParams } from '../../utils/validateTemplateParams/validateTemplateParams';
-import { isHeadless } from '../../utils/isHeadless/isHeadless';
-import { headlessError } from '../../errors/headlessError/headlessError';
-import { isBlockedValueInParams } from '../../utils/isBlockedValueInParams/isBlockedValueInParams';
-import { blockedEmailError } from '../../errors/blockedEmailError/blockedEmailError';
-import { isLimitRateHit } from '../../utils/isLimitRateHit/isLimitRateHit';
-import { limitRateError } from '../../errors/limitRateError/limitRateError';
+import { store } from '../../store/store.js';
+import { sendPost } from '../../api/sendPost.js';
+import { buildOptions } from '../../utils/buildOptions/buildOptions.js';
+import { validateParams } from '../../utils/validateParams/validateParams.js';
+import { validateTemplateParams } from '../../utils/validateTemplateParams/validateTemplateParams.js';
+import { isHeadless } from '../../utils/isHeadless/isHeadless.js';
+import { headlessError } from '../../errors/headlessError/headlessError.js';
+import { isBlockedValueInParams } from '../../utils/isBlockedValueInParams/isBlockedValueInParams.js';
+import { blockedEmailError } from '../../errors/blockedEmailError/blockedEmailError.js';
+import { isLimitRateHit } from '../../utils/isLimitRateHit/isLimitRateHit.js';
+import { limitRateError } from '../../errors/limitRateError/limitRateError.js';
 
 /**
  * Send a template to the specific EmailJS service

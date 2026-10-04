@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "lib": ["ESNext", "DOM"],
-    "moduleResolution": "Node",
+    "target": "ES2020",
+    "module": "NodeNext",
+    "lib": ["ES2020", "DOM"],
+    "moduleResolution": "NodeNext",
     "useDefineForClassFields": false,
     "declaration": false,
     "strict": true,
@@ -17,7 +17,7 @@
     "noUnusedParameters": true,
     "removeComments": false,
     "sourceMap": false,
-    "outDir": "es"
+    "outDir": "esm"
   },
   "include": ["src"]
 }

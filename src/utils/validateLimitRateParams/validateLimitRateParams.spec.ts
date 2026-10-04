@@ -1,5 +1,5 @@
 import { it, describe, expect } from '@jest/globals';
-import { validateLimitRateParams } from './validateLimitRateParams';
+import { validateLimitRateParams } from './validateLimitRateParams.js';
 
 describe('should fail on throttle', () => {
   it('is invalid type', () => {

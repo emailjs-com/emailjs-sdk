@@ -1,5 +1,5 @@
 import { it, expect } from '@jest/globals';
-import { isHeadless } from './isHeadless';
+import { isHeadless } from './isHeadless.js';
 
 it('should be headless browser', () => {
   expect(isHeadless(navigator)).toBeTruthy();

@@ -1,5 +1,5 @@
 import { it, expect } from '@jest/globals';
-import { buildOptions } from './buildOptions';
+import { buildOptions } from './buildOptions.js';
 
 it('get empty object', () => {
   expect(buildOptions()).toEqual({});

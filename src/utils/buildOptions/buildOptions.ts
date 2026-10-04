@@ -1,4 +1,4 @@
-import type { Options } from '../../types/Options';
+import type { Options } from '../../types/Options.js';
 
 export const buildOptions = (options?: Options | string): Options => {
   if (!options) return {};

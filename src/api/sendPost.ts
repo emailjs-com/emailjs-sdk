@@ -1,5 +1,5 @@
-import { EmailJSResponseStatus } from '../models/EmailJSResponseStatus';
-import { store } from '../store/store';
+import { EmailJSResponseStatus } from '../models/EmailJSResponseStatus.js';
+import { store } from '../store/store.js';
 
 export const sendPost = async (
   url: string,

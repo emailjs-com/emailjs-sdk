@@ -1,4 +1,4 @@
-import type { StorageProvider } from '../../types/StorageProvider';
+import type { StorageProvider } from '../../types/StorageProvider.js';
 
 export const createWebStorage = (): StorageProvider | undefined => {
   if (typeof localStorage === 'undefined') return;

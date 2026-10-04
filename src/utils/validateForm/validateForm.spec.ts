@@ -1,5 +1,5 @@
 import { it, expect } from '@jest/globals';
-import { validateForm } from './validateForm';
+import { validateForm } from './validateForm.js';
 
 it('should throw non-form element error', () => {
   const form: HTMLFormElement = document.createElement('span') as HTMLFormElement;

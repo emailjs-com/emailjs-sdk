@@ -1,5 +1,5 @@
-import type { BlockList } from '../../types/BlockList';
-import { validateBlockListParams } from '../validateBlockListParams/validateBlockListParams';
+import type { BlockList } from '../../types/BlockList.js';
+import { validateBlockListParams } from '../validateBlockListParams/validateBlockListParams.js';
 
 const isBlockListDisabled = (options: BlockList): boolean => {
   return !options.list?.length || !options.watchVariable;

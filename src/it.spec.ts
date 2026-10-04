@@ -1,7 +1,7 @@
 import { it, describe, expect, jest } from '@jest/globals';
 
-import emailjs from './index';
-import { EmailJSResponseStatus } from './models/EmailJSResponseStatus';
+import emailjs from './index.js';
+import { EmailJSResponseStatus } from './models/EmailJSResponseStatus.js';
 
 const responseWrapper = () => {
   return Promise.resolve(new EmailJSResponseStatus(200, 'OK'));
