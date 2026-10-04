@@ -1,6 +1,6 @@
-import type { BlockList } from './BlockList';
-import type { LimitRate } from './LimitRate';
-import type { StorageProvider } from './StorageProvider';
+import type { BlockList } from './BlockList.js';
+import type { LimitRate } from './LimitRate.js';
+import type { StorageProvider } from './StorageProvider.js';
 
 export interface Options {
   origin?: string;
