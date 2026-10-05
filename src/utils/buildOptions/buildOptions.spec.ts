@@ -1,4 +1,4 @@
-import { it, expect } from '@jest/globals';
+import { it, expect } from 'vitest';
 import { buildOptions } from './buildOptions.js';
 
 it('get empty object', () => {

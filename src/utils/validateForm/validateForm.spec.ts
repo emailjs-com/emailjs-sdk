@@ -1,4 +1,4 @@
-import { it, expect } from '@jest/globals';
+import { it, expect } from 'vitest';
 import { validateForm } from './validateForm.js';
 
 it('should throw non-form element error', () => {

@@ -1,4 +1,4 @@
-import { it, describe, expect, beforeEach, beforeAll } from '@jest/globals';
+import { it, describe, expect, beforeEach, beforeAll } from 'vitest';
 import type { LimitRate } from '../../types/LimitRate.js';
 import type { StorageProvider } from '../../types/StorageProvider.js';
 import { isLimitRateHit } from './isLimitRateHit.js';

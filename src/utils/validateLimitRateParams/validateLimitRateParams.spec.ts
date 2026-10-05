@@ -1,4 +1,4 @@
-import { it, describe, expect } from '@jest/globals';
+import { it, describe, expect } from 'vitest';
 import { validateLimitRateParams } from './validateLimitRateParams.js';
 
 describe('should fail on throttle', () => {

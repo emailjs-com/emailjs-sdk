@@ -1,4 +1,4 @@
-import { it, describe, expect } from '@jest/globals';
+import { it, describe, expect } from 'vitest';
 import { isBlockedValueInParams } from './isBlockedValueInParams.js';
 import type { BlockList } from '../../types/BlockList.js';
 

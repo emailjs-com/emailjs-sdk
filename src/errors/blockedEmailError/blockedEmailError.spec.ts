@@ -1,4 +1,4 @@
-import { it, expect } from '@jest/globals';
+import { it, expect } from 'vitest';
 
 import { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus.js';
 import { blockedEmailError } from './blockedEmailError.js';

@@ -1,4 +1,4 @@
-import { it, expect } from '@jest/globals';
+import { it, expect } from 'vitest';
 import { validateTemplateParams } from './validateTemplateParams.js';
 
 it('should fail on wrong type', () => {

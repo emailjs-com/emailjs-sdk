@@ -1,4 +1,4 @@
-import { it, describe, expect, jest } from '@jest/globals';
+import { it, describe, expect, vi } from 'vitest';
 
 import { sendForm } from './sendForm.js';
 import { EmailJSResponseStatus } from '../../models/EmailJSResponseStatus.js';
@@ -7,8 +7,8 @@ const responseWrapper = () => {
   return Promise.resolve(new EmailJSResponseStatus(200, 'OK'));
 };
 
-jest.mock('../../api/sendPost', () => ({
-  sendPost: jest.fn(() => {
+vi.mock('../../api/sendPost', () => ({
+  sendPost: vi.fn(() => {
     return responseWrapper();
   }),
 }));
