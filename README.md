@@ -1,183 +1,192 @@
-# Official EmailJS SDK for Browsers
+# Official EmailJS SDK for Web Browsers
 
-SDK for [EmailJS.com](https://www.emailjs.com) customers.
-\
-Use your EmailJS account for sending emails.
+The official client-side TypeScript and JavaScript SDK for [EmailJS.com](https://emailjs.com) customers.
+
+Send emails directly from your code in the simplest and most secure way.
 
 [![codecov](https://codecov.io/gh/emailjs-com/emailjs-sdk/branch/main/graph/badge.svg?token=4I0L59Z914)](https://codecov.io/gh/emailjs-com/emailjs-sdk)
 [![npm version](https://img.shields.io/npm/v/@emailjs/browser.svg)](https://www.npmjs.com/package/@emailjs/browser)
 
-## Disclaimer
+- **100% Code Coverage:** Every single line of code, condition, and error handler in this SDK is
+  fully covered by automated test suites to ensure absolute production readiness and zero regression issues.
+- **Zero External Dependencies:** Built with zero overhead to keep your bundle footprint as lightweight as possible.
 
-This is a browser platform, otherwise use
+## Target Environment Notice
+
+This package is designed exclusively for web browsers and client-side web environments. If you are building for
+a different platform, please use the corresponding dedicated SDK:
 
 - [Node.js](https://www.npmjs.com/package/@emailjs/nodejs)
 - [React Native](https://www.npmjs.com/package/@emailjs/react-native)
 - [Flutter](https://pub.dev/packages/emailjs)
 - [REST API](https://www.emailjs.com/docs/rest-api/send/)
 
-## Links
+## Why EmailJS?
 
-[Official SDK Docs](https://www.emailjs.com/docs)
+### What is EmailJS?
 
-## Intro
+EmailJS is an **Email Orchestration Layer** and a **Unified API hub**. We do not operate our own email delivery servers;
+instead, we sit on top of your existing infrastructure.
 
-EmailJS helps you send emails directly from code with one command.
-No server is required – just connect EmailJS to one of the supported
-email services, create an email template, and use our SDK
-to trigger an email.
+You connect your preferred email services—whether it’s a personal Gmail account, a standard SMTP server, or
+enterprise transactional providers like SendGrid, Resend, Mailgun, or AWS SES.
 
-## Usage
+### Core Architectural Benefits
 
-Install EmailJS SDK using [npm](https://www.npmjs.com/):
+- **Instant Provider Hot-Swapping:** If your primary delivery service suffers an outage or an unexpected account block, your application remains online. With EmailJS, you can instantly route your production traffic to a fallback provider (e.g., from SendGrid to AWS SES) with a single click in your dashboard—requiring **zero code adjustments and zero re-deployments**. You can also route dynamically on the fly by passing a different `serviceID` directly in your API request.
+- **Bypass the "Migration Tax":** If you ever need to change your email provider, you don't have to rewrite your integration logic, recreate HTML templates, or re-map variables. Integrate EmailJS once, and change underlying providers seamlessly.
+- **Zero Backend Overhead:** Eliminate the need to build, maintain, and secure a custom backend service or proxy just to safely route outgoing emails.
+- **Universal Ecosystem Support:** Works seamlessly across any stack. Use our official client/server SDKs—or connect any application on any platform using our universal REST API with Rust, Python, PHP, C#, Go, or any other language.
+
+## Installation and Setup
+
+### Modern Bundlers (Vite, Next.js, Webpack, Rollup)
+
+Install the SDK using your preferred package manager:
 
 ```bash
-$ npm install @emailjs/browser
+npm install @emailjs/browser
+# yarn add @emailjs/browser
+# pnpm add @emailjs/browser
+# bun add @emailjs/browser
 ```
 
-Or manually:
+### Browser Direct Script Integration (CDN)
+
+For applications without a build step, websites running on CMS platforms (like WordPress, Webflow, Shopify),
+or vanilla JavaScript environments, add the SDK directly via CDN:
 
 ```html
 <script
   type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
-<script type="text/javascript">
-  (function () {
-    emailjs.init({
-      publicKey: 'YOUR_PUBLIC_KEY',
-    });
-  })();
-</script>
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js"
+></script>
 ```
 
-## Examples
+## Code Examples
 
-**Send the email using the customized send method**
+### 1. Modern Async/Await Workflow
 
-```js
-var templateParams = {
-  name: 'James',
-  notes: 'Check this out!',
-};
+Designed for components in React, Vue, Angular, Svelte, Next.js, Nuxt, etc.
 
-emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams).then(
-  function (response) {
-    console.log('SUCCESS!', response.status, response.text);
-  },
-  function (err) {
-    console.log('FAILED...', err);
-  },
-);
-```
-
-**Send the email from a form using the sendForm method**
-
-```js
-emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', '#myForm').then(
-  function (response) {
-    console.log('SUCCESS!', response.status, response.text);
-  },
-  function (err) {
-    console.log('FAILED...', err);
-  },
-);
-```
-
-**Using Angular / VueJS / ReactJS / Svelte / any other modern framework**
-
-```js
-import emailjs from '@emailjs/browser';
+```typescript
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 
 const templateParams = {
   name: 'James',
   notes: 'Check this out!',
 };
 
-emailjs
-  .send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, {
-    publicKey: 'YOUR_PUBLIC_KEY',
-  })
-  .then(
-    (response) => {
-      console.log('SUCCESS!', response.status, response.text);
-    },
-    (err) => {
-      console.log('FAILED...', err);
-    },
-  );
-```
-
-**await/async with EmailJS error handler**
-
-```js
-import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
-
 try {
-  await emailjs.send(
-    'YOUR_SERVICE_ID',
-    'YOUR_TEMPLATE_ID',
-    {},
-    {
-      publicKey: 'YOUR_PUBLIC_KEY',
-    },
-  );
-  console.log('SUCCESS!');
-} catch (err) {
-  if (err instanceof EmailJSResponseStatus) {
-    console.log('EMAILJS FAILED...', err);
+  const response = await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, {
+    publicKey: 'YOUR_PUBLIC_KEY',
+  });
+  console.log('SUCCESS!', response.status, response.text);
+} catch (error) {
+  if (error instanceof EmailJSResponseStatus) {
+    console.error('EmailJS Error:', error.status, error.text);
     return;
   }
-
-  console.log('ERROR', err);
+  console.error('Unexpected Error:', error);
 }
 ```
 
-## Configuration
+### 2. Form Submission (sendForm)
 
-**Options**
+Automatically captures input fields from an HTML form element and delivers the payload securely.
 
-Options can be declared globally using the **init** method or locally as the fourth parameter of a function.
-\
-The local parameter will have higher priority than the global one.
+```javascript
+import emailjs from '@emailjs/browser';
 
-| Name            | Type            | Default | Description                                              |
-| --------------- | --------------- | ------- | -------------------------------------------------------- |
-| publicKey       | String          |         | The public key is required to invoke the method.         |
-| blockHeadless   | Boolean         | False   | Method will return error 451 if the browser is headless. |
-| blockList       | BlockList       |         | Block list settings.                                     |
-| limitRate       | LimitRate       |         | Limit rate configuration.                                |
-| storageProvider | StorageProvider |         | Provider for a custom key-value storage.                 |
+emailjs
+  .sendForm(
+    'YOUR_SERVICE_ID',
+    'YOUR_TEMPLATE_ID',
+    document.querySelector('#myForm'), // Can be a direct form reference (preferred), or a string selector
+    {
+      publicKey: 'YOUR_PUBLIC_KEY',
+    },
+  )
+  .then((response) => {
+    console.log('SUCCESS!', response.status, response.text);
+  })
+  .catch((error) => {
+    console.error('FAILED...', error);
+  });
+```
 
-**BlockList**
+### 3. Vanilla JavaScript Website Integration Example
 
-Allows to ignore a method call if the watched variable contains a value from the block list.
-\
-The method will return the error 403 if the request is blocked.
+If you are loading the SDK via a `<script>` tag on a standard layout.
 
-| Name          | Type     | Description                                        |
-| ------------- | -------- | -------------------------------------------------- |
-| list          | String[] | The array of strings contains values for blocking. |
-| watchVariable | String   | A name of the variable to be watched.              |
+```html
+<button id="sendBtn">Send Email</button>
 
-**LimitRate**
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js"
+></script>
+<script type="text/javascript">
+  document.getElementById('sendBtn').addEventListener('click', function () {
+    const templateParams = {
+      name: 'James',
+      message: 'Hello from vanilla JS!',
+    };
 
-Allows to set the limit rate for calling a method.
-\
-If the request hits the limit rate, the method will return the error 429.
+    emailjs
+      .send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, {
+        publicKey: 'YOUR_PUBLIC_KEY',
+      })
+      .then(
+        function (response) {
+          console.log('SUCCESS!', response.status, response.text);
+        },
+        function (error) {
+          console.log('FAILED...', error);
+        },
+      );
+  });
+</script>
+```
 
-| Name     | Type   | Default   | Description                                                                                                                              |
-| -------- | ------ | --------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| id       | String | page path | The limit rate is per page by default. To override the behavior, set the ID. It can be a custom ID for each page, group, or application. |
-| throttle | Number |           | _(ms)_ After how many milliseconds a next request is allowed.                                                                            |
+## Advanced Configuration
 
-**StorageProvider**
+Options can be defined globally using the `init()` method or overridden locally as the fourth parameter of execution
+functions (`send`, `sendForm`). Local options take higher priority over global configurations.
 
-Allows to provide a custom key value storage. By default, localStorage is used if available.
-\
-The custom provider must match the interface.
+### Main Options
 
-```ts
+| Property          | Type              | Default | Description                                                                                                  |
+| :---------------- | :---------------- | :------ | :----------------------------------------------------------------------------------------------------------- |
+| `publicKey`       | `string`          | —       | Required. Your EmailJS account public credential.                                                            |
+| `blockHeadless`   | `boolean`         | `false` | When true, automatically rejects execution with error 451 if the request originates from a headless browser. |
+| `blockList`       | `BlockList`       | —       | Settings to evaluate and drop requests matching forbidden values.                                            |
+| `limitRate`       | `LimitRate`       | —       | Throttling and rate-limiting rules.                                                                          |
+| `storageProvider` | `StorageProvider` | —       | Custom key-value storage engine interface.                                                                   |
+
+### BlockList Settings
+
+Drops any method calls if a tracked variable contains or matches blocked strings. Returns error 403 when triggered.
+
+| Property        | Type       | Description                                                         |
+| :-------------- | :--------- | :------------------------------------------------------------------ |
+| `list`          | `string[]` | Array of forbidden string terms or target values to block.          |
+| `watchVariable` | `string`   | The object key or variable path name inside the payload to monitor. |
+
+### LimitRate Settings
+
+Enforces request rate limiting. Returns error 429 when limits are exceeded.
+
+| Property   | Type     | Default     | Description                                                                            |
+| :--------- | :------- | :---------- | :------------------------------------------------------------------------------------- |
+| `id`       | `string` | `page path` | Scope identifier. Can be overridden with a custom ID per user, page, group, or system. |
+| `throttle` | `number` | —           | Minimum time gap (in milliseconds) required between consecutive requests.              |
+
+### Custom Storage Provider Interface
+
+By default, the SDK uses native `localStorage` if available. You can supply a custom async engine matching the following contract:
+
+```typescript
 interface StorageProvider {
   get: (key: string) => Promise<string | null | undefined>;
   set: (key: string, value: string) => Promise<void>;
@@ -185,49 +194,48 @@ interface StorageProvider {
 }
 ```
 
-**Declare global settings**
+## Configuration Code Examples
 
-```js
+### Setting Global Security and Rate Limits
+
+```javascript
 import emailjs from '@emailjs/browser';
 
 emailjs.init({
   publicKey: 'YOUR_PUBLIC_KEY',
   blockHeadless: true,
   blockList: {
-    list: ['foo@emailjs.com', 'bar@emailjs.com'],
+    watchVariable: 'user_email',
+    list: ['spam@malicious.com', 'bot@attack.com'],
   },
   limitRate: {
-    throttle: 10000, // 10s
+    throttle: 10000, // 10 seconds cooldown window
   },
 });
 ```
 
-**Overwrite settings locally**
+### Overriding Settings Locally
 
-```js
+```javascript
 import emailjs from '@emailjs/browser';
 
-const templateParams = {
-  name: 'James',
-  notes: 'Check this out!',
+const payload = {
+  userEmail: 'vip@example.com',
+  message: 'Hello!',
 };
 
-emailjs
-  .send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, {
-    publicKey: 'YOUR_PUBLIC_KEY',
-    blockList: {
-      watchVariable: 'userEmail',
-    },
-    limitRate: {
-      throttle: 0, // turn off the limit rate for these requests
-    },
-  })
-  .then(
-    (response) => {
-      console.log('SUCCESS!', response.status, response.text);
-    },
-    (err) => {
-      console.log('FAILED...', err);
-    },
-  );
+await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', payload, {
+  publicKey: 'YOUR_PUBLIC_KEY',
+  blockList: {
+    watchVariable: 'userEmail', // Custom path evaluation for this request
+  },
+  limitRate: {
+    throttle: 0, // Bypass global rate-limiting rules for this specific call
+  },
+});
 ```
+
+## Useful Links
+
+- [Official SDK Documentation](https://emailjs.com/docs)
+- [EmailJS Dashboard](https://emailjs.com)
