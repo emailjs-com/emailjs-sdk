@@ -11,15 +11,15 @@ coverage/
 Thumbs.db
 
 # dev files
-.eslintrc.js
+.eslint.config.mjs
 .gitignore
 .npmignore
-babel.config.js
-jest.config.mjs
+vite.config.ts
 set-version.sh
+set-type.sh
 tsconfig.json
 tsconfig.build.json
-rollup.config.mjs 
+rollup.config.mjs
 
 # source code files
 src/
