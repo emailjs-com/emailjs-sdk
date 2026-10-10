@@ -25,11 +25,11 @@ a different platform, please use the corresponding dedicated SDK:
 
 ### What is EmailJS?
 
-EmailJS is an **Email Orchestration Layer** and a **Unified API hub**. We do not operate our own email delivery servers;
-instead, we sit on top of your existing infrastructure.
-
-You connect your preferred email services—whether it’s a personal Gmail account, a standard SMTP server, or
-enterprise transactional providers like SendGrid, Resend, Mailgun, or AWS SES.
+EmailJS is an **Email Orchestration Layer** and a **Unified API hub** designed to seamlessly integrate with
+your existing infrastructure. By leveraging your preferred email services—from personal Gmail accounts
+and standard SMTP servers to enterprise transactional providers like
+SendGrid, Mailgun, Resend or AWS SES—EmailJS centralizes and optimizes your entire
+email workflow through a single, powerful interface.
 
 ### Core Architectural Benefits
 
